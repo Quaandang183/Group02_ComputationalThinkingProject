@@ -1,3 +1,4 @@
+```text
 tripwise/
 ├── frontend/                           # Giao diện Mobile App (React Native / Flutter)
 │   └── src/
@@ -75,3 +76,4 @@ tripwise/
 │
 └── docs/                               # 📄 TÀI LIỆU & BÁO CÁO ĐỒ ÁN
     └── presentation/                   # Slide thuyết trình, kịch bản bảo vệ & video demo dự phòng
+```
