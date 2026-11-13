@@ -4,64 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>TripWise · Giới thiệu</title>
+  <!-- Google Fonts: Luxurious Roman & Playfair Display cho slogan nghệ thuật -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
 </head>
 <body class="phone-screen-body">
-  <div class="app-container intro-container">
+  <div class="app-container">
     
-    <!-- Background văn hóa toàn khung hình (Figma Node 1376:4330) -->
-    <div class="intro-bg-wrapper">
-      <img src="assets/images/cultural_pattern.png" alt="Cultural Background" class="intro-bg-image">
-      <div class="intro-dark-gradient-overlay"></div>
-    </div>
+    <div class="intro-container-v2">
+      <!-- Top Brand Logo (Figma Node 1376:4347) -->
+      <header class="intro-brand-header">
+        <img src="assets/images/render_1376_4347.png" alt="TripWise Logo" class="intro-brand-logo-img" onerror="this.src='assets/images/logo-main.png'">
+      </header>
 
-    <!-- Header thương hiệu TripWise (Figma Node 1376:4347) -->
-    <header class="intro-header-brand">
-      <img src="assets/images/logo-circle.png" alt="TripWise Logo" class="intro-logo-badge">
-    </header>
-
-    <!-- Nội dung chính đẩy xuống đáy (Figma Node 1376:4332 & 1376:4348) -->
-    <div class="intro-footer-section">
+      <!-- Background văn hóa toàn khung hình (Figma Node 1376:4330) -->
+      <img src="assets/images/cultural_pattern.png" alt="Cultural Background" class="intro-bg-full">
       
-      <!-- Headline chữ nghệ thuật -->
-      <h1 class="intro-main-headline">
-        Một chút diệu kỳ.<br>Trọn vẹn Việt Nam.
-      </h1>
+      <!-- Lớp phủ Gradient tối dưới đáy để làm nổi bật nút và chữ (Figma Node 1376:4331) -->
+      <div class="intro-dark-gradient-bottom"></div>
 
-      <!-- Các nút đăng ký / đăng nhập -->
-      <div class="intro-auth-buttons-group">
+      <!-- Nội dung chính đẩy xuống đáy theo đúng Mẫu Ảnh 2 (Figma Node 1376:4332 & 1376:4348) -->
+      <div class="intro-bottom-content">
         
-        <!-- Button: Đăng ký với Google (Node 1376:4334) -->
-        <a href="login.html" class="btn-social-pill google" aria-label="Đăng ký với Google">
-          <img src="assets/images/icon-google.svg" alt="Google" width="22" height="22">
-          <span>Đăng ký với Google</span>
-        </a>
+        <!-- Các nút đăng ký tài khoản (Node 1376:4333) -->
+        <div class="intro-auth-stack">
+          <!-- Button 1: Đăng ký với Google (Node 1376:4334) -->
+          <a href="login.html" class="btn-intro-social google" aria-label="Đăng ký với Google">
+            <img src="assets/images/icon-google.svg" alt="Google" width="22" height="22">
+            <span>Đăng ký với Google</span>
+          </a>
 
-        <!-- Button: Đăng ký với Apple (Node 1376:4342) -->
-        <a href="login.html" class="btn-social-pill apple" aria-label="Đăng ký với Apple">
-          <img src="assets/images/icon-apple.svg" alt="Apple" width="22" height="22" style="filter: brightness(0) invert(1);">
-          <span>Đăng ký với Apple</span>
-        </a>
-
-        <!-- Phone Button: Đăng ký với Số điện thoại (Node 1376:4350) -->
-        <a href="register.html" class="btn-social-pill phone" aria-label="Đăng ký với Số điện thoại">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-          </svg>
-          <span>Đăng ký với Số điện thoại</span>
-        </a>
-
-        <!-- Link chuyển sang màn hình Đăng nhập (Node 1376:4346) -->
-        <div class="intro-switch-auth-link">
-          <span>Đã có tài khoản?</span>
-          <a href="login.html" class="link-bold-white">Đăng nhập</a>
+          <!-- Button 2: Đăng ký với Apple (Node 1376:4342) -->
+          <a href="login.html" class="btn-intro-social apple" aria-label="Đăng ký với Apple">
+            <img src="assets/images/icon-apple.svg" alt="Apple" width="22" height="22" style="filter: brightness(0) invert(1);">
+            <span>Đăng ký với Apple</span>
+          </a>
         </div>
 
-      </div>
+        <!-- Dòng chuyển sang Đăng nhập (Node 1376:4346) -->
+        <div class="intro-login-prompt-row">
+          <span>Đã có tài khoản?</span>
+          <a href="login.html">Đăng nhập</a>
+        </div>
 
-      <!-- Home indicator bar -->
-      <div class="ios-home-bar"></div>
+        <!-- Khung chữ nghệ thuật đúng font Luxurious Roman, size 32px và vị trí đáy (Figma Node 1376:4348 - Mẫu Ảnh 2) -->
+        <div class="intro-headline-serif-box">
+          <h1 class="intro-headline-serif-text">
+            Một chút diệu kỳ.<br>Trọn vẹn Việt Nam.
+          </h1>
+        </div>
+
+        <!-- Home indicator bar (Node 1376:4349) -->
+        <div class="intro-home-bar-indicator"></div>
+
+      </div>
 
     </div>
 

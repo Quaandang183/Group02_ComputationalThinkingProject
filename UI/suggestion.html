@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TripWise · Đề xuất phương án</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
+</head>
+
+<body class="phone-screen-body">
+  <div class="app-container">
+
+    <div class="suggestion-page-container">
+      <!-- Background Cultural Pattern (Figma Node 1376:2871 - 10% Opacity) -->
+      <img src="assets/images/cultural_pattern.png" alt="Cultural Pattern" class="suggestion-bg-pattern"
+        onerror="this.src='assets/images/botanical_bg.png'">
+
+      <div class="suggestion-content-wrap">
+
+        <!-- Destination Header (Figma Node 1376:2872) -->
+        <header class="suggestion-header">
+          <!-- Top Row: Back Button & Breadcrumb -->
+          <div class="suggestion-nav-row">
+            <a href="itinerary.html" class="suggestion-btn-back" title="Quay lại lịch trình" aria-label="Quay lại">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="suggestion-main-title">Đề xuất</h1>
+        </header>
+
+        <!-- Main Alternatives Content (Figma Node 1376:2880) -->
+        <main class="suggestion-body" role="radiogroup" aria-label="Danh sách phương án đề xuất">
+
+          <!-- Weather Context Card (Figma Node 1376:2881) -->
+          <section class="suggestion-weather-card" aria-label="Thông tin cảnh báo thời tiết">
+            <div class="suggestion-weather-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="16" y1="13" x2="16" y2="21"></line>
+                <line x1="8" y1="13" x2="8" y2="21"></line>
+                <line x1="12" y1="15" x2="12" y2="23"></line>
+                <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+              </svg>
+            </div>
+            <div class="suggestion-weather-text">
+              <p class="suggestion-weather-title">Hôm nay 14:30 - Thời tiết: Mưa dông nhẹ.</p>
+              <p class="suggestion-weather-sub">Gợi ý điểm trong nhà thay thế Hồ Xuân Hương:</p>
+            </div>
+          </section>
+
+          <!-- Alternative Option A (Figma Node 1376:2887 - Selected by default) -->
+          <article class="suggestion-option-card selected" id="optionCardA" role="radio" aria-checked="true"
+            tabindex="0" onclick="selectOption('A')">
+            <div class="suggestion-card-photo-box">
+              <img src="assets/images/place_ga_dalat.png" alt="Ga Đà Lạt & Tuyến tàu cổ Trại Mát"
+                class="suggestion-card-img" onerror="this.src='assets/images/dest_dalat.png'">
+
+              <!-- Badge: ĐƯỢC ĐỀ XUẤT (Figma Node 1376:2890) -->
+              <div class="suggestion-badge-pill recommended">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFFFFF">
+                  <path
+                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                </svg>
+                <span>ĐƯỢC ĐỀ XUẤT</span>
+              </div>
+
+              <!-- Selection State Radio (Figma Node 1376:2894) -->
+              <div class="suggestion-radio-circle" aria-hidden="true">
+                <div class="suggestion-radio-dot" id="radioDotA"></div>
+              </div>
+            </div>
+
+            <!-- Option Information (Figma Node 1376:2896) -->
+            <div class="suggestion-info-box">
+              <h2 class="suggestion-card-name">Ga Đà Lạt &amp; Tuyến tàu cổ Trại Mát</h2>
+
+              <div class="suggestion-card-meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D3B26" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="suggestion-meta-time">14:30 - 16:00</span>
+                <span class="suggestion-meta-shelter">• Có mái che</span>
+              </div>
+
+              <div class="suggestion-tag-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z">
+                  </path>
+                  <circle cx="12" cy="13" r="3"></circle>
+                </svg>
+                <span>Chụp ảnh &amp; phong cảnh lịch sử</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Alternative Option B (Figma Node 1376:2907) -->
+          <article class="suggestion-option-card" id="optionCardB" role="radio" aria-checked="false" tabindex="0"
+            onclick="selectOption('B')">
+            <div class="suggestion-card-photo-box">
+              <img src="assets/images/place_bao_tang.png" alt="Bảo tàng Lâm Đồng & Cung Nam Phương Hoàng Hậu"
+                class="suggestion-card-img" onerror="this.src='assets/images/dest_temple.png'">
+
+              <!-- Badge: B • KHÁM PHÁ VĂN HÓA (Figma Node 1376:2910) -->
+              <div class="suggestion-badge-pill culture">
+                <span>B • KHÁM PHÁ VĂN HÓA</span>
+              </div>
+
+              <!-- Selection State Radio (Figma Node 1376:2912) -->
+              <div class="suggestion-radio-circle" aria-hidden="true">
+                <div class="suggestion-radio-dot" id="radioDotB"></div>
+              </div>
+            </div>
+
+            <!-- Option Information (Figma Node 1376:2913) -->
+            <div class="suggestion-info-box">
+              <h2 class="suggestion-card-name">Bảo tàng Lâm Đồng &amp; Cung Nam Phương Hoàng Hậu</h2>
+
+              <div class="suggestion-card-meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D3B26" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 16 14"></polyline>
+                </svg>
+                <span class="suggestion-meta-time">14:30 - 16:30</span>
+                <span class="suggestion-meta-shelter">• Trong nhà</span>
+              </div>
+
+              <div class="suggestion-tag-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="3" y1="22" x2="21" y2="22"></line>
+                  <line x1="6" y1="18" x2="6" y2="11"></line>
+                  <line x1="10" y1="18" x2="10" y2="11"></line>
+                  <line x1="14" y1="18" x2="14" y2="11"></line>
+                  <line x1="18" y1="18" x2="18" y2="11"></line>
+                  <polygon points="12 2 20 7 4 7"></polygon>
+                </svg>
+                <span>Văn hóa lịch sử</span>
+              </div>
+            </div>
+          </article>
+
+        </main>
+
+        <!-- Apply Alternative Action Area (Figma Node 1376:2924) -->
+        <footer class="suggestion-apply-footer">
+          <div class="suggestion-status-row">
+            <span class="suggestion-status-label" id="statusLabel">Đang chọn phương án A</span>
+            <span class="suggestion-status-time" id="statusTime">14:30 - 16:00</span>
+          </div>
+
+          <button type="button" class="suggestion-btn-apply" id="btnApplyAlternative" onclick="applyChosenAlternative()"
+            aria-label="Áp dụng phương án này">
+            <span>Áp dụng phương án này</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+        </footer>
+
+      </div>
+
+      <!-- Floating Bottom Navigation Bar (Figma Node 1376:2931 / 1376:3576) -->
+      <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
+        <a href="index.html" class="dock-btn-row">
+          <img src="assets/images/icon-home.svg" alt="Home">
+          <span>Trang chủ</span>
+        </a>
+        <a href="itinerary.html" class="dock-btn-row active">
+          <img src="assets/images/icon-calendar.svg" alt="Itinerary">
+          <span>Lịch trình</span>
+        </a>
+        <a href="map.html" class="dock-btn-row">
+          <img src="assets/images/icon-map.svg" alt="Map">
+          <span>Bản đồ</span>
+        </a>
+        <a href="profile.html" class="dock-btn-row">
+          <img src="assets/images/icon-user.svg" alt="Profile">
+          <span>Cá nhân</span>
+        </a>
+      </nav>
+
+    </div>
+
+  </div>
+
+  <script>
+    let currentOption = 'A';
+
+    const OPTION_DATA = {
+      'A': {
+        label: 'Đang chọn phương án A',
+        time: '14:30 - 16:00',
+        title: 'Ga Đà Lạt & Tuyến tàu cổ Trại Mát',
+        timeRange: '14:30 - 16:00',
+        shelter: 'Có mái che',
+        image: 'assets/images/place_ga_dalat.png'
+      },
+      'B': {
+        label: 'Đang chọn phương án B',
+        time: '14:30 - 16:30',
+        title: 'Bảo tàng Lâm Đồng & Cung Nam Phương Hoàng Hậu',
+        timeRange: '14:30 - 16:30',
+        shelter: 'Trong nhà',
+        image: 'assets/images/place_bao_tang.png'
+      }
+    };
+
+    function selectOption(opt) {
+      currentOption = opt;
+      const cardA = document.getElementById('optionCardA');
+      const cardB = document.getElementById('optionCardB');
+      const statusLabel = document.getElementById('statusLabel');
+      const statusTime = document.getElementById('statusTime');
+
+      if (opt === 'A') {
+        cardA.classList.add('selected');
+        cardA.setAttribute('aria-checked', 'true');
+        cardB.classList.remove('selected');
+        cardB.setAttribute('aria-checked', 'false');
+        statusLabel.textContent = OPTION_DATA['A'].label;
+        statusTime.textContent = OPTION_DATA['A'].time;
+      } else {
+        cardB.classList.add('selected');
+        cardB.setAttribute('aria-checked', 'true');
+        cardA.classList.remove('selected');
+        cardA.setAttribute('aria-checked', 'false');
+        statusLabel.textContent = OPTION_DATA['B'].label;
+        statusTime.textContent = OPTION_DATA['B'].time;
+      }
+    }
+
+    // Keyboard navigation (Enter / Space)
+    document.getElementById('optionCardA').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectOption('A');
+      }
+    });
+
+    document.getElementById('optionCardB').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectOption('B');
+      }
+    });
+
+    function applyChosenAlternative() {
+      const chosen = OPTION_DATA[currentOption];
+      localStorage.setItem('tripwise_selected_alternative', currentOption);
+      localStorage.setItem('tripwise_alt_name', chosen.title);
+      localStorage.setItem('tripwise_alt_time', chosen.timeRange);
+      localStorage.setItem('tripwise_alt_shelter', chosen.shelter);
+      localStorage.setItem('tripwise_alt_img', chosen.image);
+
+      // Chuyển về itinerary kèm tham số applied=1
+      window.location.href = 'itinerary.html?applied=1';
+    }
+
+    // Load any existing saved option
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('tripwise_selected_alternative');
+      if (saved && (saved === 'A' || saved === 'B')) {
+        selectOption(saved);
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -14,7 +14,7 @@
 
     <div class="plan-page-container">
       <!-- Background Botanical Art -->
-      <img src="assets/images/botanical_bg.png" alt="Botanical Art" class="bg-botanical-art">
+      <img src="assets/images/cultural_pattern.png" alt="Cultural Background" class="bg-cultural-pattern" onerror="this.src='assets/images/botanical_bg.png'">
 
       <!-- Top Header Row: Nút mũi tên quay lại bên góc trái (Thay thế nút X) -->
       <div class="plan-page-header">
@@ -27,7 +27,7 @@
       </div>
 
       <!-- Planning Form Body -->
-      <form class="plan-form-body" id="planTripPageForm">
+      <form class="plan-form-body" id="planTripPageForm" autocomplete="off">
 
         <!-- Trường 1: Tên chuyến đi (Chữ xám placeholder, khi nhập thì biến mất) -->
         <div class="plan-field-group">
@@ -38,7 +38,7 @@
                 <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
               </svg>
             </span>
-            <input type="text" id="planTripName" class="plan-input-field" placeholder="Nhập tên chuyến đi..." value="" required>
+            <input type="text" id="planTripName" class="plan-input-field" placeholder="Nhập tên chuyến đi..." value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
           </div>
         </div>
 
@@ -145,7 +145,7 @@
                 <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
               </svg>
             </span>
-            <input type="text" id="planBudget" class="plan-input-field" placeholder="Nhập chi phí dự kiến..." value="" inputmode="numeric" required>
+            <input type="text" id="planBudget" class="plan-input-field" placeholder="Nhập chi phí dự kiến..." value="" inputmode="numeric" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
             <span class="plan-currency-suffix">đ</span>
           </div>
         </div>
