@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TripWise · Xóa tài khoản</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
+</head>
+<body class="phone-screen-body">
+  <div class="app-container delete-account-container">
+    
+    <!-- Background văn hóa 10% (Figma Node 1376:2794) -->
+    <div class="auth-bg-layer">
+      <img src="assets/images/cultural_pattern.png" alt="Cultural Background" class="auth-bg-img" style="opacity: 0.12;">
+      <div class="delete-bg-overlay"></div>
+    </div>
+
+    <!-- Header bar: Back + Title "Xóa tài khoản" + Balance spacer (Node 1376:2797) -->
+    <header class="auth-nav-header with-title">
+      <a href="profile.html" class="btn-auth-back" title="Quay lại cài đặt cá nhân" aria-label="Quay lại cài đặt cá nhân">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3f20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+      </a>
+      <h1 class="auth-header-title">Xóa tài khoản</h1>
+      <div class="auth-header-spacer"></div>
+    </header>
+
+    <!-- Main Deletion Form Body (Node 1376:2801) -->
+    <main class="delete-main-content">
+      
+      <!-- Permanent deletion warning card (Node 1376:2803) -->
+      <section class="delete-warning-card">
+        <div class="warning-title-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9563c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <h2 class="warning-title-text">Hành động này không thể hoàn tác</h2>
+        </div>
+
+        <ul class="delete-policy-list">
+          <li class="policy-item">
+            <span class="bullet-dot-red"></span>
+            <span>Mọi lịch trình du lịch cá nhân và ghi chú hành trình sẽ bị xóa vĩnh viễn.</span>
+          </li>
+          <li class="policy-item">
+            <span class="bullet-dot-red"></span>
+            <span>Điểm thưởng, ưu đãi vé tham quan và lịch sử thanh toán sẽ không thể khôi phục.</span>
+          </li>
+          <li class="policy-item">
+            <span class="bullet-dot-red"></span>
+            <span>Tài khoản của bạn sẽ được xóa hoàn toàn sau 30 ngày bảo lưu.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Deletion Form (Node 1376:2819) -->
+      <form class="delete-form-body" id="deleteAccountForm" onsubmit="event.preventDefault(); confirmAccountDeletion();">
+        
+        <!-- Reason selection card (Node 1376:2820) -->
+        <div class="delete-reasons-card">
+          <label class="delete-field-title">Lý do bạn muốn rời đi?</label>
+          <div class="reasons-radio-group">
+            <label class="reason-radio-item">
+              <input type="radio" name="delete_reason" value="no_travel">
+              <span class="custom-radio"></span>
+              <span class="reason-text">Tôi không còn nhu cầu du lịch</span>
+            </label>
+            <label class="reason-radio-item">
+              <input type="radio" name="delete_reason" value="new_account">
+              <span class="custom-radio"></span>
+              <span class="reason-text">Tôi muốn tạo tài khoản mới</span>
+            </label>
+            <label class="reason-radio-item">
+              <input type="radio" name="delete_reason" value="not_expected" checked>
+              <span class="custom-radio"></span>
+              <span class="reason-text">Ứng dụng chưa đáp ứng kỳ vọng</span>
+            </label>
+            <label class="reason-radio-item">
+              <input type="radio" name="delete_reason" value="other">
+              <span class="custom-radio"></span>
+              <span class="reason-text">Lý do khác</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Password verification input (Node 1376:2838) -->
+        <div class="delete-password-box">
+          <label class="delete-field-title" for="delPassword">Nhập mật khẩu hiện tại để xác thực</label>
+          <div class="delete-input-container">
+            <span class="delete-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#536151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input type="password" id="delPassword" class="delete-input-field" placeholder="••••••••••" required value="••••••••••">
+            <button type="button" class="btn-del-eye" id="btnToggleDelPwd" aria-label="Hiện hoặc ẩn mật khẩu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#758071" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Acknowledgment Checkbox (Node 1376:2846) -->
+        <label class="delete-consent-row">
+          <input type="checkbox" id="delConsent" required checked>
+          <span class="consent-text">Tôi đã hiểu rằng toàn bộ dữ liệu hành trình sẽ bị xóa vĩnh viễn.</span>
+        </label>
+
+        <!-- Actions: Xóa tài khoản & Hủy (Node 1376:2851) -->
+        <div class="delete-actions-group">
+          <button type="submit" class="btn-delete-confirm-action" id="btnExecuteDelete" aria-label="Xác nhận xóa tài khoản">
+            XÓA TÀI KHOÁN
+          </button>
+          <a href="profile.html" class="btn-delete-cancel-action" aria-label="Hủy xóa tài khoản">
+            HỦY
+          </a>
+        </div>
+
+      </form>
+
+    </main>
+
+  </div>
+
+  <script>
+    // Toggle password eye
+    const btnEye = document.getElementById('btnToggleDelPwd');
+    const pwdInput = document.getElementById('delPassword');
+    if (btnEye && pwdInput) {
+      btnEye.addEventListener('click', () => {
+        pwdInput.type = pwdInput.type === 'password' ? 'text' : 'password';
+      });
+    }
+
+    // Function handle deletion
+    function confirmAccountDeletion() {
+      if (confirm('CẢNH BÁO: Bạn có chắc chắn muốn xóa tài khoản TripWise này không? Tất cả dữ liệu hành trình sẽ bị xóa sau 30 ngày.')) {
+        alert('Tài khoản đã được đưa vào trạng thái bảo lưu xóa trong 30 ngày. Đang đăng xuất...');
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+</body>
+</html>
+

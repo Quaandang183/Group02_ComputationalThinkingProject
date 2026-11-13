@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TripWise · Lên kế hoạch</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
+</head>
+
+<body class="phone-screen-body">
+  <div class="app-container">
+
+    <div class="plan-page-container">
+      <!-- Background Botanical Art -->
+      <img src="assets/images/botanical_bg.png" alt="Botanical Art" class="bg-botanical-art">
+
+      <!-- Top Header Row: Nút mũi tên quay lại bên góc trái (Thay thế nút X) -->
+      <div class="plan-page-header">
+        <a href="index.html" class="btn-plan-back-circle" aria-label="Quay lại trang chủ" title="Quay lại">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"></path>
+            <path d="M12 19l-7-7 7-7"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Planning Form Body -->
+      <form class="plan-form-body" id="planTripPageForm">
+
+        <!-- Trường 1: Tên chuyến đi (Chữ xám placeholder, khi nhập thì biến mất) -->
+        <div class="plan-field-group">
+          <label class="plan-label" for="planTripName">Tên chuyến đi</label>
+          <div class="plan-input-container">
+            <span class="plan-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+              </svg>
+            </span>
+            <input type="text" id="planTripName" class="plan-input-field" placeholder="Nhập tên chuyến đi..." value="" required>
+          </div>
+        </div>
+
+        <!-- Trường 2: Điểm đến (Chữ xám placeholder, Realtime Search & Danh sách tỉnh thành A-Z, Tự động kiểm tra & xóa nếu không hợp lệ) -->
+        <div class="plan-field-group" style="position: relative;">
+          <label class="plan-label" for="planDestination">Điểm đến</label>
+          <div class="plan-input-container" id="destInputContainer">
+            <span class="plan-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </span>
+            <input type="text" id="planDestination" class="plan-input-field" placeholder="Tìm kiếm tỉnh/thành phố..." value="" autocomplete="off" required>
+          </div>
+
+          <!-- Destination suggestion frame -->
+          <div class="depart-suggestion-frame" id="departSuggestionFrame">
+            <div class="depart-search-bar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F7A6B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="destinationSearchInput" class="depart-search-input" placeholder="Tìm kiếm tỉnh/thành phố..." autocomplete="off">
+            </div>
+            <div class="depart-provinces-list" id="departProvincesList">
+              <!-- Render tỉnh thành A-Z có icon định vị -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Trường 3: Thời gian chuyến đi (Chữ xám placeholder, khi nhập thì biến mất) -->
+        <div class="plan-field-group" style="position: relative;">
+          <label class="plan-label" for="planDates">Thời gian chuyến đi</label>
+          <div class="plan-input-container" id="datesInputContainer" style="cursor: pointer;">
+            <span class="plan-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                <line x1="16" x2="16" y1="2" y2="6"></line>
+                <line x1="8" x2="8" y1="2" y2="6"></line>
+                <line x1="3" x2="21" y1="10" y2="10"></line>
+              </svg>
+            </span>
+            <input type="text" id="planDates" class="plan-input-field" placeholder="Chọn ngày đi - ngày về" value="" readonly required style="cursor: pointer;">
+          </div>
+
+          <!-- Date Picker Calendar Popover -->
+          <div class="calendar-popover" id="calendarPopover">
+            <div class="calendar-popover-header">
+              <button type="button" class="btn-cal-prev" id="btnCalPrev" aria-label="Tháng trước">‹</button>
+              <span class="cal-month-title" id="calMonthTitle">Tháng 10, 2026</span>
+              <button type="button" class="btn-cal-next" id="btnCalNext" aria-label="Tháng sau">›</button>
+            </div>
+            <div class="calendar-weekdays">
+              <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+            </div>
+            <div class="calendar-days-grid" id="calendarDaysGrid"></div>
+            <div class="calendar-actions-footer">
+              <span id="calSelectedInfo" style="font-size: 11px; color: var(--c-emerald); font-weight: 600;">Chưa chọn ngày</span>
+              <button type="button" class="btn-cal-apply" id="btnCalApply" aria-label="Xác nhận ngày">Xong</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual Row: Người lớn & Trẻ em (Chữ xám placeholder, khi nhập thì biến mất, không dropdown, không chevron) -->
+        <div class="plan-dual-row">
+          <!-- Người lớn -->
+          <div class="plan-field-group">
+            <label class="plan-label" for="planAdults">Người lớn</label>
+            <div class="plan-input-container">
+              <span class="plan-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <input type="number" id="planAdults" class="plan-input-field" placeholder="2" min="1" max="99" value="" inputmode="numeric" required>
+            </div>
+          </div>
+
+          <!-- Trẻ em -->
+          <div class="plan-field-group">
+            <label class="plan-label" for="planChildren">Trẻ em</label>
+            <div class="plan-input-container">
+              <span class="plan-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <input type="number" id="planChildren" class="plan-input-field" placeholder="0" min="0" max="99" value="" inputmode="numeric" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trường: Chi phí / người (Chữ xám placeholder, khi nhập thì biến mất, tự động ngăn cách dấu chấm) -->
+        <div class="plan-field-group">
+          <label class="plan-label" for="planBudget">Chi phí / người</label>
+          <div class="plan-input-container">
+            <span class="plan-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+              </svg>
+            </span>
+            <input type="text" id="planBudget" class="plan-input-field" placeholder="Nhập chi phí dự kiến..." value="" inputmode="numeric" required>
+            <span class="plan-currency-suffix">đ</span>
+          </div>
+        </div>
+
+        <!-- Trường: Sở thích của bạn (Cố định vị trí các nút trên lưới 3 cột, tách riêng Nghỉ dưỡng & Cà phê, thêm Check-in, Mua sắm, Vui chơi, đầy đủ icon SVG) -->
+        <div class="plan-field-group">
+          <label class="plan-label">Sở thích của bạn</label>
+          <div class="plan-tags-grid">
+            <!-- 1. Thiên nhiên -->
+            <button type="button" class="plan-tag-btn selected" data-tag="Thiên nhiên" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              </svg>
+              <span>Thiên nhiên</span>
+            </button>
+
+            <!-- 2. Văn hóa -->
+            <button type="button" class="plan-tag-btn selected" data-tag="Văn hóa" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" x2="21" y1="22" y2="22"/>
+                <line x1="6" x2="6" y1="18" y2="11"/>
+                <line x1="10" x2="10" y1="18" y2="11"/>
+                <line x1="14" x2="14" y1="18" y2="11"/>
+                <line x1="18" x2="18" y1="18" y2="11"/>
+                <polygon points="12 2 20 7 4 7"/>
+              </svg>
+              <span>Văn hóa</span>
+            </button>
+
+            <!-- 3. Ẩm thực -->
+            <button type="button" class="plan-tag-btn" data-tag="Ẩm thực" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"/>
+                <path d="M15 11v11"/>
+                <path d="M5 2v13a3 3 0 0 0 3 3h1v4"/>
+                <path d="M9 2v4"/>
+              </svg>
+              <span>Ẩm thực</span>
+            </button>
+
+            <!-- 4. Nghỉ dưỡng (Đã tách riêng) -->
+            <button type="button" class="plan-tag-btn" data-tag="Nghỉ dưỡng" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20"/>
+                <path d="M2 12c0-5.5 4.5-10 10-10s10 4.5 10 10H2Z"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10"/>
+                <path d="M12 2a15.3 15.3 0 0 0-4 10"/>
+              </svg>
+              <span>Nghỉ dưỡng</span>
+            </button>
+
+            <!-- 5. Cà phê (Đã tách riêng) -->
+            <button type="button" class="plan-tag-btn" data-tag="Cà phê" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+                <line x1="6" x2="6" y1="2" y2="4"/>
+                <line x1="10" x2="10" y1="2" y2="4"/>
+                <line x1="14" x2="14" y1="2" y2="4"/>
+              </svg>
+              <span>Cà phê</span>
+            </button>
+
+            <!-- 6. Check-in (Mới bổ sung) -->
+            <button type="button" class="plan-tag-btn" data-tag="Check-in" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                <circle cx="12" cy="13" r="3"/>
+              </svg>
+              <span>Check-in</span>
+            </button>
+
+            <!-- 7. Mua sắm (Mới bổ sung) -->
+            <button type="button" class="plan-tag-btn" data-tag="Mua sắm" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              <span>Mua sắm</span>
+            </button>
+
+            <!-- 8. Vui chơi (Mới bổ sung) -->
+            <button type="button" class="plan-tag-btn" data-tag="Vui chơi" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="6" x2="10" y1="12" y2="12"/>
+                <line x1="8" x2="8" y1="10" y2="14"/>
+                <line x1="15" x2="15.01" y1="13" y2="13"/>
+                <line x1="18" x2="18.01" y1="11" y2="11"/>
+                <rect width="20" height="12" x="2" y="6" rx="6"/>
+              </svg>
+              <span>Vui chơi</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Nút Submit Lập kế hoạch chuyến đi (Đậm khi đủ thông tin, mờ và vô hiệu hóa khi thiếu) -->
+        <button type="submit" class="btn-plan-full-submit" id="btnSubmitPlan" aria-label="Xác nhận Lập kế hoạch chuyến đi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+            <path d="M5 3v4"></path>
+            <path d="M19 17v4"></path>
+            <path d="M3 5h4"></path>
+            <path d="M17 19h4"></path>
+          </svg>
+          <span>Lập kế hoạch chuyến đi</span>
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    // Danh sách các tỉnh thành sắp xếp chuẩn bảng chữ cái A - Z (kể cả sau sáp nhập)
+    const PROVINCES_LIST = [
+      "An Giang",
+      "Bà Rịa - Vũng Tàu",
+      "Bắc Giang",
+      "Bắc Kạn",
+      "Bạc Liêu",
+      "Bắc Ninh",
+      "Bến Tre",
+      "Bình Định",
+      "Bình Dương",
+      "Bình Phước",
+      "Bình Thuận",
+      "Cà Mau",
+      "Cần Thơ",
+      "Cao Bằng",
+      "Đà Lạt, Lâm Đồng",
+      "Đà Nẵng",
+      "Đắk Lắk",
+      "Đắk Nông",
+      "Điện Biên",
+      "Đồng Nai",
+      "Đồng Tháp",
+      "Gia Lai",
+      "Hà Giang",
+      "Hà Nam",
+      "Hà Nội",
+      "Hà Tĩnh",
+      "Hải Dương",
+      "Hải Phòng",
+      "Hậu Giang",
+      "Hòa Bình",
+      "Hưng Yên",
+      "Khánh Hòa (Nha Trang)",
+      "Kiên Giang (Phú Quốc)",
+      "Kon Tum",
+      "Lai Châu",
+      "Lâm Đồng",
+      "Lạng Sơn",
+      "Lào Cai (Sa Pa)",
+      "Long An",
+      "Nam Định",
+      "Nghệ An",
+      "Ninh Bình",
+      "Ninh Thuận",
+      "Phú Thọ",
+      "Phú Yên",
+      "Quảng Bình",
+      "Quảng Nam (Hội An)",
+      "Quảng Ngãi",
+      "Quảng Ninh",
+      "Quảng Trị",
+      "Sóc Trăng",
+      "Sơn La",
+      "Tây Ninh",
+      "Thái Bình",
+      "Thái Nguyên",
+      "Thanh Hóa",
+      "Thừa Thiên Huế",
+      "Tiền Giang",
+      "TP. Hồ Chí Minh",
+      "Trà Vinh",
+      "Tuyên Quang",
+      "Vĩnh Long",
+      "Vĩnh Phúc",
+      "Yên Bái"
+    ];
+
+    // DOM Elements
+    const formPlan = document.getElementById('planTripPageForm');
+    const inputTripName = document.getElementById('planTripName');
+    const inputDest = document.getElementById('planDestination');
+    const destContainer = document.getElementById('destInputContainer');
+    const departFrame = document.getElementById('departSuggestionFrame');
+    const destSearchInput = document.getElementById('destinationSearchInput');
+    const departList = document.getElementById('departProvincesList');
+
+    const inputDates = document.getElementById('planDates');
+    const datesContainer = document.getElementById('datesInputContainer');
+    const popoverCal = document.getElementById('calendarPopover');
+    const calMonthTitle = document.getElementById('calMonthTitle');
+    const btnCalPrev = document.getElementById('btnCalPrev');
+    const btnCalNext = document.getElementById('btnCalNext');
+    const calDaysGrid = document.getElementById('calendarDaysGrid');
+    const calSelectedInfo = document.getElementById('calSelectedInfo');
+    const btnCalApply = document.getElementById('btnCalApply');
+
+    const inputAdults = document.getElementById('planAdults');
+    const inputChildren = document.getElementById('planChildren');
+    const inputBudget = document.getElementById('planBudget');
+    const tagButtons = document.querySelectorAll('.plan-tag-btn');
+    const btnSubmitPlan = document.getElementById('btnSubmitPlan');
+
+    // Helper: Chuẩn hóa chuỗi tìm kiếm không dấu
+    function cleanStr(s) {
+      return (s || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .trim();
+    }
+
+    // 1. Destination Dropdown & Realtime Search
+    function renderProvinces(filterText = '') {
+      departList.innerHTML = '';
+      const q = cleanStr(filterText);
+      const filtered = PROVINCES_LIST.filter(p => cleanStr(p).includes(q));
+
+      if (filtered.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'depart-no-results';
+        empty.style.padding = '12px';
+        empty.style.fontSize = '12px';
+        empty.style.color = '#7A9485';
+        empty.style.textAlign = 'center';
+        empty.textContent = 'Không tìm thấy tỉnh thành phù hợp';
+        departList.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(prov => {
+        const item = document.createElement('div');
+        item.className = 'depart-province-item';
+        if (inputDest.value.trim() === prov) {
+          item.classList.add('selected');
+        }
+        item.innerHTML = `
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>${prov}</span>
+        `;
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          inputDest.value = prov;
+          departFrame.classList.remove('open');
+          validateForm();
+        });
+        departList.appendChild(item);
+      });
+    }
+
+    // Kiểm tra tính hợp lệ của ô Điểm đến, nếu không hợp lệ thì xóa những gì người dùng đã điền
+    function validateDestination() {
+      const val = inputDest.value.trim();
+      if (!val) {
+        validateForm();
+        return false;
+      }
+      const q = cleanStr(val);
+      // Kiểm tra trùng khớp: khớp chính xác hoặc bắt đầu/chứa tên tỉnh thành hợp lệ
+      const matched = PROVINCES_LIST.find(p => cleanStr(p) === q) ||
+                      PROVINCES_LIST.find(p => cleanStr(p).includes(q) && q.length >= 3);
+
+      if (matched) {
+        inputDest.value = matched;
+        validateForm();
+        return true;
+      } else {
+        // Điểm đến không hợp lệ -> xóa những gì người dùng đã điền
+        inputDest.value = '';
+        if (destSearchInput) destSearchInput.value = '';
+        renderProvinces('');
+        validateForm();
+        return false;
+      }
+    }
+
+    if (inputDest && departFrame) {
+      inputDest.addEventListener('focus', () => {
+        renderProvinces(destSearchInput.value);
+        departFrame.classList.add('open');
+        if (popoverCal) popoverCal.classList.remove('open');
+      });
+
+      inputDest.addEventListener('input', () => {
+        destSearchInput.value = inputDest.value;
+        renderProvinces(inputDest.value);
+        departFrame.classList.add('open');
+        validateForm();
+      });
+
+      inputDest.addEventListener('blur', () => {
+        // Trì hoãn để click vào dropdown kịp chọn
+        setTimeout(validateDestination, 200);
+      });
+
+      destSearchInput.addEventListener('input', (e) => {
+        renderProvinces(e.target.value);
+      });
+    }
+
+    // 2. Interactive Calendar with Month Switching & Range Selection
+    let calYear = 2026;
+    let calMonth = 9; // 0-indexed: 9 = Tháng 10
+    let startDate = null;
+    let endDate = null;
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function formatDateVN(d) {
+      return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+    }
+
+    function renderCalendar() {
+      calMonthTitle.textContent = `Tháng ${calMonth + 1}, ${calYear}`;
+      calDaysGrid.innerHTML = '';
+
+      // Ngày đầu tiên của tháng (Thứ Hai = 0 ... Chủ Nhật = 6)
+      const firstDayDow = new Date(calYear, calMonth, 1).getDay();
+      const startOffset = (firstDayDow + 6) % 7;
+      const totalDays = new Date(calYear, calMonth + 1, 0).getDate();
+
+      for (let i = 0; i < startOffset; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'cal-day empty';
+        calDaysGrid.appendChild(empty);
+      }
+
+      const startVal = startDate ? new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()).getTime() : null;
+      const endVal = endDate ? new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()).getTime() : null;
+
+      for (let day = 1; day <= totalDays; day++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-day';
+        cell.textContent = day;
+
+        const cellDate = new Date(calYear, calMonth, day);
+        const cellVal = cellDate.getTime();
+
+        if (startVal && cellVal === startVal) {
+          cell.classList.add('range-start');
+        }
+        if (endVal && cellVal === endVal) {
+          cell.classList.add('range-end');
+        }
+        if (startVal && endVal && cellVal > startVal && cellVal < endVal) {
+          cell.classList.add('in-range');
+        }
+
+        cell.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (!startDate || (startDate && endDate)) {
+            // Lần 1: Chọn ngày đi và được tô màu
+            startDate = cellDate;
+            endDate = null;
+          } else if (startDate && !endDate) {
+            // Lần 2: Chọn ngày về và được tô màu
+            if (cellVal < startDate.getTime()) {
+              endDate = startDate;
+              startDate = cellDate;
+            } else {
+              endDate = cellDate;
+            }
+          }
+          updateDateValues();
+          renderCalendar();
+          validateForm();
+        });
+
+        calDaysGrid.appendChild(cell);
+      }
+    }
+
+    function updateDateValues() {
+      if (startDate && endDate) {
+        const textRange = `${formatDateVN(startDate)} - ${formatDateVN(endDate)}`;
+        calSelectedInfo.textContent = textRange;
+        inputDates.value = textRange;
+      } else if (startDate) {
+        const textSingle = `${formatDateVN(startDate)}`;
+        calSelectedInfo.textContent = `${textSingle} (chọn ngày về)`;
+        inputDates.value = `${textSingle} - `;
+      } else {
+        calSelectedInfo.textContent = 'Chưa chọn ngày';
+        inputDates.value = '';
+      }
+    }
+
+    if (btnCalPrev) {
+      btnCalPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        calMonth--;
+        if (calMonth < 0) {
+          calMonth = 11;
+          calYear--;
+        }
+        renderCalendar();
+      });
+    }
+
+    if (btnCalNext) {
+      btnCalNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        calMonth++;
+        if (calMonth > 11) {
+          calMonth = 0;
+          calYear++;
+        }
+        renderCalendar();
+      });
+    }
+
+    if (datesContainer && popoverCal) {
+      datesContainer.addEventListener('click', () => {
+        renderCalendar();
+        popoverCal.classList.toggle('open');
+        if (departFrame) departFrame.classList.remove('open');
+      });
+
+      btnCalApply.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popoverCal.classList.remove('open');
+        validateForm();
+      });
+    }
+
+    // 3 & 4. Numeric Inputs & Budget Realtime Dot Separator
+    if (inputBudget) {
+      inputBudget.addEventListener('input', (e) => {
+        const digitsOnly = e.target.value.replace(/\D/g, '');
+        if (digitsOnly) {
+          e.target.value = Number(digitsOnly).toLocaleString('vi-VN');
+        } else {
+          e.target.value = '';
+        }
+        validateForm();
+      });
+    }
+
+    if (inputAdults) {
+      inputAdults.addEventListener('input', () => {
+        if (inputAdults.value !== '' && parseInt(inputAdults.value, 10) < 1) inputAdults.value = 1;
+        validateForm();
+      });
+    }
+
+    if (inputChildren) {
+      inputChildren.addEventListener('input', () => {
+        if (inputChildren.value !== '' && parseInt(inputChildren.value, 10) < 0) inputChildren.value = 0;
+        validateForm();
+      });
+    }
+
+    if (inputTripName) {
+      inputTripName.addEventListener('input', validateForm);
+    }
+
+    // Tags toggle - Cố định vị trí trên lưới, không xê dịch khi click
+    tagButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isSelected = btn.classList.toggle('selected');
+        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      });
+    });
+
+    // 5. Form Validation Logic: Submit button bold and clickable ONLY when all fields are complete
+    function validateForm() {
+      const nameValid = inputTripName.value.trim().length > 0;
+      const destValid = inputDest.value.trim().length > 0;
+      const datesText = inputDates.value.trim();
+      // Valid dates must contain start and end date (has '-' and two dates)
+      const datesValid = datesText.includes('-') && datesText.split('-').every(part => part.trim().length >= 8);
+      const adultsNum = parseInt(inputAdults.value, 10);
+      const adultsValid = !isNaN(adultsNum) && adultsNum >= 1;
+      const childrenNum = parseInt(inputChildren.value, 10);
+      const childrenValid = !isNaN(childrenNum) && childrenNum >= 0 && inputChildren.value.trim() !== '';
+      const budgetRaw = inputBudget.value.replace(/\D/g, '');
+      const budgetNum = parseInt(budgetRaw, 10);
+      const budgetValid = !isNaN(budgetNum) && budgetNum > 0;
+
+      const isFormValid = nameValid && destValid && datesValid && adultsValid && childrenValid && budgetValid;
+
+      if (isFormValid) {
+        btnSubmitPlan.disabled = false;
+        btnSubmitPlan.classList.remove('disabled');
+      } else {
+        btnSubmitPlan.disabled = true;
+        btnSubmitPlan.classList.add('disabled');
+      }
+
+      return isFormValid;
+    }
+
+    // Handle Form Submit
+    if (formPlan) {
+      formPlan.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!validateDestination()) return;
+        if (!validateForm()) return;
+
+        const activeTags = Array.from(document.querySelectorAll('.plan-tag-btn.selected')).map(b => b.dataset.tag);
+        const planPayload = {
+          name: inputTripName.value.trim(),
+          destination: inputDest.value.trim(),
+          dates: inputDates.value.trim(),
+          adults: parseInt(inputAdults.value, 10),
+          children: parseInt(inputChildren.value, 10),
+          budgetPerPerson: inputBudget.value.trim(),
+          budgetRaw: inputBudget.value.replace(/\D/g, ''),
+          tags: activeTags
+        };
+
+        try {
+          sessionStorage.setItem('tripwise_active_plan', JSON.stringify(planPayload));
+        } catch (err) {
+          console.error(err);
+        }
+
+        window.location.href = 'proposal.html';
+      });
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', (e) => {
+      if (departFrame && destContainer && !destContainer.contains(e.target) && !departFrame.contains(e.target)) {
+        departFrame.classList.remove('open');
+        validateDestination();
+      }
+      if (popoverCal && datesContainer && !datesContainer.contains(e.target) && !popoverCal.contains(e.target)) {
+        popoverCal.classList.remove('open');
+      }
+    });
+
+    // Initial setup
+    renderProvinces();
+    renderCalendar();
+    updateDateValues();
+    validateForm();
+  </script>
+</body>
+
+</html>
