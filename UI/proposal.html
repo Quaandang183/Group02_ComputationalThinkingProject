@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TripWise · Đề xuất lịch trình</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
+</head>
+
+<body class="phone-screen-body">
+  <div class="app-container">
+
+    <div class="proposal-page-container">
+      <!-- Background Botanical Art (Figma Node 1376:4183) -->
+      <img src="assets/images/botanical_bg.png" alt="Botanical Art" class="bg-botanical-art">
+
+      <!-- Scrollable Main Content -->
+      <main class="proposal-scroll-content">
+
+        <!-- Header Row (Cố định cách mép trên 48px): Back Button & 95% Match Badge -->
+        <header class="proposal-header-row">
+          <a href="plan.html" class="btn-proposal-back" title="Quay lại lên kế hoạch" aria-label="Quay lại">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5"></path>
+              <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+          </a>
+
+          <div class="proposal-match-badge" title="Mức độ phù hợp với sở thích của bạn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0B8457" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            </svg>
+            <span>95% Hợp gu bạn</span>
+          </div>
+        </header>
+
+        <!-- Tiêu đề trang -->
+        <h1 class="proposal-page-title">Lịch trình đề xuất</h1>
+
+        <!-- Thẻ Tổng quan Chuyến đi (Dark Green Ticket Card - Khớp 100% Ảnh 4) -->
+        <section class="proposal-summary-card ticket-shape" aria-label="Thông tin tóm tắt chuyến đi">
+          <!-- Cột 1: Địa điểm & Ngày đêm -->
+          <div class="prop-summary-col">
+            <div class="prop-summary-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5C158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="prop-summary-text">
+              <span class="prop-summary-line1"><span class="prop-emoji">📍</span> Đà Lạt -</span>
+              <span class="prop-summary-line2">3N2Đ</span>
+            </div>
+          </div>
+
+          <div class="prop-summary-divider"></div>
+
+          <!-- Cột 2: Khách sạn & Điểm đến (Ảnh 4: 1 Khách sạn - 6 Điểm đến) -->
+          <div class="prop-summary-col">
+            <div class="prop-summary-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5C158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="9" y1="6" x2="9" y2="8"></line>
+                <line x1="15" y1="6" x2="15" y2="8"></line>
+                <line x1="9" y1="11" x2="9" y2="13"></line>
+                <line x1="15" y1="11" x2="15" y2="13"></line>
+                <path d="M10 22v-4h4v4"></path>
+              </svg>
+            </div>
+            <div class="prop-summary-text">
+              <span class="prop-summary-line1"><span class="prop-emoji">🏨</span> 1 Khách sạn</span>
+              <span class="prop-summary-line2">- 6 Điểm đến</span>
+            </div>
+          </div>
+
+          <div class="prop-summary-divider"></div>
+
+          <!-- Cột 3: Chi phí / người (Ảnh 4: ~3.000.000đ / người) -->
+          <div class="prop-summary-col">
+            <div class="prop-summary-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5C158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="5" rx="3"></rect>
+                <line x1="2" x2="22" y1="10" y2="10"></line>
+                <circle cx="17" cy="14" r="1.5" fill="#E5C158"></circle>
+              </svg>
+            </div>
+            <div class="prop-summary-text">
+              <span class="prop-summary-line-icon"><span class="prop-emoji">💰</span></span>
+              <span class="prop-summary-line1">~3.000.000đ /</span>
+              <span class="prop-summary-line2">người</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Day Tabs (Ngày 1 - 24/10 | Ngày 2 - 25/10 | Ngày 3 - 26/10) -->
+        <nav class="proposal-day-tabs" aria-label="Chọn ngày trong lịch trình">
+          <button type="button" class="prop-day-tab active" data-day="1" aria-pressed="true">Ngày 1 - 24/10</button>
+          <button type="button" class="prop-day-tab" data-day="2" aria-pressed="false">Ngày 2 - 25/10</button>
+          <button type="button" class="prop-day-tab" data-day="3" aria-pressed="false">Ngày 3 - 26/10</button>
+        </nav>
+
+        <!-- Section Subhead: Lịch trình trong ngày & Thời tiết -->
+        <div class="proposal-subhead-row">
+          <span class="proposal-subhead-title">Lịch trình trong ngày</span>
+          <div class="proposal-weather-pill" title="Dự báo thời tiết trung bình">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DDA83B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <span id="weatherText">24°C</span>
+          </div>
+        </div>
+
+        <!-- Timeline Container (3 Điểm đến kèm thời gian di chuyển) -->
+        <div class="proposal-timeline-wrap" id="proposalTimelineWrap">
+
+          <!-- Điểm 1: Dinh III Bảo Đại -->
+          <article class="prop-timeline-item">
+            <div class="prop-timeline-dot"></div>
+            <div class="prop-timeline-card">
+              <img src="assets/images/dest_temple.png" alt="Dinh III Bảo Đại" class="prop-card-thumb" onerror="this.src='assets/images/dest_dalat.png'">
+              <div class="prop-card-info">
+                <span class="prop-card-time">08:30 - 10:30</span>
+                <h3 class="prop-card-name">Dinh III Bảo Đại</h3>
+                <div class="prop-card-tags-row">
+                  <span class="prop-card-tag">Vé: 40.000đ/người</span>
+                  <span class="prop-card-tag">Di tích lịch sử</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Di chuyển giữa Điểm 1 và Điểm 2 -->
+          <div class="prop-transit-step">
+            <span class="prop-transit-pill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>15 phút • 2.5 km</span>
+            </span>
+          </div>
+
+          <!-- Điểm 2: Lẩu gà lá é Tao Ngộ -->
+          <article class="prop-timeline-item">
+            <div class="prop-timeline-dot"></div>
+            <div class="prop-timeline-card">
+              <img src="assets/images/place_cafe.png" alt="Lẩu gà lá é Tao Ngộ" class="prop-card-thumb" onerror="this.src='assets/images/dest_dalat.png'">
+              <div class="prop-card-info">
+                <span class="prop-card-time">11:30 - 13:00</span>
+                <h3 class="prop-card-name">Lẩu gà lá é Tao Ngộ</h3>
+                <div class="prop-card-tags-row">
+                  <span class="prop-card-tag">Khoảng 150.000đ/người</span>
+                  <span class="prop-card-tag">Ẩm thực bản địa</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Di chuyển giữa Điểm 2 và Điểm 3 -->
+          <div class="prop-transit-step">
+            <span class="prop-transit-pill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>10 phút • 1.8 km</span>
+            </span>
+          </div>
+
+          <!-- Điểm 3: Dạo quanh Hồ Xuân Hương & Cà phê -->
+          <article class="prop-timeline-item">
+            <div class="prop-timeline-dot"></div>
+            <div class="prop-timeline-card">
+              <img src="assets/images/dest_mountains.png" alt="Dạo quanh Hồ Xuân Hương & Cà phê" class="prop-card-thumb" onerror="this.src='assets/images/dest_dalat.png'">
+              <div class="prop-card-info">
+                <span class="prop-card-time">14:30 - 16:30</span>
+                <h3 class="prop-card-name">Dạo quanh Hồ Xuân Hương & Cà phê</h3>
+                <div class="prop-card-tags-row">
+                  <span class="prop-card-tag">Ngắm cảnh</span>
+                  <span class="prop-card-tag warning" title="Dự báo thời tiết có khả năng mưa chiều">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                      <line x1="12" x2="12" y1="9" y2="13"></line>
+                      <line x1="12" x2="12.01" y1="17" y2="17"></line>
+                    </svg>
+                    <span>Cảnh báo thời tiết (mưa sau 15:00)</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Bảng Dự kiến chi tiêu (Budget Estimation Card) -->
+        <section class="proposal-budget-card" aria-label="Ước tính chi phí chuyến đi">
+          <!-- Tiêu đề và tổng ngân sách -->
+          <div class="prop-budget-head-row">
+            <div class="prop-budget-left-group">
+              <span class="prop-budget-title">Dự kiến chi tiêu</span>
+              <span class="prop-budget-val">2.850.000đ</span>
+            </div>
+            <div class="prop-budget-right-group">
+              <span class="prop-budget-target-label">Ngân sách:</span>
+              <span class="prop-budget-target-val">3.000.000đ</span>
+            </div>
+          </div>
+
+          <!-- Phụ đề thành viên & Tổng chuyến đi -->
+          <div class="prop-budget-subtitle">2 người lớn • Tổng chuyến đi: 6.000.000đ</div>
+
+          <!-- Tag còn lại -->
+          <div class="prop-budget-remain-pill">Còn lại: 150.000đ</div>
+
+          <!-- Thanh tiến trình đa màu 5 nhóm chi phí -->
+          <div class="prop-multi-bar" role="progressbar" aria-label="Tỷ lệ phân bổ chi phí" title="Lưu trú 35%, Ăn uống 25%, Tham quan 20%, Di chuyển 15%, Khác 5%">
+            <div class="prop-seg-stay" style="width: 35%;"></div>
+            <div class="prop-seg-food" style="width: 25%;"></div>
+            <div class="prop-seg-tour" style="width: 20%;"></div>
+            <div class="prop-seg-trans" style="width: 15%;"></div>
+            <div class="prop-seg-other" style="width: 5%;"></div>
+          </div>
+
+          <!-- Danh sách các danh mục kèm chấm màu -->
+          <div class="prop-legend-grid">
+            <div class="prop-legend-item">
+              <span class="prop-legend-dot prop-seg-stay"></span>
+              <span>Lưu trú (35%)</span>
+            </div>
+            <div class="prop-legend-item">
+              <span class="prop-legend-dot prop-seg-food"></span>
+              <span>Ăn uống (25%)</span>
+            </div>
+            <div class="prop-legend-item">
+              <span class="prop-legend-dot prop-seg-tour"></span>
+              <span>Tham quan (20%)</span>
+            </div>
+            <div class="prop-legend-item">
+              <span class="prop-legend-dot prop-seg-trans"></span>
+              <span>Di chuyển (15%)</span>
+            </div>
+            <div class="prop-legend-item">
+              <span class="prop-legend-dot prop-seg-other"></span>
+              <span>Khác (5%)</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Thanh Thao Tác Cố Định Dưới Cùng (Dual Sticky Action Bar) -->
+      <footer class="proposal-bottom-bar" role="toolbar" aria-label="Thao tác kế hoạch">
+        <!-- Nút 1: Tinh chỉnh kế hoạch -->
+        <a href="edit-plan.html" class="btn-proposal-adjust" title="Tinh chỉnh kế hoạch chuyến đi" aria-label="Tinh chỉnh kế hoạch">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+            <path d="M5 3v4"></path>
+            <path d="M19 17v4"></path>
+            <path d="M3 5h4"></path>
+            <path d="M17 19h4"></path>
+          </svg>
+          <span>Tinh chỉnh kế hoạch</span>
+        </a>
+
+        <!-- Nút 2: Áp dụng lịch trình -->
+        <a href="itinerary.html" class="btn-proposal-apply" id="btnApplyProposal" title="Chấp nhận và đưa vào lịch trình thực tế" aria-label="Áp dụng lịch trình">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Áp dụng lịch trình</span>
+        </a>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Dữ liệu mẫu cho từng ngày khi bấm chuyển Day Tab
+    const DAYS_DATA = {
+      1: {
+        weather: '24°C',
+        stops: [
+          {
+            time: '08:30 - 10:30',
+            name: 'Dinh III Bảo Đại',
+            img: 'assets/images/dest_temple.png',
+            tags: ['Vé: 40.000đ/người', 'Di tích lịch sử'],
+            transit: '15 phút • 2.5 km'
+          },
+          {
+            time: '11:30 - 13:00',
+            name: 'Lẩu gà lá é Tao Ngộ',
+            img: 'assets/images/place_cafe.png',
+            tags: ['Khoảng 150.000đ/người', 'Ẩm thực bản địa'],
+            transit: '10 phút • 1.8 km'
+          },
+          {
+            time: '14:30 - 16:30',
+            name: 'Dạo quanh Hồ Xuân Hương & Cà phê',
+            img: 'assets/images/dest_mountains.png',
+            tags: ['Ngắm cảnh'],
+            warning: 'Cảnh báo thời tiết (mưa sau 15:00)'
+          }
+        ]
+      },
+      2: {
+        weather: '22°C',
+        stops: [
+          {
+            time: '08:00 - 10:30',
+            name: 'Khu du lịch Thác Datanla',
+            img: 'assets/images/place_waterfall.png',
+            tags: ['Vé: 50.000đ/người', 'Máng trượt mạo hiểm'],
+            transit: '20 phút • 5.0 km'
+          },
+          {
+            time: '11:30 - 13:00',
+            name: 'Bánh ướt lòng gà Trang',
+            img: 'assets/images/dest_dalat.png',
+            tags: ['Khoảng 50.000đ/người', 'Ẩm thực bản địa'],
+            transit: '15 phút • 3.2 km'
+          },
+          {
+            time: '14:00 - 16:30',
+            name: 'Chùa Linh Phước (Ve Chai)',
+            img: 'assets/images/dest_temple.png',
+            tags: ['Miễn phí vé', 'Kiến trúc tâm linh']
+          }
+        ]
+      },
+      3: {
+        weather: '23°C',
+        stops: [
+          {
+            time: '06:00 - 09:00',
+            name: 'Săn mây Đồi chè Cầu Đất',
+            img: 'assets/images/dest_mountains.png',
+            tags: ['Ngắm bình minh', 'Check-in cảnh đẹp'],
+            transit: '25 phút • 8.0 km'
+          },
+          {
+            time: '10:00 - 12:00',
+            name: 'Vườn hoa Thành phố Đà Lạt',
+            img: 'assets/images/place_camp.png',
+            tags: ['Vé: 100.000đ/người', 'Tham quan sắc hoa'],
+            transit: '10 phút • 2.0 km'
+          },
+          {
+            time: '13:00 - 15:30',
+            name: 'Chợ Đà Lạt & Mua quà lưu niệm',
+            img: 'assets/images/dest_dalat.png',
+            tags: ['Mua sắm đặc sản', 'Trà Atiso & Mứt']
+          }
+        ]
+      }
+    };
+
+    const dayTabs = document.querySelectorAll('.prop-day-tab');
+    const timelineWrap = document.getElementById('proposalTimelineWrap');
+    const weatherText = document.getElementById('weatherText');
+
+    function renderDay(dayNumber) {
+      const data = DAYS_DATA[dayNumber];
+      if (!data) return;
+
+      if (weatherText) {
+        weatherText.textContent = data.weather;
+      }
+
+      let html = '';
+      data.stops.forEach((stop, index) => {
+        html += `
+          <article class="prop-timeline-item">
+            <div class="prop-timeline-dot"></div>
+            <div class="prop-timeline-card">
+              <img src="${stop.img}" alt="${stop.name}" class="prop-card-thumb" onerror="this.src='assets/images/dest_dalat.png'">
+              <div class="prop-card-info">
+                <span class="prop-card-time">${stop.time}</span>
+                <h3 class="prop-card-name">${stop.name}</h3>
+                <div class="prop-card-tags-row">
+                  ${stop.tags.map(t => `<span class="prop-card-tag">${t}</span>`).join('')}
+                  ${stop.warning ? `
+                    <span class="prop-card-tag warning">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                        <line x1="12" x2="12" y1="9" y2="13"></line>
+                        <line x1="12" x2="12.01" y1="17" y2="17"></line>
+                      </svg>
+                      <span>${stop.warning}</span>
+                    </span>` : ''}
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+
+        if (stop.transit) {
+          html += `
+            <div class="prop-transit-step">
+              <span class="prop-transit-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>${stop.transit}</span>
+              </span>
+            </div>
+          `;
+        }
+      });
+
+      timelineWrap.innerHTML = html;
+    }
+
+    dayTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        dayTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-pressed', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-pressed', 'true');
+        const day = tab.getAttribute('data-day');
+        renderDay(day);
+      });
+    });
+
+    // Bấm Áp dụng lịch trình -> Lưu flag và điều hướng sang itinerary.html
+    const btnApply = document.getElementById('btnApplyProposal');
+    if (btnApply) {
+      btnApply.addEventListener('click', (e) => {
+        sessionStorage.setItem('activeTripProposalApplied', 'true');
+      });
+    }
+  </script>
+</body>
+
+</html>
+
