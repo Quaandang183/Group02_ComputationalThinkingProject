@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TripWise · Bản đồ Lộ trình</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
+</head>
+
+<body class="phone-screen-body">
+  <div class="app-container">
+
+    <!-- Map Screen Wrapper (Page 3 Figma Node 1376:2947 "Bản đồ") -->
+    <div class="map-screen-wrapper">
+
+      <!-- Interactive Notification Toast -->
+      <div id="mapToast" class="map-toast-pill" role="status" aria-live="polite"></div>
+
+      <!-- Map Viewport Section (Terrain, Streets, Water, Green Route & Stops) -->
+      <section class="map-viewport-section" id="mapViewportSection" aria-label="Bản đồ lộ trình">
+
+        <!-- Floating Trip Selector Bar & History Dropdown -->
+        <div class="map-trip-selector-wrap" id="mapTripSelectorWrap">
+          <button type="button" class="map-trip-selector-btn" id="btnTripSelector" aria-haspopup="listbox" aria-expanded="false" title="Chọn chuyến đi">
+            <div class="trip-selector-left">
+              <span class="trip-pin-icon" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <div class="trip-selector-info">
+                <span class="trip-name" id="currentTripName">Trốn phố về rừng Đà Lạt</span>
+                <span class="trip-dot">•</span>
+                <span class="trip-dates" id="currentTripDates">24/10/2026 – 26/10/2026</span>
+              </div>
+            </div>
+            <span class="trip-chevron-icon" id="tripChevronIcon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+
+          <!-- Dropdown List of Trips (5 chuyến đi khớp 100% với Lịch sử chuyến đi) -->
+          <div class="map-trip-dropdown-menu" id="tripDropdownMenu" role="listbox" aria-label="Danh sách chuyến đi">
+            <!-- 1. Trốn phố về rừng Đà Lạt -->
+            <div class="trip-option-item active" role="option" aria-selected="true" data-trip="trip-1" onclick="selectTrip('trip-1')">
+              <div class="trip-option-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="trip-option-details">
+                <div class="trip-option-title">Trốn phố về rừng Đà Lạt</div>
+                <div class="trip-option-date">24/10/2026 – 26/10/2026</div>
+              </div>
+              <span class="trip-option-badge">Đang đi</span>
+            </div>
+
+            <!-- 2. Cắm trại rừng thông -->
+            <div class="trip-option-item" role="option" aria-selected="false" data-trip="trip-2" onclick="selectTrip('trip-2')">
+              <div class="trip-option-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="trip-option-details">
+                <div class="trip-option-title">Cắm trại rừng thông</div>
+                <div class="trip-option-date">18/02/2026 – 21/02/2026</div>
+              </div>
+            </div>
+
+            <!-- 3. Du lịch đông -->
+            <div class="trip-option-item" role="option" aria-selected="false" data-trip="trip-3" onclick="selectTrip('trip-3')">
+              <div class="trip-option-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="trip-option-details">
+                <div class="trip-option-title">Du lịch đông</div>
+                <div class="trip-option-date">28/12/2025 – 31/12/2025</div>
+              </div>
+            </div>
+
+            <!-- 4. Đi với cốt 30/4 -->
+            <div class="trip-option-item" role="option" aria-selected="false" data-trip="trip-4" onclick="selectTrip('trip-4')">
+              <div class="trip-option-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="trip-option-details">
+                <div class="trip-option-title">Đi với cốt 30/4</div>
+                <div class="trip-option-date">30/04/2025 – 02/05/2025</div>
+              </div>
+            </div>
+
+            <!-- 5. Mùa dã quỳ -->
+            <div class="trip-option-item" role="option" aria-selected="false" data-trip="trip-5" onclick="selectTrip('trip-5')">
+              <div class="trip-option-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="trip-option-details">
+                <div class="trip-option-title">Mùa dã quỳ</div>
+                <div class="trip-option-date">02/11/2024 – 04/11/2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Map Action Tools (Node 1376:3051) -->
+        <button type="button" class="map-fab-btn map-fab-compass" id="btnCompass" title="Định hướng phương Bắc" aria-label="Định hướng phương Bắc" onclick="onCompassClick()">
+          <img src="assets/images/icon_compass.svg" alt="Compass" id="compassIcon">
+        </button>
+
+        <button type="button" class="map-fab-btn map-fab-layers" id="btnLayers" title="Chuyển lớp bản đồ (Vệ tinh / Địa hình)" aria-label="Chuyển lớp bản đồ" onclick="onLayersClick()">
+          <img src="assets/images/icon_layers.svg" alt="Layers">
+        </button>
+
+        <!-- GPS Current Location Action Tool (Node 1376:3059) -->
+        <button type="button" class="map-fab-btn map-fab-locate" id="btnLocate" title="Định vị GPS hiện tại" aria-label="Định vị GPS hiện tại" onclick="onLocateClick()">
+          <img src="assets/images/icon_locate.svg" alt="Locate">
+        </button>
+
+        <!-- Interactive Hotspots over Pins for Touch/Click Feedback -->
+        <div id="mapHotspotsContainer">
+          <!-- Stop 1: Dinh III Bảo Đại -->
+          <button type="button" class="map-hotspot-pin" style="left: 84px; top: 81px; width: 34px; height: 34px;" title="Điểm 1" aria-label="Điểm 1" onclick="selectRouteStop(1)"></button>
+          
+          <!-- Stop 2: Lẩu gà lá é Tao Ngộ -->
+          <button type="button" class="map-hotspot-pin" style="left: 49px; top: 217px; width: 34px; height: 34px;" title="Điểm 2" aria-label="Điểm 2" onclick="selectRouteStop(2)"></button>
+          
+          <!-- Stop 4: Túi Mơ To (Callout Tag + Red Pin) -->
+          <button type="button" class="map-hotspot-pin" style="left: 122px; top: 312px; width: 140px; height: 34px; border-radius: 100px;" title="Điểm 4" aria-label="Điểm 4" onclick="selectRouteStop(4)"></button>
+          <button type="button" class="map-hotspot-pin" style="left: 131px; top: 355px; width: 32px; height: 40px; border-radius: 0;" title="Điểm 4" aria-label="Điểm 4" onclick="selectRouteStop(4)"></button>
+          
+          <!-- Stop 3: Ga Đà Lạt -->
+          <button type="button" class="map-hotspot-pin" style="left: 337px; top: 322px; width: 34px; height: 34px;" title="Điểm 3" aria-label="Điểm 3" onclick="selectRouteStop(3)"></button>
+        </div>
+
+      </section>
+
+      <!-- Bottom Sheet: Lộ trình Ngày (Node 1376:3063) -->
+      <section class="map-sheet-container" aria-label="Danh sách các điểm dừng lộ trình">
+
+        <!-- Drag Handle (Node 1376:3065) -->
+        <div class="map-sheet-handle" aria-hidden="true"></div>
+
+        <!-- Day Badge (Node 1376:3066) with Day Prev/Next Arrows -->
+        <div class="map-day-badge">
+          <button type="button" class="btn-day-arrow" id="btnPrevDay" title="Ngày trước đó" aria-label="Ngày trước đó" onclick="changeRouteDay(-1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+          </button>
+
+          <span class="map-day-title" id="lblDayRoute">Lộ trình Ngày 1</span>
+
+          <button type="button" class="btn-day-arrow" id="btnNextDay" title="Ngày tiếp theo" aria-label="Ngày tiếp theo" onclick="changeRouteDay(1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18l6-6-6-6"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Connected Stop Inputs (Node 1376:3068) -->
+        <div class="map-stops-track" id="mapStopsTrack">
+          <!-- Continuous Vertical Track Line (Node 1376:3069) -->
+          <div class="map-stops-line" aria-hidden="true"></div>
+
+          <!-- Dynamic Stops List rendered by JavaScript -->
+        </div>
+
+        <!-- Start / Open in Google Maps CTA Button (Node 1376:3086) -->
+        <a href="https://www.google.com/maps/dir/?api=1&origin=Dinh+III+Bao+Dai+Da+Lat&destination=Tiem+Ca+Phe+Tui+Mo+To+Da+Lat&waypoints=Lau+ga+la+e+Tao+Ngo+Da+Lat%7CGa+Da+Lat" target="_blank" rel="noopener noreferrer" class="map-btn-gmaps" id="mapGmapsBtn" title="Mở chỉ đường trong Google Maps">
+          <span>Mở trong Google Maps</span>
+          <img src="assets/images/icon_external_link.svg" alt="External link" width="16" height="16">
+        </a>
+
+      </section>
+
+      <!-- Bottom Navigation Bar (STRICT: Giữ nguyên vị trí dưới cùng, cách mép dưới 6px, chữ & icon 1 hàng ngang) -->
+      <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
+        <a href="index.html" class="dock-btn-row">
+          <img src="assets/images/icon-home.svg" alt="Home">
+          <span>Trang chủ</span>
+        </a>
+        <a href="itinerary.html" class="dock-btn-row">
+          <img src="assets/images/icon-calendar.svg" alt="Itinerary">
+          <span>Lịch trình</span>
+        </a>
+        <a href="map.html" class="dock-btn-row active">
+          <img src="assets/images/icon-map.svg" alt="Map">
+          <span>Bản đồ</span>
+        </a>
+        <a href="profile.html" class="dock-btn-row">
+          <img src="assets/images/icon-user.svg" alt="Profile">
+          <span>Cá nhân</span>
+        </a>
+      </nav>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Dữ liệu Chuyến đi & Lộ trình các ngày (Khớp 100% 5 chuyến đi trong Lịch sử)
+    const TRIPS_CATALOG = {
+      'trip-1': {
+        id: 'trip-1',
+        name: 'Trốn phố về rừng Đà Lạt',
+        shortName: 'Đà Lạt',
+        dates: '24/10/2026 – 26/10/2026',
+        fullDates: '24/10/2026 – 26/10/2026',
+        fullName: 'Trốn phố về rừng Đà Lạt',
+        days: {
+          1: {
+            title: 'Lộ trình Ngày 1',
+            origin: 'Dinh III Bảo Đại Đà Lạt',
+            destination: 'Tiệm Cà Phê Túi Mơ To Đà Lạt',
+            waypoints: 'Lẩu gà lá é Tao Ngộ Đà Lạt|Ga Đà Lạt',
+            stops: [
+              { num: 1, name: '1. Dinh III Bảo Đại', meta: '08:30 • Di tích lịch sử', isMuted: true },
+              { num: 2, name: '2. Lẩu gà lá é Tao Ngộ', meta: '11:30 • Ẩm thực bản địa' },
+              { num: 3, name: '3. Ga Đà Lạt', meta: '14:00 • Check-in phong cách Pháp' },
+              { num: 4, name: '4. Tiệm Cà Phê Túi Mơ To (Tiếp theo)', meta: '16:30 • Dốc cao & Hoàng hôn', isActive: true }
+            ]
+          },
+          2: {
+            title: 'Lộ trình Ngày 2',
+            origin: 'Đồi chè Cầu Đất Đà Lạt',
+            destination: 'Quảng trường Lâm Viên Đà Lạt',
+            waypoints: 'Vườn hồng treo gió Đà Lạt|Chùa Linh Phước Đà Lạt',
+            stops: [
+              { num: 1, name: '1. Đồi chè Cầu Đất', meta: '06:30 • Săn mây sáng sớm', isMuted: true },
+              { num: 2, name: '2. Vườn hồng treo gió', meta: '10:00 • Trải nghiệm nông trại' },
+              { num: 3, name: '3. Chùa Linh Phước', meta: '14:00 • Kiến trúc ve chai' },
+              { num: 4, name: '4. Quảng trường Lâm Viên (Tiếp theo)', meta: '17:00 • Hoa dã quỳ khổng lồ', isActive: true }
+            ]
+          },
+          3: {
+            title: 'Lộ trình Ngày 3',
+            origin: 'Đỉnh Langbiang Đà Lạt',
+            destination: 'Chợ Đêm Đà Lạt',
+            waypoints: 'Thung lũng Tình Yêu Đà Lạt|Hồ Tuyền Lâm Đà Lạt',
+            stops: [
+              { num: 1, name: '1. Đỉnh Langbiang', meta: '08:00 • Nóc nhà Đà Lạt', isMuted: true },
+              { num: 2, name: '2. Thung lũng Tình Yêu', meta: '11:00 • Cảnh quan sinh thái' },
+              { num: 3, name: '3. Hồ Tuyền Lâm', meta: '14:30 • Du thuyền & Thiền viện' },
+              { num: 4, name: '4. Chợ Đêm Đà Lạt (Tiếp theo)', meta: '18:30 • Ẩm thực đêm', isActive: true }
+            ]
+          }
+        }
+      },
+      'trip-2': {
+        id: 'trip-2',
+        name: 'Cắm trại rừng thông',
+        shortName: 'Cắm trại rừng thông',
+        dates: '18/02/2026 – 21/02/2026',
+        fullDates: '18/02/2026 – 21/02/2026',
+        fullName: 'Cắm trại rừng thông',
+        days: {
+          1: {
+            title: 'Lộ trình Ngày 1',
+            origin: 'Hồ Suối Vàng Đà Lạt',
+            destination: 'Cây cô đơn Đà Lạt',
+            waypoints: 'Rừng thông Tuyền Lâm',
+            stops: [
+              { num: 1, name: '1. Rừng thông Tuyền Lâm', meta: '09:00 • Đi dạo ngắm cảnh', isMuted: true },
+              { num: 2, name: '2. Hồ Suối Vàng', meta: '13:00 • Dựng lều ven hồ' },
+              { num: 3, name: '3. Nướng BBQ ngoài trời', meta: '17:00 • Lửa trại ấm cúng' },
+              { num: 4, name: '4. Cây cô đơn (Tiếp theo)', meta: '05:30 • Săn bình minh', isActive: true }
+            ]
+          },
+          2: {
+            title: 'Lộ trình Ngày 2',
+            origin: 'Đồi Đa Phú Đà Lạt',
+            destination: 'Cà phê Cheo Veooo Đà Lạt',
+            waypoints: 'Hồ Đankia',
+            stops: [
+              { num: 1, name: '1. Đồi Đa Phú', meta: '06:00 • Biển mây sớm mai', isMuted: true },
+              { num: 2, name: '2. Hồ Đankia', meta: '10:00 • Chèo SUP mặt hồ' },
+              { num: 3, name: '3. Bánh mì xíu mại Ri 79', meta: '12:30 • Ăn trưa ấm bụng' },
+              { num: 4, name: '4. Cà phê Cheo Veooo (Tiếp theo)', meta: '16:30 • Hoàng hôn thông reo', isActive: true }
+            ]
+          },
+          3: {
+            title: 'Lộ trình Ngày 3',
+            origin: 'Đồi Cỏ Hồng Đà Lạt',
+            destination: 'Quán nướng Chu Đà Lạt',
+            waypoints: 'Chợ hoa Đà Lạt',
+            stops: [
+              { num: 1, name: '1. Đồi Cỏ Hồng', meta: '07:30 • Sắc hồng mùa đông', isMuted: true },
+              { num: 2, name: '2. Chợ hoa Đà Lạt', meta: '11:00 • Mua quà kỉ niệm' },
+              { num: 3, name: '3. Kem bơ Thanh Thảo', meta: '14:30 • Món ngon trứ danh' },
+              { num: 4, name: '4. Quán nướng Chu (Tiếp theo)', meta: '18:00 • Bữa tối chia tay', isActive: true }
+            ]
+          }
+        }
+      },
+      'trip-3': {
+        id: 'trip-3',
+        name: 'Du lịch đông',
+        shortName: 'Du lịch đông',
+        dates: '28/12/2025 – 31/12/2025',
+        fullDates: '28/12/2025 – 31/12/2025',
+        fullName: 'Du lịch đông',
+        days: {
+          1: {
+            title: 'Lộ trình Ngày 1',
+            origin: 'Nhà thờ Con Gà Đà Lạt',
+            destination: 'Lẩu bò Ba Toa Quán Gỗ',
+            waypoints: 'Cáp treo Robin Đà Lạt',
+            stops: [
+              { num: 1, name: '1. Nhà thờ Con Gà', meta: '08:30 • Không khí Giáng sinh', isMuted: true },
+              { num: 2, name: '2. Cáp treo Đồi Robin', meta: '10:30 • Toàn cảnh sương mù' },
+              { num: 3, name: '3. Cà phê Horizon Đà Lạt', meta: '14:30 • Khu vườn trên mây' },
+              { num: 4, name: '4. Lẩu bò Quán Gỗ (Tiếp theo)', meta: '18:00 • Ấm lòng đông lạnh', isActive: true }
+            ]
+          },
+          2: {
+            title: 'Lộ trình Ngày 2',
+            origin: 'Đồi chè Cầu Đất Đà Lạt',
+            destination: 'Quảng trường Lâm Viên',
+            waypoints: 'Cầu gỗ săn mây',
+            stops: [
+              { num: 1, name: '1. Săn mây Cầu Đất', meta: '05:30 • Biển mây mùa đông', isMuted: true },
+              { num: 2, name: '2. Cầu gỗ Cầu Đất', meta: '09:00 • Check-in sương mai' },
+              { num: 3, name: '3. Chùa Linh Phước', meta: '14:00 • Chiêm bái cuối năm' },
+              { num: 4, name: '4. Quảng trường Lâm Viên (Tiếp theo)', meta: '17:30 • Gió lạnh hoàng hôn', isActive: true }
+            ]
+          },
+          3: {
+            title: 'Lộ trình Ngày 3',
+            origin: 'Hồ Xuân Hương Đà Lạt',
+            destination: 'Chợ Đêm Đà Lạt',
+            waypoints: 'Tiệm bánh Cối Xay Gió',
+            stops: [
+              { num: 1, name: '1. Đi bộ Hồ Xuân Hương', meta: '08:00 • Sáng sớm se lạnh', isMuted: true },
+              { num: 2, name: '2. Tiệm bánh Cối Xay Gió', meta: '10:30 • Bánh mì cối xay' },
+              { num: 3, name: '3. Thung lũng đèn đêm', meta: '16:00 • View ngắm phố rực rỡ' },
+              { num: 4, name: '4. Chợ Đêm Đà Lạt (Tiếp theo)', meta: '19:00 • Sữa đậu nành & khoai nướng', isActive: true }
+            ]
+          }
+        }
+      },
+      'trip-4': {
+        id: 'trip-4',
+        name: 'Đi với cốt 30/4',
+        shortName: 'Đi với cốt 30/4',
+        dates: '30/04/2025 – 02/05/2025',
+        fullDates: '30/04/2025 – 02/05/2025',
+        fullName: 'Đi với cốt 30/4',
+        days: {
+          1: {
+            title: 'Lộ trình Ngày 1',
+            origin: 'Khu du lịch Mongo Land',
+            destination: 'Kombiland Đà Lạt',
+            waypoints: 'Vườn dâu tây Đà Lạt',
+            stops: [
+              { num: 1, name: '1. Mongo Land', meta: '08:30 • Trượt phao & thú cưng', isMuted: true },
+              { num: 2, name: '2. Vườn dâu tây công nghệ cao', meta: '11:00 • Hái dâu tại vườn' },
+              { num: 3, name: '3. Ăn trưa gà nướng cơm lam', meta: '13:00 • Bữa trưa sum vầy' },
+              { num: 4, name: '4. Kombiland Cacti (Tiếp theo)', meta: '15:30 • Ốc đảo xương rồng', isActive: true }
+            ]
+          },
+          2: {
+            title: 'Lộ trình Ngày 2',
+            origin: 'Thác Datanla Đà Lạt',
+            destination: 'Cà phê Túi Mơ To',
+            waypoints: 'Canyon đu dây vượt thác',
+            stops: [
+              { num: 1, name: '1. Thác Datanla', meta: '08:30 • Đu zipline mạo hiểm', isMuted: true },
+              { num: 2, name: '2. Máng trượt Datanla', meta: '11:00 • Máng trượt dài nhất ĐNÁ' },
+              { num: 3, name: '3. Nem nướng Bà Hùng', meta: '13:00 • Đặc sản nhóm bạn' },
+              { num: 4, name: '4. Túi Mơ To tụ họp (Tiếp theo)', meta: '16:00 • Chuyện trò cùng bạn cốt', isActive: true }
+            ]
+          },
+          3: {
+            title: 'Lộ trình Ngày 3',
+            origin: 'Đồi Pinhatt Đà Lạt',
+            destination: 'BBQ Rừng Thông',
+            waypoints: 'Hồ Tuyền Lâm',
+            stops: [
+              { num: 1, name: '1. Đỉnh Pinhatt', meta: '07:30 • Trekking săn mây', isMuted: true },
+              { num: 2, name: '2. Chèo kayak Hồ Tuyền Lâm', meta: '11:00 • Trải nghiệm mặt hồ' },
+              { num: 3, name: '3. Kem bơ Nari', meta: '15:00 • Ăn vặt tráng miệng' },
+              { num: 4, name: '4. Tiệc BBQ Rừng Thông (Tiếp theo)', meta: '18:00 • Lửa trại chia tay', isActive: true }
+            ]
+          }
+        }
+      },
+      'trip-5': {
+        id: 'trip-5',
+        name: 'Mùa dã quỳ',
+        shortName: 'Mùa dã quỳ',
+        dates: '02/11/2024 – 04/11/2024',
+        fullDates: '02/11/2024 – 04/11/2024',
+        fullName: 'Mùa dã quỳ',
+        days: {
+          1: {
+            title: 'Lộ trình Ngày 1',
+            origin: 'Đèo Prenn Đà Lạt',
+            destination: 'Khu du lịch Thác Datanla',
+            waypoints: 'Cung đường Dã Quỳ Tu Tra',
+            stops: [
+              { num: 1, name: '1. Đèo Prenn', meta: '08:00 • Khởi đầu cung đường hoa', isMuted: true },
+              { num: 2, name: '2. Cung dã quỳ Tu Tra', meta: '10:30 • Vàng rực triền đồi' },
+              { num: 3, name: '3. Cơm lam gà nướng', meta: '12:30 • Ẩm thực Tây Nguyên' },
+              { num: 4, name: '4. Thác Datanla (Tiếp theo)', meta: '15:00 • Trượt máng xuyên rừng', isActive: true }
+            ]
+          },
+          2: {
+            title: 'Lộ trình Ngày 2',
+            origin: 'Đường hầm Hỏa Xa Đà Lạt',
+            destination: 'Bình Lập Cà Phê',
+            waypoints: 'Đồi hoa dã quỳ Cầu Đất',
+            stops: [
+              { num: 1, name: '1. Đồi hoa Cầu Đất', meta: '08:00 • Vườn hoa rực rỡ', isMuted: true },
+              { num: 2, name: '2. Đường hầm Hỏa Xa', meta: '11:00 • Check-in hoài niệm' },
+              { num: 3, name: '3. Bánh ướt lòng gà Long', meta: '13:00 • Ăn trưa ngon miệng' },
+              { num: 4, name: '4. Bình Lập Cà Phê (Tiếp theo)', meta: '16:00 • Ngắm thung lũng đèn', isActive: true }
+            ]
+          },
+          3: {
+            title: 'Lộ trình Ngày 3',
+            origin: 'Hồ Than Thở Đà Lạt',
+            destination: 'Chợ Đà Lạt',
+            waypoints: 'Làng hoa Vạn Thành',
+            stops: [
+              { num: 1, name: '1. Hồ Than Thở', meta: '08:30 • Không gian tĩnh lặng', isMuted: true },
+              { num: 2, name: '2. Làng hoa Vạn Thành', meta: '11:00 • Vương quốc các loài hoa' },
+              { num: 3, name: '3. Bánh tráng nướng Dì Đinh', meta: '15:00 • Pizza Đà Lạt nóng hổi' },
+              { num: 4, name: '4. Chợ Đà Lạt (Tiếp theo)', meta: '17:30 • Mua mứt và dâu tây', isActive: true }
+            ]
+          }
+        }
+      }
+    };
+
+    // Alias tương thích ngược
+    TRIPS_CATALOG['dalat'] = TRIPS_CATALOG['trip-1'];
+    TRIPS_CATALOG['dalat-camp'] = TRIPS_CATALOG['trip-2'];
+    TRIPS_CATALOG['dalat-daquy'] = TRIPS_CATALOG['trip-5'];
+
+    // State hiện tại
+    let currentTripId = 'trip-1';
+    let currentDayNum = 1;
+    let toastTimeout = null;
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('mapToast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Toggle Dropdown Chuyến đi
+    const btnTripSelector = document.getElementById('btnTripSelector');
+    const tripDropdownMenu = document.getElementById('tripDropdownMenu');
+
+    if (btnTripSelector && tripDropdownMenu) {
+      btnTripSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = tripDropdownMenu.classList.toggle('open');
+        btnTripSelector.classList.toggle('open', isOpen);
+        btnTripSelector.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!tripDropdownMenu.contains(e.target) && !btnTripSelector.contains(e.target)) {
+          tripDropdownMenu.classList.remove('open');
+          btnTripSelector.classList.remove('open');
+          btnTripSelector.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Chọn Chuyến đi
+    function selectTrip(tripId) {
+      const trip = TRIPS_CATALOG[tripId];
+      if (!trip) return;
+
+      currentTripId = tripId;
+      currentDayNum = 1;
+
+      // Cập nhật text ô chọn chuyến đi (Khớp 100% Tên và Ngày đi - Ngày về)
+      document.getElementById('currentTripName').textContent = trip.name;
+      document.getElementById('currentTripDates').textContent = trip.fullDates || trip.dates;
+
+      // Cập nhật trạng thái active trong dropdown
+      document.querySelectorAll('.trip-option-item').forEach(item => {
+        const itemTrip = item.getAttribute('data-trip');
+        const isMatch = itemTrip === tripId || 
+                        (tripId === 'trip-1' && itemTrip === 'dalat') ||
+                        (tripId === 'dalat' && itemTrip === 'trip-1');
+        item.classList.toggle('active', isMatch);
+        item.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+
+      // Đóng dropdown
+      tripDropdownMenu.classList.remove('open');
+      btnTripSelector.classList.remove('open');
+      btnTripSelector.setAttribute('aria-expanded', 'false');
+
+      // Render lại giao diện lộ trình
+      renderCurrentRoute();
+      showToast(`🗺️ Chuyến đi: ${trip.fullName || trip.name}`);
+    }
+
+    // Chuyển đổi Ngày (< và >)
+    function changeRouteDay(delta) {
+      const trip = TRIPS_CATALOG[currentTripId];
+      if (!trip) return;
+
+      const newDay = currentDayNum + delta;
+      if (newDay < 1 || newDay > 3) return;
+
+      currentDayNum = newDay;
+      renderCurrentRoute();
+      showToast(`📍 Đã chuyển sang Lộ trình Ngày ${currentDayNum}`);
+    }
+
+    // Render danh sách điểm dừng và cập nhật link Google Maps
+    function renderCurrentRoute() {
+      const trip = TRIPS_CATALOG[currentTripId];
+      if (!trip) return;
+
+      const dayData = trip.days[currentDayNum] || trip.days[1];
+
+      // Cập nhật tiêu đề ngày
+      document.getElementById('lblDayRoute').textContent = `Lộ trình Ngày ${currentDayNum}`;
+
+      // Cập nhật trạng thái nút mũi tên
+      const btnPrev = document.getElementById('btnPrevDay');
+      const btnNext = document.getElementById('btnNextDay');
+      if (btnPrev) btnPrev.disabled = (currentDayNum <= 1);
+      if (btnNext) btnNext.disabled = (currentDayNum >= 3);
+
+      // Render danh sách stops
+      const track = document.getElementById('mapStopsTrack');
+      if (track) {
+        let stopsHtml = `<div class="map-stops-line" aria-hidden="true"></div>`;
+        dayData.stops.forEach(stop => {
+          const isMuted = stop.isMuted;
+          const isActive = stop.isActive;
+          stopsHtml += `
+            <div class="map-stop-row ${isActive ? 'active' : ''}" id="stopRow${stop.num}" onclick="selectRouteStop(${stop.num})" role="button" tabindex="0">
+              <div class="map-stop-node ${isMuted ? 'node-muted' : (isActive ? 'node-active' : '')}" id="stopNode${stop.num}"></div>
+              <div class="map-stop-card ${isMuted ? 'card-muted' : (isActive ? 'card-active' : '')}" id="stopCard${stop.num}">${stop.name}</div>
+            </div>
+          `;
+        });
+        track.innerHTML = stopsHtml;
+      }
+
+      // Cập nhật link Google Maps
+      const gmapsBtn = document.getElementById('mapGmapsBtn');
+      if (gmapsBtn) {
+        const origin = encodeURIComponent(dayData.origin);
+        const dest = encodeURIComponent(dayData.destination);
+        const waypoints = encodeURIComponent(dayData.waypoints);
+        gmapsBtn.href = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&waypoints=${waypoints}`;
+      }
+    }
+
+    // Chọn điểm dừng chi tiết
+    function selectRouteStop(stopNum) {
+      const trip = TRIPS_CATALOG[currentTripId];
+      if (!trip) return;
+      const dayData = trip.days[currentDayNum] || trip.days[1];
+
+      // Xóa active cũ và set active mới
+      dayData.stops.forEach(stop => {
+        const row = document.getElementById('stopRow' + stop.num);
+        const node = document.getElementById('stopNode' + stop.num);
+        const card = document.getElementById('stopCard' + stop.num);
+        const isTarget = (stop.num === stopNum);
+
+        if (row) row.classList.toggle('active', isTarget);
+        if (node) {
+          node.className = 'map-stop-node' + (isTarget ? ' node-active' : (stop.isMuted ? ' node-muted' : ''));
+        }
+        if (card) {
+          card.className = 'map-stop-card' + (isTarget ? ' card-active' : (stop.isMuted ? ' card-muted' : ''));
+        }
+      });
+
+      const selected = dayData.stops.find(s => s.num === stopNum);
+      if (selected) {
+        showToast(`📍 Điểm dừng: ${selected.name}`);
+      }
+    }
+
+    // Các nút chức năng nổi trên bản đồ
+    let compassDeg = 0;
+    function onCompassClick() {
+      compassDeg += 360;
+      const icon = document.getElementById('compassIcon');
+      if (icon) {
+        icon.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        icon.style.transform = `rotate(${compassDeg}deg)`;
+      }
+      showToast('🧭 Đã định vị chính xác phương Bắc 0°');
+    }
+
+    let isSatellite = false;
+    function onLayersClick() {
+      isSatellite = !isSatellite;
+      showToast(isSatellite ? '🗺️ Chế độ: Bản đồ vệ tinh chi tiết' : '🗺️ Chế độ: Bản đồ địa hình tiêu chuẩn');
+    }
+
+    function onLocateClick() {
+      const btn = document.getElementById('btnLocate');
+      if (btn) {
+        btn.style.transform = 'scale(1.2)';
+        setTimeout(() => { btn.style.transform = ''; }, 300);
+      }
+      const trip = TRIPS_CATALOG[currentTripId];
+      showToast(`🎯 GPS: Vị trí hiện tại tại ${trip ? trip.name : 'Đà Lạt'}`);
+    }
+
+    // Khởi tạo hiển thị lần đầu
+    renderCurrentRoute();
+  </script>
+</body>
+
+</html>
