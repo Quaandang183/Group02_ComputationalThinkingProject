@@ -83,44 +83,36 @@ tripwise/
 
 Tài liệu này quy định các nguyên tắc thống nhất về Git, phân vùng file và chuẩn viết code cho toàn bộ thành viên dự án **TripWise (Mobile App + AI Backend)** nhằm tránh xung đột (conflict) và đảm bảo tiến độ 4 tuần.
 
----
+## 1. Quy Tắc Git & Phân Nhánh (Mô Hình 2 Tầng)
 
-## 1. Quy Tắc Git & Phân Nhánh (Chống Conflict)
+### 1.1. Cấu trúc 2 tầng nhánh
+* **`main`**: Nhánh chính chứa code chung của cả nhóm.
+* **Nhánh cố định theo vai trò (Mỗi người 1 nhánh duy nhất suốt 4 tuần)**:
+  * Backend: `backend`
+  * Security & DB: `security-db`
+  * AI Integration: `ai`
+  * Frontend: `frontend`
+  * QA/QC: `qa-qc`
 
-### 1.1. Cấu trúc 3 tầng nhánh (Branching Strategy)
-* **`main`**: Nhánh sản phẩm ổn định phục vụ Demo. Chỉ Leader được phép merge từ `develop` sang sau khi QA/QC đã kiểm thử cuối mỗi tuần.
-* **`develop`**: Nhánh tích hợp chung của cả nhóm trong suốt quá trình code.
-* **Nhánh cá nhân (Feature Branches)**: Luôn tách nhánh mới từ `develop` theo cú pháp `<vai-trò>/<tên-tính-năng>`:
-  * Backend: `be/trip-routes`, `be/checkin-gps`, `be/bill-splitting`
-  * Security & DB: `db/models-init`, `db/rate-limiting`, `db/seed-data`
-  * AI Integration: `ai/reranker`, `ai/replanning-engine`, `ai/prompts`
-  * Mobile Frontend: `fe/plan-preview`, `fe/group-invite`, `fe/notice-screen`
-  * QA/QC: `qa/test-feasibility`, `qa/test-api`
-
-### 1.2. Quy trình 4 bước trước khi Push & Merge
-1. Trước khi bắt đầu ca code hoặc trước khi push, luôn kéo code mới nhất về:
+### 1.2. Quy trình 3 bước mỗi khi Push code
+1. **Kéo code mới nhất từ `main` về nhánh của mình** (để tránh lệch code với các bạn khác):
    ```bash
-   git checkout develop
-   git pull origin develop
-   git checkout <nhánh-cá-nhân>
-   git merge develop
+   git pull origin main
    ```
-2. Chạy thử server / app / pytest tại máy cá nhân đảm bảo không báo lỗi cú pháp.
-3. Push lên nhánh cá nhân:
+2. **Lưu và đẩy code lên nhánh của mình**:
    ```bash
-   git push origin <nhánh-cá-nhân>
+   git add .
+   git commit -m "Mô tả ngắn gọn việc vừa làm"
+   git push origin <tên-nhánh-của-bạn>
    ```
-4. Tạo **Pull Request (PR)** vào nhánh `develop` trên GitHub và nhắn vào nhóm để duyệt. **Tuyệt đối không dùng `git push --force` lên `main` hoặc `develop`.**
+3. **Lên GitHub bấm nút "Create Pull Request"** để gộp nhánh của bạn vào `main` (Không push thẳng trực tiếp vào `main`).
 
-### 1.3. Chuẩn tin nhắn Commit (Commit Message)
-Viết ngắn gọn theo cấu trúc `<loại>(<phạm-vi>): <nội-dung>`:
-* `feat(db): add Trip_Members and Activity_Checkins tables` (Thêm tính năng mới)
-* `fix(api): handle HTTP 429 rate limit on generate endpoint` (Sửa lỗi)
-* `refactor(ai): optimize system prompt token length` (Tối ưu code)
-* `test(qa): add unit tests for odd bill splitting` (Thêm kiểm thử)
-* `docs(readme): update directory tree` (Cập nhật tài liệu)
-
----
+### 1.3. Cách ghi tin nhắn Commit dễ nhìn
+Ghi ngắn gọn theo dạng `[Vai trò] Việc vừa làm`:
+* `[DB] Tạo 10 bảng trong models.py`
+* `[BE] Viết API tạo lịch trình và check-in GPS`
+* `[AI] Viết prompt chấm điểm địa điểm`
+* `[FE] Hoàn thiện màn hình đề xuất lịch trình`
 
 ## 2. Quy Tắc Phân Vùng & Sở Hữu File (Tránh Đụng Độ Code)
 
