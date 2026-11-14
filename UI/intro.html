@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,40 +8,47 @@
   <!-- Google Fonts: Luxurious Roman & Playfair Display cho slogan nghệ thuật -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
 </head>
+
 <body class="phone-screen-body">
   <div class="app-container">
-    
+
     <div class="intro-container-v2">
       <!-- Top Brand Logo (Figma Node 1376:4347) -->
       <header class="intro-brand-header">
-        <img src="assets/images/render_1376_4347.png" alt="TripWise Logo" class="intro-brand-logo-img" onerror="this.src='assets/images/logo-main.png'">
+        <img src="assets/images/render_1376_4347.png" alt="TripWise Logo" class="intro-brand-logo-img"
+          onerror="this.src='assets/images/logo-main.png'">
       </header>
 
       <!-- Background văn hóa toàn khung hình (Figma Node 1376:4330) -->
       <img src="assets/images/cultural_pattern.png" alt="Cultural Background" class="intro-bg-full">
-      
+
       <!-- Lớp phủ Gradient tối dưới đáy để làm nổi bật nút và chữ (Figma Node 1376:4331) -->
       <div class="intro-dark-gradient-bottom"></div>
 
-      <!-- Nội dung chính đẩy xuống đáy theo đúng Mẫu Ảnh 2 (Figma Node 1376:4332 & 1376:4348) -->
+      <!-- Nội dung chính đẩy xuống đáy (Figma Node 1376:4332 & 1376:4348) -->
       <div class="intro-bottom-content">
-        
-        <!-- Các nút đăng ký tài khoản (Node 1376:4333) -->
+
+        <!-- Các nút đăng ký / đăng nhập (Node 1376:4333) -->
         <div class="intro-auth-stack">
-          <!-- Button 1: Đăng ký với Google (Node 1376:4334) -->
+          <!-- Button 1: Đăng ký với Google -->
           <a href="login.html" class="btn-intro-social google" aria-label="Đăng ký với Google">
             <img src="assets/images/icon-google.svg" alt="Google" width="22" height="22">
             <span>Đăng ký với Google</span>
           </a>
 
-          <!-- Button 2: Đăng ký với Apple (Node 1376:4342) -->
-          <a href="login.html" class="btn-intro-social apple" aria-label="Đăng ký với Apple">
-            <img src="assets/images/icon-apple.svg" alt="Apple" width="22" height="22" style="filter: brightness(0) invert(1);">
-            <span>Đăng ký với Apple</span>
+          <!-- Button 2: Đăng nhập bằng số điện thoại (Thay thế nút Apple theo yêu cầu) -->
+          <a href="login.html" class="btn-intro-social phone" aria-label="Đăng nhập bằng số điện thoại">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>Đăng nhập bằng số điện thoại</span>
           </a>
         </div>
 
@@ -50,15 +58,12 @@
           <a href="login.html">Đăng nhập</a>
         </div>
 
-        <!-- Khung chữ nghệ thuật đúng font Luxurious Roman, size 32px và vị trí đáy (Figma Node 1376:4348 - Mẫu Ảnh 2) -->
+        <!-- Khung chữ nghệ thuật đúng font Luxurious Roman, size 32px và vị trí đáy (Figma Node 1376:4348) -->
         <div class="intro-headline-serif-box">
           <h1 class="intro-headline-serif-text">
             Một chút diệu kỳ.<br>Trọn vẹn Việt Nam.
           </h1>
         </div>
-
-        <!-- Home indicator bar (Node 1376:4349) -->
-        <div class="intro-home-bar-indicator"></div>
 
       </div>
 
@@ -66,4 +71,5 @@
 
   </div>
 </body>
+
 </html>

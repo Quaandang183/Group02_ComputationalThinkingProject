@@ -13,13 +13,11 @@
   <div class="app-container">
 
     <div class="edit-plan-container">
-      <!-- Background Botanical Art -->
-      <img src="assets/images/botanical_bg.png" alt="Botanical Art" class="bg-botanical-art">
 
       <!-- Scrollable Main Content -->
       <main class="edit-plan-scroll-content">
 
-        <!-- Top Header Row (Cách mép trên đúng 48px) -->
+        <!-- Top Header Row -->
         <header class="edit-header-row">
           <a href="proposal.html" class="btn-edit-back" id="btnBackToOrigin" title="Quay lại" aria-label="Quay lại">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -42,7 +40,7 @@
           </button>
         </div>
 
-        <!-- Center Accent Bar (Đặc trưng Figma) -->
+        <!-- Center Accent Bar (Figma Node) -->
         <div class="edit-accent-bar"></div>
 
         <!-- ===================================================================
@@ -57,25 +55,22 @@
 
           <!-- 4 Category Cards Grid -->
           <div class="edit-categories-grid" role="group" aria-label="Nhóm hạng mục cần cải thiện">
-            <!-- Mục 1: Khách sạn (Mặc định chọn) -->
+            <!-- Mục 1: Khách sạn (Mặc định chọn trong Figma) -->
             <div class="edit-category-card selected" data-cat="hotel" tabindex="0" role="checkbox" aria-checked="true">
               <span class="cat-check-badge">✓</span>
               <div class="edit-cat-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 21h18"></path>
-                  <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
-                  <path d="M9 9h1"></path>
-                  <path d="M9 13h1"></path>
-                  <path d="M9 17h1"></path>
-                  <path d="M14 9h1"></path>
-                  <path d="M14 13h1"></path>
-                  <path d="M14 17h1"></path>
+                  <path d="M3 7v13"></path>
+                  <path d="M21 7v13"></path>
+                  <path d="M3 13h18"></path>
+                  <path d="M3 17h18"></path>
+                  <path d="M7 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
                 </svg>
               </div>
               <span class="edit-cat-name">Khách sạn</span>
             </div>
 
-            <!-- Mục 2: Điểm chụp ảnh (Mặc định chọn) -->
+            <!-- Mục 2: Điểm chụp ảnh (Mặc định chọn trong Figma) -->
             <div class="edit-category-card selected" data-cat="photo" tabindex="0" role="checkbox" aria-checked="true">
               <span class="cat-check-badge">✓</span>
               <div class="edit-cat-icon">
@@ -248,9 +243,9 @@
                 <span class="manual-stop-time">14:30 - 16:00</span>
                 <span class="manual-stop-name">Ga Đà Lạt & Tuyến tàu cổ</span>
                 <div class="manual-replace-pill">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2v20"></path>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="m10 15 5-3-5-3v6Z"></path>
                   </svg>
                   <span>Thay thế điểm ngoài trời</span>
                 </div>
@@ -317,23 +312,23 @@
 
     <!-- Modal Dialog: Thêm điểm đến mới -->
     <div class="modal-backdrop-layer" id="modalAddStop" style="display: none;">
-      <div class="modal-dialog-box" style="padding: 20px; border-radius: 24px;">
+      <div class="modal-dialog-box" style="padding: 20px; border-radius: 24px; background: #FFFFFF; max-width: 340px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-          <h3 style="margin: 0; font-size: 16px; font-weight: 700; color: #14301C;">Thêm điểm đến mới</h3>
-          <button type="button" id="btnCloseModalAddStop" style="border: none; background: none; font-size: 18px; cursor: pointer; color: #728574;">✕</button>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700; color: #1E3F20;">Thêm điểm đến mới</h3>
+          <button type="button" id="btnCloseModalAddStop" style="border: none; background: none; font-size: 18px; cursor: pointer; color: #5C725E;">✕</button>
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <button type="button" class="btn-quick-add-place" data-name="Thác Datanla" data-time="16:30 - 18:00" data-sub="50.000đ / vé máng trượt" style="padding: 10px 14px; text-align: left; background: #F6F9F4; border: 1px solid #DCE6D9; border-radius: 12px; cursor: pointer; font-family: inherit;">
-            <div style="font-weight: 700; font-size: 13.5px; color: #14301C;">Thác Datanla</div>
-            <div style="font-size: 11.5px; color: #728574;">16:30 - 18:00 • Vé 50.000đ</div>
+            <div style="font-weight: 700; font-size: 13.5px; color: #1E3F20;">Thác Datanla</div>
+            <div style="font-size: 11.5px; color: #5C725E;">16:30 - 18:00 • Vé 50.000đ</div>
           </button>
           <button type="button" class="btn-quick-add-place" data-name="Tiệm Cà Phê Túi Mơ To" data-time="17:00 - 19:00" data-sub="Đồ uống & Ngắm hoàng hôn" style="padding: 10px 14px; text-align: left; background: #F6F9F4; border: 1px solid #DCE6D9; border-radius: 12px; cursor: pointer; font-family: inherit;">
-            <div style="font-weight: 700; font-size: 13.5px; color: #14301C;">Tiệm Cà Phê Túi Mơ To</div>
-            <div style="font-size: 11.5px; color: #728574;">17:00 - 19:00 • Cà phê ngắm cảnh</div>
+            <div style="font-weight: 700; font-size: 13.5px; color: #1E3F20;">Tiệm Cà Phê Túi Mơ To</div>
+            <div style="font-size: 11.5px; color: #5C725E;">17:00 - 19:00 • Cà phê ngắm cảnh</div>
           </button>
           <button type="button" class="btn-quick-add-place" data-name="Chợ Đêm Đà Lạt" data-time="19:30 - 22:00" data-sub="Ẩm thực đường phố & Mua sắm" style="padding: 10px 14px; text-align: left; background: #F6F9F4; border: 1px solid #DCE6D9; border-radius: 12px; cursor: pointer; font-family: inherit;">
-            <div style="font-weight: 700; font-size: 13.5px; color: #14301C;">Chợ Đêm Đà Lạt</div>
-            <div style="font-size: 11.5px; color: #728574;">19:30 - 22:00 • Bánh tráng nướng & Sữa đậu</div>
+            <div style="font-weight: 700; font-size: 13.5px; color: #1E3F20;">Chợ Đêm Đà Lạt</div>
+            <div style="font-size: 11.5px; color: #5C725E;">19:30 - 22:00 • Bánh tráng nướng & Sữa đậu</div>
           </button>
         </div>
       </div>
@@ -559,4 +554,3 @@
 </body>
 
 </html>
-

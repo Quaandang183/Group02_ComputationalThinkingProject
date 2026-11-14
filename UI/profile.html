@@ -6,23 +6,23 @@
   <title>TripWise · Cá nhân</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/logo-circle.png">
-
 </head>
 <body class="phone-screen-body">
   <div class="app-container">
-    <div class="subpage-container profile-subpage-container">
+    <div class="subpage-container profile-subpage-container" style="background-color: #FAF8F2 !important;">
     
     <!-- Botanical Background Layer -->
     <img src="assets/images/botanical_bg.png" alt="Botanical Art" class="bg-botanical-art">
 
     <!-- Traveler Header (Node 1376:2933) -->
-    <!-- Top Bar: Chỉ có nút chuông thông báo (Khớp 100% Ảnh Figma) -->
+    <!-- Top Bar: Nút chuông thông báo đồng bộ chuẩn Figma -->
     <div class="profile-top-bar">
-      <button type="button" class="btn-profile-bell" id="btnOpenNotification" title="Xem thông báo" aria-label="Xem thông báo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button type="button" class="btn-header-round" id="btnOpenNotification" title="Xem thông báo" aria-label="Xem thông báo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3f20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
           <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
         </svg>
+        <span class="notif-badge-pill">02</span>
       </button>
     </div>
 
@@ -65,8 +65,8 @@
           Dự báo mưa lớn quanh Hồ Xuân Hương lúc 15:00. Đã chuẩn bị phương án chuyển sang Ga Đà Lạt.
         </div>
         <div class="notif-card-actions">
-          <button type="button" class="btn-notif-view" onclick="window.location.reload()">Xem</button>
-          <button type="button" class="btn-notif-cta" onclick="window.location.href='suggestion.html'">
+          <button type="button" class="btn-notif-view" onclick="window.location.reload()" aria-label="Xem thông báo thời tiết">Xem</button>
+          <button type="button" class="btn-notif-cta" onclick="window.location.href='suggestion.html'" aria-label="Đổi điểm đến theo gợi ý">
             <span>Đổi điểm đến</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
           </button>
@@ -101,8 +101,8 @@
           Khu vực đèo Prenn lưu lượng đông. Gợi ý đi hướng đèo Mimosa.
         </div>
         <div class="notif-card-actions">
-          <button type="button" class="btn-notif-view" onclick="window.location.reload()">Xem</button>
-          <button type="button" class="btn-notif-cta" onclick="window.location.href='map.html'">
+          <button type="button" class="btn-notif-view" onclick="window.location.reload()" aria-label="Xem lộ trình tối ưu">Xem</button>
+          <button type="button" class="btn-notif-cta" onclick="window.location.href='map.html'" aria-label="Đổi đường đi trên bản đồ">
             <span>Đổi đường đi</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
           </button>
@@ -122,7 +122,7 @@
           <div style="font-size: 15px; font-weight: 700; color: #1E3F20;">Tuyệt vời!</div>
           <div style="font-size: 11px; color: #657064;">Đã cập nhật 3/3 lịch trình</div>
         </div>
-        <button type="button" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(30, 63, 32, 0.05); border: 1px solid rgba(30, 63, 32, 0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.location.reload()">
+        <button type="button" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(30, 63, 32, 0.05); border: 1px solid rgba(30, 63, 32, 0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.location.reload()" aria-label="Làm mới lịch trình">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m9 16 2 2 4-4"/></svg>
         </button>
       </div>
@@ -151,15 +151,15 @@
 
         <!-- Travel Statistics Card (Node 1376:3364: Cao 68px, Nền trắng bo góc 20px, 3 cột) -->
         <div class="profile-stats-card">
-          <div class="profile-stat-col" id="btnStatTrips" title="Xem lịch sử chuyến đi">
+          <div class="profile-stat-col" id="btnStatTrips" title="Xem lịch sử chuyến đi" role="button" tabindex="0" aria-label="Xem 8 chuyến đi trong lịch sử">
             <span class="profile-stat-num">8</span>
             <span class="profile-stat-lbl">Chuyến đi</span>
           </div>
-          <div class="profile-stat-col" id="btnStatLoved" title="Xem địa điểm yêu thích">
+          <div class="profile-stat-col" id="btnStatLoved" title="Xem địa điểm yêu thích" role="button" tabindex="0" aria-label="Xem 12 địa điểm yêu thích">
             <span class="profile-stat-num">12</span>
             <span class="profile-stat-lbl">Yêu thích</span>
           </div>
-          <div class="profile-stat-col">
+          <div class="profile-stat-col" role="button" tabindex="0" aria-label="6 điểm thưởng">
             <span class="profile-stat-num">6</span>
             <span class="profile-stat-lbl">Điểm thưởng</span>
           </div>
@@ -197,8 +197,8 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#75816F" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
           </button>
 
-          <!-- Hàng 3: Địa điểm đã lưu -> Pop-up Loved places (Node 1376:3393 & 1376:3515) -->
-          <button type="button" class="profile-menu-row-item" id="btnOpenLovedPlaces" aria-label="Mở địa điểm đã lưu">
+          <!-- Hàng 3: Địa điểm đã lưu -> Pop-up Loved Places (Node 1376:3393 & 1376:3515) -->
+          <button type="button" class="profile-menu-row-item" id="btnOpenLovedPlaces" aria-label="Mở danh sách địa điểm đã lưu">
             <div class="profile-menu-icon-box">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
@@ -245,8 +245,8 @@
 
         <!-- Bottom Action Row: Đăng xuất & Xóa tài khoản (Node 1376:3420) -->
         <div class="profile-actions-bottom-row">
-          <button type="button" class="btn-profile-logout" id="btnOpenLogout">Đăng xuất</button>
-          <a href="delete-account.html" class="btn-profile-delete-acc">Xóa tài khoản</a>
+          <button type="button" class="btn-profile-logout" id="btnOpenLogout" aria-label="Đăng xuất khỏi tài khoản">Đăng xuất</button>
+          <a href="delete-account.html" class="btn-profile-delete-acc" aria-label="Xóa tài khoản vĩnh viễn">Xóa tài khoản</a>
         </div>
 
       </div>
@@ -254,19 +254,19 @@
 
     <!-- Static Bottom Dock Navigation Bar - Ghim cách mép đáy 6px, "Cá nhân" active -->
     <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
-      <a href="index.html" class="dock-btn-row">
+      <a href="index.html" class="dock-btn-row" aria-label="Đi tới Trang chủ">
         <img src="assets/images/icon-home.svg" alt="Home">
         <span>Trang chủ</span>
       </a>
-      <a href="itinerary.html" class="dock-btn-row">
+      <a href="itinerary.html" class="dock-btn-row" aria-label="Đi tới Lịch trình">
         <img src="assets/images/icon-calendar.svg" alt="Itinerary">
         <span>Lịch trình</span>
       </a>
-      <a href="map.html" class="dock-btn-row">
+      <a href="map.html" class="dock-btn-row" aria-label="Đi tới Bản đồ">
         <img src="assets/images/icon-map.svg" alt="Map">
         <span>Bản đồ</span>
       </a>
-      <a href="profile.html" class="dock-btn-row active">
+      <a href="profile.html" class="dock-btn-row active" aria-label="Trang Cá nhân hiện tại">
         <img src="assets/images/icon-user.svg" alt="Profile">
         <span>Cá nhân</span>
       </a>
@@ -275,42 +275,42 @@
     </div><!-- /.subpage-container -->
 
     <!-- ==========================================================================
-         POP-UP 1: Change Profile (Figma Node 1376:4372 & Attachment 10)
+         POP-UP 1: Change Profile (Figma Node 1376:4372: Nền đồng bộ #FAF8F2)
          ========================================================================== -->
-    <div class="modal-backdrop-layer" id="modalChangeProfile">
-      <div class="change-profile-dialog">
+    <div class="modal-backdrop-layer" id="modalChangeProfile" role="dialog" aria-modal="true" aria-label="Chỉnh sửa hồ sơ">
+      <div class="change-profile-dialog" style="background: #FAF8F2 !important;">
         <div class="change-profile-header">
           <h3 class="change-profile-title">Chỉnh sửa hồ sơ</h3>
-          <button type="button" class="btn-circle-close" data-close="modalChangeProfile" aria-label="Đóng">✕</button>
+          <button type="button" class="btn-circle-close" data-close="modalChangeProfile" aria-label="Đóng popup">✕</button>
         </div>
 
         <form class="profile-form-body" onsubmit="alert('Hồ sơ đã được cập nhật thành công!'); document.getElementById('modalChangeProfile').classList.remove('active'); return false;">
           <div class="profile-field-group">
             <label class="profile-field-label">Email</label>
             <div class="profile-input-wrap">
-              <input type="email" class="profile-input-field" value="linh.nguyen@tripwise.vn" required>
+              <input type="email" class="profile-input-field" value="linh.nguyen@tripwise.vn" required aria-label="Địa chỉ Email">
             </div>
           </div>
 
           <div class="profile-field-group">
             <label class="profile-field-label">Họ và tên</label>
             <div class="profile-input-wrap">
-              <input type="text" class="profile-input-field" value="Linh Nguyễn" required>
+              <input type="text" class="profile-input-field" value="Linh Nguyễn" required aria-label="Họ và tên">
             </div>
           </div>
 
           <div class="profile-field-group">
             <label class="profile-field-label">Mô tả</label>
             <div class="profile-textarea-wrap">
-              <textarea class="profile-textarea-field" rows="2">Yêu thiên nhiên và văn hóa</textarea>
+              <textarea class="profile-textarea-field" rows="2" aria-label="Mô tả bản thân">Yêu thiên nhiên và văn hóa</textarea>
             </div>
           </div>
 
           <div class="profile-modal-actions">
-            <button type="button" class="btn-profile-cancel" data-close="modalChangeProfile">
+            <button type="button" class="btn-profile-cancel" data-close="modalChangeProfile" aria-label="Hủy thay đổi">
               Hủy
             </button>
-            <button type="submit" class="btn-profile-submit">
+            <button type="submit" class="btn-profile-submit" aria-label="Lưu thay đổi hồ sơ">
               Thay đổi hồ sơ
             </button>
           </div>
@@ -319,10 +319,10 @@
     </div>
 
     <!-- ==========================================================================
-         POP-UP 2: History Pop Up (Figma Node 1376:3644: Lịch sử chuyến đi có bộ lọc Tháng, Năm & Sort)
+         POP-UP 2: History Pop Up (Figma Node 1376:3644: Lịch sử chuyến đi nền chuẩn #FAF8F2)
          ========================================================================== -->
-    <div class="modal-backdrop-layer" id="modalHistory">
-      <div class="history-dialog-box">
+    <div class="modal-backdrop-layer" id="modalHistory" role="dialog" aria-modal="true" aria-label="Lịch sử chuyến đi">
+      <div class="history-dialog-box" style="background: #FAF8F2 !important;">
         <div class="modal-header-row" style="margin-bottom: 2px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <button type="button" class="btn-modal-close" data-close="modalHistory" aria-label="Quay lại" style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #DFE4D8; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px;">
@@ -362,11 +362,11 @@
 
           <!-- Sort Group (Node 1376:3664) -->
           <div class="history-sort-group">
-            <button type="button" class="btn-sort-segment active" id="btnSortNewest" data-sort="newest">
+            <button type="button" class="btn-sort-segment active" id="btnSortNewest" data-sort="newest" aria-label="Sắp xếp mới đến cũ">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 16 4 4 4-4M7 20V4M21 8l-4-4-4 4M17 4v16"/></svg>
               <span>Mới đến cũ</span>
             </button>
-            <button type="button" class="btn-sort-segment" id="btnSortOldest" data-sort="oldest">
+            <button type="button" class="btn-sort-segment" id="btnSortOldest" data-sort="oldest" aria-label="Sắp xếp cũ đến mới">
               <span>Cũ đến mới</span>
             </button>
           </div>
@@ -380,10 +380,10 @@
     </div>
 
     <!-- ==========================================================================
-         POP-UP 3: Loved Places (Figma Node 1376:3515: Exact Center with Blurred BG)
+         POP-UP 3: Loved Places (Figma Node 1376:3515: Nền đồng bộ #FAF8F2)
          ========================================================================== -->
-    <div class="modal-backdrop-layer" id="modalLovedPlaces">
-      <div class="loved-places-dialog">
+    <div class="modal-backdrop-layer" id="modalLovedPlaces" role="dialog" aria-modal="true" aria-label="Địa điểm yêu thích">
+      <div class="loved-places-dialog" style="background: #FAF8F2 !important;">
         <div class="loved-dialog-header">
           <button type="button" class="btn-modal-close" data-close="modalLovedPlaces" aria-label="Đóng popup" style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #DFE4D8; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #1E3F20;">✕</button>
           <div class="loved-header-pill">
@@ -395,9 +395,9 @@
 
         <!-- Filter tabs -->
         <div class="loved-filters-row">
-          <button type="button" class="btn-loved-filter active" data-filter="all">Tất cả</button>
-          <button type="button" class="btn-loved-filter" data-filter="food">Ẩm thực</button>
-          <button type="button" class="btn-loved-filter" data-filter="nature">Thiên nhiên</button>
+          <button type="button" class="btn-loved-filter active" data-filter="all" aria-label="Xem tất cả">Tất cả</button>
+          <button type="button" class="btn-loved-filter" data-filter="food" aria-label="Lọc địa điểm ẩm thực">Ẩm thực</button>
+          <button type="button" class="btn-loved-filter" data-filter="nature" aria-label="Lọc địa điểm thiên nhiên">Thiên nhiên</button>
         </div>
 
         <!-- Grid 4 saved places from Figma Node 1376:3515 -->
@@ -406,7 +406,7 @@
           <div class="loved-card-item" data-category="food">
             <div class="loved-photo-wrap">
               <img src="assets/images/dest_dalat.png" alt="Lẩu gà lá é Tao Ngộ">
-              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích" aria-label="Bỏ yêu thích Lẩu gà lá é Tao Ngộ">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
@@ -420,7 +420,7 @@
           <div class="loved-card-item" data-category="food">
             <div class="loved-photo-wrap">
               <img src="assets/images/place_cafe.png" alt="Tiệm Cà Phê Túi Mơ To">
-              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích" aria-label="Bỏ yêu thích Tiệm Cà Phê Túi Mơ To">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
@@ -438,7 +438,7 @@
           <div class="loved-card-item" data-category="nature">
             <div class="loved-photo-wrap">
               <img src="assets/images/dest_temple.png" alt="Dinh III Bảo Đại">
-              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích" aria-label="Bỏ yêu thích Dinh III Bảo Đại">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
@@ -452,7 +452,7 @@
           <div class="loved-card-item" data-category="food">
             <div class="loved-photo-wrap">
               <img src="assets/images/dest_hoian.png" alt="Bánh Căn Lệ">
-              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích" aria-label="Bỏ yêu thích Bánh Căn Lệ">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
@@ -466,9 +466,9 @@
     </div>
 
     <!-- ==========================================================================
-         POP-UP 4: Logout Confirmation Sheet (Figma Node 1376:2857 & Image 2)
+         POP-UP 4: Logout Confirmation Sheet (Figma Node 1376:2857)
          ========================================================================== -->
-    <div class="modal-backdrop-layer sheet-backdrop" id="modalLogoutSheet">
+    <div class="modal-backdrop-layer sheet-backdrop" id="modalLogoutSheet" role="dialog" aria-modal="true" aria-label="Xác nhận đăng xuất">
       <div class="modal-dialog-box logout-sheet-dialog">
         <!-- Drag handle -->
         <div class="sheet-drag-handle"></div>
@@ -488,11 +488,11 @@
         </div>
 
         <div class="logout-sheet-actions">
-          <!-- Action: ĐĂNG XUẤT (Terracotta button with subtle border) -->
+          <!-- Action: ĐĂNG XUẤT -->
           <button type="button" class="btn-logout-confirm-sheet" id="btnConfirmLogoutAction" aria-label="Xác nhận đăng xuất">
             ĐĂNG XUẤT
           </button>
-          <!-- Action: HỦY (Light soft green background) -->
+          <!-- Action: HỦY -->
           <button type="button" class="btn-logout-cancel-sheet" data-close="modalLogoutSheet" aria-label="Hủy đăng xuất">
             HỦY
           </button>
@@ -501,55 +501,55 @@
     </div>
 
     <!-- ==========================================================================
-         POP-UP 5: Gu du lịch của tôi (Modal Preferences)
+         POP-UP 5: Gu du lịch của tôi (Figma Node 1376:3402: Nền đồng bộ #FAF8F2)
          ========================================================================== -->
-    <div class="modal-backdrop-layer" id="modalPreferences">
-      <div class="modal-dialog-box">
+    <div class="modal-backdrop-layer" id="modalPreferences" role="dialog" aria-modal="true" aria-label="Gu du lịch của tôi">
+      <div class="modal-dialog-box" style="background: #FAF8F2 !important;">
         <div class="modal-header-row">
           <h3 class="modal-title-h3">Gu du lịch của tôi</h3>
-          <button type="button" class="btn-modal-close" data-close="modalPreferences" aria-label="Đóng">✕</button>
+          <button type="button" class="btn-modal-close" data-close="modalPreferences" aria-label="Đóng popup">✕</button>
         </div>
         <p style="font-size: 13px; color: var(--c-text-muted); line-height: 1.4;">
           Chọn các phong cách du lịch yêu thích để TripWise cá nhân hóa gợi ý lịch trình:
         </p>
         <div class="plan-tags-row" style="margin-top: 10px;">
-          <button type="button" class="plan-tag-btn selected">✓ Thiên nhiên</button>
-          <button type="button" class="plan-tag-btn selected">✓ Văn hóa</button>
-          <button type="button" class="plan-tag-btn">Ẩm thực địa phương</button>
-          <button type="button" class="plan-tag-btn">Nghỉ dưỡng & Cà phê</button>
-          <button type="button" class="plan-tag-btn">Khám phá mạo hiểm</button>
+          <button type="button" class="plan-tag-btn selected" aria-label="Sở thích Thiên nhiên">✓ Thiên nhiên</button>
+          <button type="button" class="plan-tag-btn selected" aria-label="Sở thích Văn hóa">✓ Văn hóa</button>
+          <button type="button" class="plan-tag-btn" aria-label="Sở thích Ẩm thực địa phương">Ẩm thực địa phương</button>
+          <button type="button" class="plan-tag-btn" aria-label="Sở thích Nghỉ dưỡng & Cà phê">Nghỉ dưỡng & Cà phê</button>
+          <button type="button" class="plan-tag-btn" aria-label="Sở thích Khám phá mạo hiểm">Khám phá mạo hiểm</button>
         </div>
-        <button type="button" class="btn-login-submit" style="margin-top: 20px; height: 46px;" data-close="modalPreferences">
+        <button type="button" class="btn-login-submit" style="margin-top: 20px; height: 46px;" data-close="modalPreferences" aria-label="Lưu sở thích du lịch">
           Lưu sở thích
         </button>
       </div>
     </div>
 
     <!-- ==========================================================================
-         POP-UP 6: Ngôn ngữ & Tiền tệ (Modal Language)
+         POP-UP 6: Ngôn ngữ & Tiền tệ (Figma Node 1376:3411: Nền đồng bộ #FAF8F2)
          ========================================================================== -->
-    <div class="modal-backdrop-layer" id="modalLanguage">
-      <div class="modal-dialog-box">
+    <div class="modal-backdrop-layer" id="modalLanguage" role="dialog" aria-modal="true" aria-label="Ngôn ngữ & Tiền tệ">
+      <div class="modal-dialog-box" style="background: #FAF8F2 !important;">
         <div class="modal-header-row">
           <h3 class="modal-title-h3">Ngôn ngữ & Tiền tệ</h3>
-          <button type="button" class="btn-modal-close" data-close="modalLanguage" aria-label="Đóng">✕</button>
+          <button type="button" class="btn-modal-close" data-close="modalLanguage" aria-label="Đóng popup">✕</button>
         </div>
         <div style="display: flex; flex-direction: column; gap: 14px;">
           <div>
             <label style="font-size: 13px; font-weight: 700; color: var(--c-forest-deep); display: block; margin-bottom: 6px;">Ngôn ngữ</label>
-            <select class="field-input-box" style="width: 100%; height: 46px; padding: 0 12px; border-radius: 12px;">
+            <select class="field-input-box" style="width: 100%; height: 46px; padding: 0 12px; border-radius: 12px;" aria-label="Chọn ngôn ngữ hiển thị">
               <option selected>Tiếng Việt (vi-VN)</option>
               <option>English (en-US)</option>
             </select>
           </div>
           <div>
             <label style="font-size: 13px; font-weight: 700; color: var(--c-forest-deep); display: block; margin-bottom: 6px;">Đơn vị tiền tệ</label>
-            <select class="field-input-box" style="width: 100%; height: 46px; padding: 0 12px; border-radius: 12px;">
+            <select class="field-input-box" style="width: 100%; height: 46px; padding: 0 12px; border-radius: 12px;" aria-label="Chọn đơn vị tiền tệ">
               <option selected>VNĐ - Đồng Việt Nam (₫)</option>
               <option>USD - Đô la Mỹ ($)</option>
             </select>
           </div>
-          <button type="button" class="btn-login-submit" style="margin-top: 10px; height: 46px;" data-close="modalLanguage">
+          <button type="button" class="btn-login-submit" style="margin-top: 10px; height: 46px;" data-close="modalLanguage" aria-label="Áp dụng cài đặt ngôn ngữ và tiền tệ">
             Áp dụng
           </button>
         </div>
@@ -598,75 +598,74 @@
         date: "30/04/2025 – 2/05/2025",
         month: 4,
         year: 2025,
-        places: "6 địa điểm",
+        places: "8 địa điểm",
         timestamp: 20250430
       },
       {
         id: 5,
-        title: "Mùa dã quỳ",
+        title: "Chuyến đi ngắm hoa dã quỳ",
         location: "Đà Lạt, Lâm Đồng",
-        date: "02/11/2024 – 04/11/2024",
+        date: "10/11/2024 – 12/11/2024",
         month: 11,
         year: 2024,
-        places: "4 địa điểm",
-        timestamp: 20241102
+        places: "5 địa điểm",
+        timestamp: 20241110
       }
     ];
 
-    let currentSortOrder = 'newest'; // 'newest' | 'oldest'
+    let currentSortOrder = 'newest';
 
-    // Generic Modal Management
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
+    // Notification dropdown panel toggle
+    const btnBell = document.getElementById('btnOpenNotification');
+    const notifPanel = document.getElementById('notificationDropdownPanel');
+
+    if (btnBell && notifPanel) {
+      btnBell.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = notifPanel.classList.toggle('open');
+        notifPanel.classList.toggle('active', isOpen);
+        btnBell.classList.toggle('active', isOpen);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!notifPanel.contains(e.target) && !btnBell.contains(e.target)) {
+          notifPanel.classList.remove('open');
+          notifPanel.classList.remove('active');
+          btnBell.classList.remove('active');
+        }
+      });
+    }
+
+    // Modal helpers
+    function openModal(id) {
+      const modal = document.getElementById(id);
       if (modal) {
         modal.classList.add('active');
-        if (modalId === 'modalHistory') {
-          renderHistoryTrips();
-        }
       }
     }
 
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) modal.classList.remove('active');
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('active');
+      }
     }
 
-    // Connect Profile buttons to Pop-ups
+    // Open Modal Event Handlers
     document.getElementById('btnOpenChangeProfile')?.addEventListener('click', () => openModal('modalChangeProfile'));
-    document.getElementById('btnOpenHistory')?.addEventListener('click', () => openModal('modalHistory'));
-    document.getElementById('btnStatTrips')?.addEventListener('click', () => openModal('modalHistory'));
+    document.getElementById('btnOpenHistory')?.addEventListener('click', () => {
+      openModal('modalHistory');
+      renderHistoryTrips();
+    });
+    document.getElementById('btnStatTrips')?.addEventListener('click', () => {
+      openModal('modalHistory');
+      renderHistoryTrips();
+    });
     document.getElementById('btnOpenLovedPlaces')?.addEventListener('click', () => openModal('modalLovedPlaces'));
     document.getElementById('btnStatLoved')?.addEventListener('click', () => openModal('modalLovedPlaces'));
     document.getElementById('btnOpenPreferences')?.addEventListener('click', () => openModal('modalPreferences'));
     document.getElementById('btnOpenLanguage')?.addEventListener('click', () => openModal('modalLanguage'));
     document.getElementById('btnOpenLogout')?.addEventListener('click', () => openModal('modalLogoutSheet'));
-
-    // Header Actions
-    const btnOpenNotif = document.getElementById('btnOpenNotification');
-    const notifPanel = document.getElementById('notificationDropdownPanel');
-    const btnOpenHeaderLoved = document.getElementById('btnOpenHeaderLoved');
-
-    if (btnOpenNotif && notifPanel) {
-      btnOpenNotif.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = notifPanel.classList.toggle('open');
-        btnOpenNotif.classList.toggle('active', isOpen);
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!notifPanel.contains(e.target) && !btnOpenNotif.contains(e.target)) {
-          notifPanel.classList.remove('open');
-          btnOpenNotif.classList.remove('active');
-        }
-      });
-    }
-
-    if (btnOpenHeaderLoved) {
-      btnOpenHeaderLoved.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal('modalLovedPlaces');
-      });
-    }
 
     // Hash link detection (e.g. #loved-places)
     if (window.location.hash === '#loved-places') {
@@ -703,6 +702,34 @@
             card.style.display = 'none';
           }
         });
+      });
+    });
+
+    // Toggle heart badge in Loved Places
+    document.querySelectorAll('.btn-loved-heart-badge').forEach(badge => {
+      badge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = badge.closest('.loved-card-item');
+        if (card) {
+          card.style.opacity = '0.3';
+          setTimeout(() => {
+            card.style.display = 'none';
+            const countEl = document.querySelector('.loved-header-count');
+            if (countEl) {
+              const currentCount = parseInt(countEl.textContent, 10) || 12;
+              countEl.textContent = Math.max(0, currentCount - 1);
+            }
+          }, 200);
+        }
+      });
+    });
+
+    // Toggle preference tags in Modal Gu du lịch của tôi
+    document.querySelectorAll('#modalPreferences .plan-tag-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isSelected = btn.classList.toggle('selected');
+        const rawText = btn.textContent.replace('✓', '').trim();
+        btn.textContent = isSelected ? `✓ ${rawText}` : rawText;
       });
     });
 

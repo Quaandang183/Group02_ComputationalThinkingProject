@@ -33,10 +33,10 @@
       <!-- Tiêu đề: Đăng nhập ở dưới nút mũi tên -->
       <h1 class="auth-page-title">Đăng nhập</h1>
 
-      <!-- Form Đăng nhập (Bỏ logic kiểm tra vì chưa có data, bấm Đăng nhập chuyển qua luôn trang chủ index.html) -->
-      <form class="auth-fields-form" id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); sessionStorage.setItem('isLoggedIn', 'true'); window.location.href='index.html'; return false;">
+      <!-- Form Đăng nhập (Bỏ logic điền email và mật khẩu - Click đăng nhập trực tiếp chuyển trang) -->
+      <form class="auth-fields-form" id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); handleDirectLogin(); return false;">
         
-        <!-- Trường 1: Email hoặc Tên đăng nhập (Gap trên 12px) -->
+        <!-- Trường 1: Email hoặc Tên đăng nhập -->
         <div class="auth-field-group">
           <label class="auth-field-label" for="login-identity">Email hoặc Tên đăng nhập</label>
           <div class="auth-input-box">
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <!-- Trường 2: Mật khẩu & Quên mật khẩu (Gap trên 12px) -->
+        <!-- Trường 2: Mật khẩu & Quên mật khẩu -->
         <div class="auth-field-group">
           <label class="auth-field-label" for="login-pwd">Mật khẩu</label>
           <div class="auth-input-box">
@@ -57,12 +57,12 @@
             </button>
           </div>
           <div class="auth-forgot-row">
-            <a href="#" class="auth-forgot-link">Quên mật khẩu?</a>
+            <a href="#" class="auth-forgot-link" onclick="alert('Vui lòng kiểm tra email để đặt lại mật khẩu của bạn.'); return false;">Quên mật khẩu?</a>
           </div>
         </div>
 
-        <!-- Nút Đăng nhập chính (Bấm chuyển qua luôn trang chủ index.html) -->
-        <button type="button" class="btn-auth-submit" id="btnSubmitLogin" onclick="sessionStorage.setItem('isLoggedIn', 'true'); window.location.href='index.html';" aria-label="Xác nhận đăng nhập">
+        <!-- Nút Đăng nhập chính: Bấm trực tiếp chuyển sang index.html không cần validate -->
+        <button type="button" class="btn-auth-submit" id="btnSubmitLogin" onclick="handleDirectLogin();" aria-label="Xác nhận đăng nhập">
           <span>Đăng nhập</span>
         </button>
 
@@ -86,6 +86,12 @@
       toggleBtn.addEventListener('click', () => {
         pwdInput.type = pwdInput.type === 'password' ? 'text' : 'password';
       });
+    }
+
+    // Direct Login without validation logic
+    function handleDirectLogin() {
+      sessionStorage.setItem('isLoggedIn', 'true');
+      window.location.href = 'index.html';
     }
   </script>
 </body>
