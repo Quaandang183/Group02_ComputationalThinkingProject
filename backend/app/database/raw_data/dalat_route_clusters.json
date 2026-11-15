@@ -1,0 +1,311 @@
+[
+  {
+    "cluster_id": "cluster_cau_dat_trai_mat",
+    "name": "Southeast Corridor: Cau Dat - Trai Mat - Sao Nam",
+    "raw_json": {
+      "cluster_id": "cluster_cau_dat_trai_mat",
+      "cluster_name": "Southeast Corridor: Cau Dat - Trai Mat - Sao Nam",
+      "cardinal_direction": "Đông Nam",
+      "distance_from_center_km": "7km - 25km",
+      "travel_time_from_center_mins": 25,
+      "terrain_and_road_condition": "National Highway 20 with smooth asphalt, moderate slopes, scenic winding curves overlooking the glowing greenhouse valley at night.",
+      "best_vehicle": "Motorbike (scooter or semi-auto both fine) or Taxi/Grab",
+      "ideal_timing": {
+        "early_morning": "04:30 - 07:00: Cloud hunting at Cau Dat, sunrise over the tea hills",
+        "morning": "07:30 - 11:30: Check-in at the Wind Turbines, Trai Mat Station, Linh Phuoc Pagoda",
+        "afternoon": "14:00 - 17:30: Tui Mo To Cafe, Panorama viewpoint, Doi Da Chien",
+        "evening": "18:00 - 21:30: Watch the glowing greenhouse lights of Trai Mat valley"
+      },
+      "key_places": [
+        {
+          "name": "Thien Duong San May Cau Dat (Cloud Hunting Paradise)",
+          "place_id": "dalat_94b60d2a53",
+          "category": "Thiên nhiên: Farm, hoa",
+          "activity": "Cloud sea hunting, check-in on the wooden bridge"
+        },
+        {
+          "name": "Linh Phuoc Pagoda (Ve Chai Pagoda)",
+          "place_id": "dalat_9bfa4e46f7",
+          "category": "Indigenous culture",
+          "activity": "Admire the 18-floor mosaic ceramic architecture"
+        },
+        {
+          "name": "Tui Mo To Cafe",
+          "place_id": "dalat_1aef6207b3",
+          "category": "Check-in & sống ảo",
+          "activity": "Check-in at the daisy garden and sunset wooden cottage"
+        },
+        {
+          "name": "Hoang Hon BBQ Restaurant",
+          "place_id": "dalat_ec14e0777a",
+          "category": "Ẩm thực",
+          "activity": "BBQ dinner in the valley at golden hour"
+        },
+        {
+          "name": "Da Lat Hoang Hon Trai Mat",
+          "place_id": "dalat_b0f3f7d48f",
+          "category": "Check-in & sống ảo",
+          "activity": "Panoramic view of the greenhouse lights valley"
+        }
+      ],
+      "suggested_half_day_flow": [
+        "05:00: Head out for cloud hunting at Cau Dat Panorama",
+        "07:30: Breakfast - hot banh mi xiu mai at Trai Mat",
+        "08:30: Explore the Cau Dat tea hills & Wind Turbines",
+        "10:15: Visit Linh Phuoc (Ve Chai) Pagoda",
+        "11:45: Lunch at Ga Lung Chung Doi Restaurant"
+      ],
+      "ai_clustering_rules": "Prioritize scheduling in a single session. DO NOT combine in the same session with the Ta Nung Corridor as they are in opposite directions, ~35km apart."
+    }
+  },
+  {
+    "cluster_id": "cluster_ta_nung_me_linh",
+    "name": "West-Southwest Corridor: Ta Nung Pass - Van Thanh - Me Linh",
+    "raw_json": {
+      "cluster_id": "cluster_ta_nung_me_linh",
+      "cluster_name": "West-Southwest Corridor: Ta Nung Pass - Van Thanh - Me Linh",
+      "cardinal_direction": "Tây — Tây Nam",
+      "distance_from_center_km": "5km - 28km",
+      "travel_time_from_center_mins": 35,
+      "terrain_and_road_condition": "Ta Nung Pass with winding hairpin bends and steep drops, smooth asphalt, majestic pine forest scenery.",
+      "best_vehicle": "Semi-auto motorbike (Sirius/Wave) or car with an experienced driver. Scooters require a skilled rider on the downhill.",
+      "ideal_timing": {
+        "morning": "08:00 - 11:30: Play at Puppy Farm, admire flowers at Van Thanh Flower Village",
+        "lunch": "11:30 - 13:00: Grilled hill chicken with bamboo rice at the foot of Ta Nung Pass",
+        "afternoon": "13:30 - 17:00: Me Linh Coffee Garden with valley view, Elephant Waterfall, Linh An Pagoda"
+      },
+      "key_places": [
+        {
+          "name": "Puppy Farm (Nong Trai Cun)",
+          "place_id": "dalat_724aaee09a",
+          "category": "Vui chơi",
+          "activity": "Play with hundreds of cute puppies, pick high-tech strawberries"
+        },
+        {
+          "name": "Me Linh Coffee Garden",
+          "place_id": "guide_dl_015",
+          "category": "Check-in & sống ảo",
+          "activity": "Enjoy genuine weasel coffee, overlook the vast coffee plantation"
+        },
+        {
+          "name": "Elephant Waterfall & Linh An Pagoda",
+          "place_id": "guide_dl_016",
+          "category": "Indigenous culture",
+          "activity": "Admire the tallest outdoor Guanyin Buddha statue in Vietnam and the majestic waterfall"
+        },
+        {
+          "name": "Hoa Son Dien Trang",
+          "place_id": "guide_dl_017",
+          "category": "Thiên nhiên: Farm, hoa",
+          "activity": "Check-in at the giant Buddha's Hand sculpture in the primeval forest"
+        }
+      ],
+      "suggested_half_day_flow": [
+        "08:00: Depart along Hoang Van Thu Road past Cam Ly Waterfall",
+        "08:30: Explore Puppy Farm & Cherry Tomato Garden",
+        "11:00: Check-in at Me Linh Coffee Garden",
+        "12:30: Enjoy bamboo rice with grilled chicken",
+        "14:00: Visit the giant Guanyin statue at Linh An Pagoda"
+      ],
+      "ai_clustering_rules": "Follow the downhill route from Van Thanh to the foot of Me Linh Pass to save fuel and ensure safety."
+    }
+  },
+  {
+    "cluster_id": "cluster_suoi_vang_da_phu",
+    "name": "North Corridor: Da Phu Hill - Golden Valley - Lonely Pine Tree",
+    "raw_json": {
+      "cluster_id": "cluster_suoi_vang_da_phu",
+      "cluster_name": "North Corridor: Da Phu Hill - Golden Valley - Lonely Pine Tree",
+      "cardinal_direction": "Bắc — Tây Bắc",
+      "distance_from_center_km": "8km - 20km",
+      "travel_time_from_center_mins": 30,
+      "terrain_and_road_condition": "Scenic road to Dankia - Suoi Vang Lake is poetic and dreamy. The track to the Lonely Pine Tree is rough red-dirt road (avoid during rainy season).",
+      "best_vehicle": "High-clearance or semi-auto motorbike, or book a jeep/boat service to the grass shore.",
+      "ideal_timing": {
+        "early_morning": "04:30 - 06:30: Cloud hunting and mystical sunrise at Da Phu Hill / Thien Phuc Duc Hill",
+        "morning": "07:30 - 11:30: Picnic at Golden Valley, stroll through the pine forest along Suoi Vang Lake",
+        "afternoon": "14:30 - 17:30: Check-in at Pink Grass Hill (Nov-Dec) & Lonely Pine Tree"
+      },
+      "key_places": [
+        {
+          "name": "Da Phu Hill",
+          "place_id": "dalat_024a095ead",
+          "category": "Thiên nhiên: Farm, hoa",
+          "activity": "Free-entry premium cloud-hunting spot, camp overnight to stargaze the Milky Way"
+        },
+        {
+          "name": "Thien Phuc Duc Hill",
+          "place_id": "dalat_7182d9e9b1",
+          "category": "Check-in & sống ảo",
+          "activity": "Lone pine tree with a direct view of Langbiang peak"
+        },
+        {
+          "name": "Golden Valley (Thung Lung Vang) Resort",
+          "place_id": "guide_dl_009",
+          "category": "Thiên nhiên: Farm, hoa",
+          "activity": "Crystal-clear lake, bonsai garden, and ancient pine forest"
+        },
+        {
+          "name": "Cu Lan Village",
+          "place_id": "guide_dl_018",
+          "category": "Indigenous culture",
+          "activity": "Experience jeep river-crossing, discover K'Ho ethnic minority culture"
+        }
+      ],
+      "suggested_half_day_flow": [
+        "04:45: Cloud hunting at dawn on Da Phu Hill",
+        "07:30: Breakfast on the way back",
+        "09:00: Leisurely walk at Golden Valley",
+        "11:30: Picnic lunch or dine at the sturgeon stream restaurant"
+      ],
+      "ai_clustering_rules": "Best suited for travel_style: 'Explorer' and 'Trekking'. Strictly warn guests NOT to ride scooters to the Lonely Pine Tree when the road is wet."
+    }
+  },
+  {
+    "cluster_id": "cluster_tuyen_lam_datanla",
+    "name": "South Corridor: Tuyen Lam Lake - Datanla Waterfall - Prenn Pass",
+    "raw_json": {
+      "cluster_id": "cluster_tuyen_lam_datanla",
+      "cluster_name": "South Corridor: Tuyen Lam Lake - Datanla Waterfall - Prenn Pass",
+      "cardinal_direction": "Nam",
+      "distance_from_center_km": "5km - 15km",
+      "travel_time_from_center_mins": 20,
+      "terrain_and_road_condition": "Prenn Pass newly upgraded to 4 lanes, extremely smooth. The road around Tuyen Lam Lake is shaded by lush green pines.",
+      "best_vehicle": "All vehicle types (scooter, car, road bicycle)",
+      "ideal_timing": {
+        "morning": "07:30 - 11:30: Early SUP paddle on the calm lake, Truc Lam Zen Monastery, Datanla Canyoning",
+        "afternoon": "13:30 - 17:30: Clay Sculpting Tunnel, Lavender Dalat, cafe overlooking the lake at The Wilder-nest"
+      },
+      "key_places": [
+        {
+          "name": "Datanla Canyoning & Waterfall Abseiling",
+          "place_id": "guide_dl_001",
+          "category": "Mạo hiểm",
+          "activity": "Southeast Asia's longest alpine coaster (2,400m) and 7-tier waterfall abseiling"
+        },
+        {
+          "name": "Truc Lam Zen Monastery & Robin Hill Cable Car",
+          "place_id": "guide_dl_004",
+          "category": "Indigenous culture",
+          "activity": "Cable car ride over the pine forest, meditate in the flower-filled grounds"
+        },
+        {
+          "name": "Clay Sculpting Tunnel & Infinity Pool",
+          "place_id": "guide_dl_003",
+          "category": "Kiến trúc",
+          "activity": "Da Lat history recreated in red basalt clay with a viral two-face statue for photo ops"
+        },
+        {
+          "name": "Tuyen Lam Lake Nature Walk",
+          "place_id": "guide_dl_008",
+          "category": "Thiên nhiên: Farm, hoa",
+          "activity": "Kayak / SUP paddling, camping in the cool pine forest"
+        }
+      ],
+      "suggested_half_day_flow": [
+        "07:30: Take the cable car from Robin Hill to Truc Lam Monastery",
+        "09:00: Experience the New Alpine Coaster at Datanla Waterfall",
+        "11:30: Enjoy bamboo-tube grilled chicken rice at Tuyen Lam",
+        "13:30: Check-in at the Infinity Pool at the Clay Sculpting Tunnel",
+        "15:30: Afternoon tea listening to the pines by the lakeside"
+      ],
+      "ai_clustering_rules": "The perfect corridor for families and couples who prefer a 'Stay relax' style combined with light 'Adventure'."
+    }
+  },
+  {
+    "cluster_id": "cluster_noi_do_heritage",
+    "name": "City Center & Heritage: Xuan Huong Lake - Bao Dai Palace - Historic Churches",
+    "raw_json": {
+      "cluster_id": "cluster_noi_do_heritage",
+      "cluster_name": "City Center & Heritage: Xuan Huong Lake - Bao Dai Palace - Historic Churches",
+      "cardinal_direction": "Trung tâm thành phố",
+      "distance_from_center_km": "0km - 5km",
+      "travel_time_from_center_mins": 10,
+      "terrain_and_road_condition": "Fully paved inner-city streets with characteristic gentle slopes, convenient for walking or motorbike.",
+      "best_vehicle": "Motorbike, tandem bicycle, or on foot around the lake",
+      "ideal_timing": {
+        "morning": "08:00 - 11:30: Da Lat Railway Station, Bao Dai Palace I, Palace III, Domaine de Marie Church",
+        "afternoon": "14:00 - 17:00: Lam Vien Square (giant Artichoke & Wild Daisy sculptures), XQ Embroidery Museum",
+        "evening": "18:00 - 22:30: Stroll around Xuan Huong Lake, eat and explore Da Lat Night Market (Hoa Binh Pedestrian Street)"
+      },
+      "key_places": [
+        {
+          "name": "Da Lat Night Market",
+          "place_id": "dalat_7cd3605e5c",
+          "category": "Chơi đêm",
+          "activity": "Grilled rice paper, hot soy milk, avocado ice cream, roasted sweet potato"
+        },
+        {
+          "name": "Bao Dai Palace I (King Palace)",
+          "place_id": "dalat_1902b6e0e1",
+          "category": "Kiến trúc",
+          "activity": "Lavish French colonial villa among century-old melaleuca trees"
+        },
+        {
+          "name": "Bao Dai Palace III",
+          "place_id": "dalat_3da95530ec",
+          "category": "Kiến trúc",
+          "activity": "Original living and working quarters of the last Nguyen Dynasty emperor"
+        },
+        {
+          "name": "Da Lat Historic Railway Station",
+          "place_id": "guide_dl_007",
+          "category": "Kiến trúc",
+          "activity": "The oldest rack railway station in Indochina with Langbiang peak roofline architecture"
+        },
+        {
+          "name": "Domaine de Marie Church (Mai Anh)",
+          "place_id": "guide_dl_011",
+          "category": "Kiến trúc",
+          "activity": "Pastel pink Normandie-style church with no bell tower"
+        }
+      ],
+      "suggested_half_day_flow": [
+        "08:00: Check-in at Da Lat Railway Station, board the vintage steam train to Trai Mat",
+        "09:30: Tour Bao Dai Palace I - French aristocratic photo vibes",
+        "11:00: Check-in at the pink Domaine de Marie Church",
+        "12:00: Lunch - banh uot long ga at Long Chuyen",
+        "17:00: Watch the sunset over Xuan Huong Lake and wander the Night Market"
+      ],
+      "ai_clustering_rules": "Best for the first afternoon/evening upon arriving in Da Lat after check-in, or the last day before heading to the bus station/airport."
+    }
+  },
+  {
+    "cluster_id": "cluster_langbiang_lac_duong",
+    "name": "Lac Duong Corridor: Langbiang - Roof of the Central Highlands & Dung Village",
+    "raw_json": {
+      "cluster_id": "cluster_langbiang_lac_duong",
+      "cluster_name": "Lac Duong Corridor: Langbiang - Roof of the Central Highlands & Dung Village",
+      "cardinal_direction": "Bắc (Huyện Lạc Dương)",
+      "distance_from_center_km": "12km - 18km",
+      "travel_time_from_center_mins": 25,
+      "terrain_and_road_condition": "Provincial Road 722 is wide and open. The slope up to the Langbiang observation deck is served by dedicated jeeps operated by the park management.",
+      "best_vehicle": "Motorbike/car to the mountain base -> Rent a dedicated jeep to the Radar Summit",
+      "ideal_timing": {
+        "morning": "08:00 - 12:00: Conquer the Radar Peak, panoramic views, trek to Yen Ngua Summit (2,167m)",
+        "evening": "18:30 - 21:00: Attend the Central Highlands Gong Festival at the foot of Langbiang Mountain"
+      },
+      "key_places": [
+        {
+          "name": "Langbiang Mountain Peak (Radar Summit 1,929m)",
+          "place_id": "guide_dl_002",
+          "category": "Mạo hiểm",
+          "activity": "Jeep ride to the summit, panoramic view of Lac Duong town and Dankia River"
+        },
+        {
+          "name": "Central Highlands Gong Exchange Festival at Langbiang",
+          "place_id": "guide_dl_005",
+          "category": "Indigenous culture",
+          "activity": "Drink can wine, eat skewered grilled pork around a bonfire, dance with the K'Ho ethnic people"
+        }
+      ],
+      "suggested_half_day_flow": [
+        "08:00: Drive to the foot of Langbiang Mountain",
+        "08:30: Buy a jeep ticket and race up to the Radar Summit (1,929m)",
+        "10:00: Listen to the legendary love story of K'Lang and H'Biang",
+        "11:30: Enjoy bamboo rice with grilled chicken on Lac Duong hill"
+      ],
+      "ai_clustering_rules": "Top indigenous cultural highlight for 'Indigenous culture' and 'Adventure' traveler profiles."
+    }
+  }
+]
