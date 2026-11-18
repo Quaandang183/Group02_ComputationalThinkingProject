@@ -35,6 +35,7 @@ frontend/
 └── src/
     ├── css/
     │   └── style.css       # Toàn bộ stylesheet của ứng dụng
+    ├── services/           # Kết nối API Backend
     ├── images/             # Hình ảnh, logo và icon SVG
     └── screens/            # Các màn hình giao diện HTML
         ├── intro.html          # Màn hình giới thiệu (Điểm bắt đầu mặc định)
