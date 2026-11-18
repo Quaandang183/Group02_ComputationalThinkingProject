@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TripWise · Đăng ký tài khoản</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/png" href="../images/logo-circle.png">
+  <script src="../main.js" defer></script>
+</head>
+<body class="phone-screen-body">
+  <div class="app-container auth-form-container">
+    
+    <!-- Background văn hóa làm mờ 20% khớp yêu cầu (Figma Node 1376:2737 - 1376:2739) -->
+    <div class="auth-bg-layer">
+      <img src="../images/cultural_pattern.png" alt="Cultural Background" class="auth-bg-img">
+      <div class="auth-cream-overlay"></div>
+      <div class="auth-gradient-overlay"></div>
+    </div>
+
+    <!-- Nút Back quay lại màn hình Intro (Node 1376:2741) -->
+    <header class="auth-nav-header">
+      <a href="intro.html" class="btn-auth-back" title="Quay lại" aria-label="Quay lại">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3f20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Main Content Form: Dòng chữ "Đăng ký" ở dưới nút mũi tên, tạo khoảng gap tương tự "Đăng nhập" (Node 1376:2745) -->
+    <main class="auth-main-content">
+      
+      <!-- Tiêu đề: Đăng ký ở dưới nút mũi tên tương tự trang Đăng nhập -->
+      <h1 class="auth-page-title">Đăng ký</h1>
+
+      <!-- Form Đăng ký (Bỏ logic kiểm tra vì chưa có data, bấm chuyển thẳng vào login.html) -->
+      <form class="auth-fields-form" id="registerForm" autocomplete="off" onsubmit="event.preventDefault(); window.location.href='login.html'; return false;">
+        
+        <!-- Trường 1: Họ và tên -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="reg-name">Họ và tên</label>
+          <div class="auth-input-box">
+            <input type="text" id="reg-name" class="auth-input" placeholder="Nhập họ và tên" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Trường 2: Địa chỉ Email (Gap trên 12px) -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="reg-email">Địa chỉ Email</label>
+          <div class="auth-input-box">
+            <input type="email" id="reg-email" class="auth-input" placeholder="Nhập email của bạn" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Trường 3: Mật khẩu (Gap trên 12px) -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="reg-pwd">Mật khẩu</label>
+          <div class="auth-input-box">
+            <input type="password" id="reg-pwd" class="auth-input" placeholder="Tạo mật khẩu" autocomplete="off">
+            <button type="button" class="btn-pwd-eye" id="btnToggleRegPwd" aria-label="Hiện hoặc ẩn mật khẩu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#758071" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trường 4: Nhập lại mật khẩu (Gap trên 12px) -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="reg-confirm-pwd">Nhập lại mật khẩu</label>
+          <div class="auth-input-box">
+            <input type="password" id="reg-confirm-pwd" class="auth-input" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off">
+            <button type="button" class="btn-pwd-eye" id="btnToggleConfirmPwd" aria-label="Hiện hoặc ẩn mật khẩu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#758071" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trường 5: Mô tả (Gap trên 12px) -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="reg-bio">Mô tả</label>
+          <div class="auth-input-box">
+            <input type="text" id="reg-bio" class="auth-input" placeholder="Nhập mô tả ngắn về bạn" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Điều khoản sử dụng (Gap trên và dưới là 12px chuẩn) -->
+        <label class="auth-terms-checkbox-row">
+          <input type="checkbox" id="reg-terms" checked>
+          <span>Tôi đồng ý với <strong>Điều khoản sử dụng</strong> và <strong>Chính sách bảo mật</strong>.</span>
+        </label>
+
+        <!-- Nút Đăng ký tài khoản (Bấm chuyển thẳng sang login.html) -->
+        <button type="button" class="btn-auth-submit" id="btnSubmitRegister" onclick="window.location.href='login.html'" aria-label="Xác nhận đăng ký tài khoản">
+          <span>Đăng ký tài khoản</span>
+        </button>
+
+      </form>
+
+    </main>
+
+    <!-- Footer chuyển sang Đăng nhập (Node 1376:2793) -->
+    <footer class="auth-footer-prompt">
+      <span>Đã có tài khoản?</span>
+      <a href="login.html" class="link-bold-green">Đăng nhập</a>
+    </footer>
+
+  </div>
+
+  <script>
+    // Eye toggles for password and confirm password
+    const toggleReg = document.getElementById('btnToggleRegPwd');
+    const inputReg = document.getElementById('reg-pwd');
+    if (toggleReg && inputReg) {
+      toggleReg.addEventListener('click', () => {
+        inputReg.type = inputReg.type === 'password' ? 'text' : 'password';
+      });
+    }
+
+    const toggleConfirm = document.getElementById('btnToggleConfirmPwd');
+    const inputConfirm = document.getElementById('reg-confirm-pwd');
+    if (toggleConfirm && inputConfirm) {
+      toggleConfirm.addEventListener('click', () => {
+        inputConfirm.type = inputConfirm.type === 'password' ? 'text' : 'password';
+      });
+    }
+  </script>
+</body>
+</html>
