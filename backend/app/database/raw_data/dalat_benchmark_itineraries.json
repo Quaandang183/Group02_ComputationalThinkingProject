@@ -1,0 +1,321 @@
+[
+  {
+    "itinerary_id": "itin_1",
+    "title": "Hành Trình 3N2Đ: Đà Lạt Mộng Mơ Dành Cho Cặp Đôi (Romantic & Aesthetic)",
+    "raw_json": {
+      "benchmark_id": "benchmark_001_couple_romantic",
+      "title": "Hành Trình 3N2Đ: Đà Lạt Mộng Mơ Dành Cho Cặp Đôi (Romantic & Aesthetic)",
+      "target_user_profile": {
+        "travel_style": [
+          "Chill & thư giãn"
+        ],
+        "target_categories": [
+          "Check-in & sống ảo",
+          "Ẩm thực",
+          "Thiên nhiên: Farm, hoa",
+          "Chơi đêm"
+        ],
+        "budget_tier": "Standard to High",
+        "taste_preferences": [
+          "Ngọt thanh",
+          "Dịu nhẹ",
+          "Thơm béo"
+        ],
+        "allergies": []
+      },
+      "total_days": 3,
+      "total_nights": 2,
+      "recommended_stay_id": "homestay_dalat_001",
+      "itinerary_breakdown": [
+        {
+          "day": 1,
+          "theme": "Chạm ngõ phố sương & Hoàng hôn thung lũng",
+          "morning": {
+            "time": "08:30 - 11:30",
+            "activity": "Hạ cánh / đến Đà Lạt, gửi hành lý tại Nhà Gió Homestay (Túi Mơ To Stays). Dạo bộ check-in Ga Xe Lửa Cổ Đà Lạt với kiến trúc đỉnh mái Langbiang.",
+            "matched_place_id": "guide_dl_007",
+            "meal": "Ăn trưa bánh ướt lòng gà Long Chuyên (Phan Đình Phùng) - thanh nhẹ thơm mùi rau răm."
+          },
+          "afternoon": {
+            "time": "14:30 - 17:30",
+            "activity": "Thưởng thức trà chiều ngắm vườn cúc họa mi trắng muốt tại Tiệm Cà Phê Túi Mơ To. Đón hoàng hôn buông xuống thung lũng nhà lồng.",
+            "matched_place_id": "dalat_1aef6207b3",
+            "photo_tip": "Nữ mặc váy trắng vintage nhẹ nhàng, nam áo sơ mi be/nâu rất hợp tông gỗ."
+          },
+          "evening": {
+            "time": "18:30 - 22:30",
+            "activity": "Thưởng thức BBQ nướng xèo xèo tại Tiệm Nướng Hoàng Hôn Trại Mát ngắm thung lũng đèn lồng. Sau đó ghé Léon Bar nhâm nhi ly cocktail Mathilda ngắm phim kinh điển.",
+            "matched_place_id": "dalat_ec14e0777a",
+            "nightlife_id": "bar_dl_002"
+          }
+        },
+        {
+          "day": 2,
+          "theme": "Biển mây Cầu Đất & Đêm nhạc hoàng hôn Mây Lang Thang",
+          "morning": {
+            "time": "05:00 - 11:00",
+            "activity": "Dậy sớm 04:45 đi Cung Cầu Đất săn biển mây bồng bềnh tại Thiên Đường Săn Mây. Sau đó check-in Đồi chè Cầu Đất & Tuabin gió khổng lồ. Ghé Chùa Ve Chai Linh Phước chiêm ngưỡng tháp chuông khảm sành.",
+            "matched_place_id": "dalat_94b60d2a53",
+            "meal": "Ăn sáng bánh mì xíu mại chén giòn cay nóng hổi chân đồi Cầu Đất."
+          },
+          "afternoon": {
+            "time": "14:00 - 18:30",
+            "activity": "Thư giãn nghỉ ngơi, sau đó lên Đồi Dã Chiến tham dự Live Show Âm Nhạc Acoustic Mây Lang Thang đón hoàng hôn rực rỡ buông trên đồi thông.",
+            "matched_place_id": "homestay_dalat_004",
+            "clothing_tip": "Chuẩn bị áo ấm dày vì show chiều muộn và gió đồi xuống nhiệt độ rất lạnh."
+          },
+          "evening": {
+            "time": "19:30 - 22:00",
+            "activity": "Ăn lẩu gà lá é nóng hổi nghi ngút khói tại Tiệm Gà Hạnh Phúc. Đi dạo nhẹ quanh Hồ Xuân Hương ngắm mặt hồ phẳng lặng.",
+            "matched_place_id": "dalat_2ad77c47f2"
+          }
+        },
+        {
+          "day": 3,
+          "theme": "Di sản Pháp cổ & Mua đặc sản hồng treo gió",
+          "morning": {
+            "time": "08:30 - 11:30",
+            "activity": "Tham quan Dinh I Bảo Đại (King Palace) cổ kính lãng mạn giữa rừng tràm trăm tuổi. Chụp ảnh phong cách quý tộc châu Âu.",
+            "matched_place_id": "dalat_1902b6e0e1",
+            "meal": "Ăn trưa cơm niêu gà nướng ống tre đậm vị núi rừng."
+          },
+          "afternoon": {
+            "time": "13:30 - 16:30",
+            "activity": "Ghé showroom Ladophar và Hợp tác xã Trại Mát mua hồng treo gió công nghệ Nhật Bản và trà Atiso chính gốc làm quà. Ra sân bay Liên Khương kết thúc chuyến đi tuyệt vời.",
+            "matched_place_id": "gift_dl_001"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "itinerary_id": "itin_2",
+    "title": "Hành Trình 2N1Đ: Phượt Thủ Săn Mây & Chinh Phục Mạo Hiểm (Adventure & Explorer)",
+    "raw_json": {
+      "benchmark_id": "benchmark_002_explorer_trekking",
+      "title": "Hành Trình 2N1Đ: Phượt Thủ Săn Mây & Chinh Phục Mạo Hiểm (Adventure & Explorer)",
+      "target_user_profile": {
+        "travel_style": [
+          "Khám phá",
+          "Trekking"
+        ],
+        "target_categories": [
+          "Mạo hiểm",
+          "Thiên nhiên: Farm, hoa",
+          "Văn hóa bản địa",
+          "Vui chơi"
+        ],
+        "budget_tier": "Economy to Standard",
+        "taste_preferences": [
+          "Đậm đà",
+          "Cay nồng",
+          "Nướng củi than"
+        ],
+        "allergies": []
+      },
+      "total_days": 2,
+      "total_nights": 1,
+      "recommended_stay_id": "homestay_dalat_006",
+      "itinerary_breakdown": [
+        {
+          "day": 1,
+          "theme": "Chinh phục đỉnh Langbiang & Vượt thác Datanla mạo hiểm",
+          "morning": {
+            "time": "07:30 - 12:00",
+            "activity": "Lái xe số lên chân núi Langbiang. Trekking xuyên rừng thông lên đỉnh Yên Ngựa 2.167m ngắm toàn cảnh thị trấn Lạc Dương và dòng suối Vàng suối Bạc.",
+            "matched_place_id": "guide_dl_002",
+            "meal": "Ăn trưa cơm lam gà đồi nướng mọi chấm muối ớt hột é cay nồng tại chân núi."
+          },
+          "afternoon": {
+            "time": "13:30 - 17:00",
+            "activity": "Di chuyển về Cung Nam, trải nghiệm Canyoning đu dây vượt thác 7 tầng Datanla và trượt máng Alpine Coaster 2.400m xuyên rừng sâu.",
+            "matched_place_id": "guide_dl_001",
+            "safety_tip": "Tuân thủ 100% áo phao bảo hộ và hướng dẫn viên chuyên nghiệp."
+          },
+          "evening": {
+            "time": "18:30 - 22:30",
+            "activity": "Tham gia Đêm hội Giao lưu Cồng Chiêng Tây Nguyên dưới chân núi Langbiang, uống rượu cần bên đống lửa. Tối khuya ghé Cửa Rừng Cafe & Bar ngồi quanh đống lửa sưởi ấm giữa rừng.",
+            "matched_place_id": "guide_dl_005",
+            "nightlife_id": "bar_dl_005"
+          }
+        },
+        {
+          "day": 2,
+          "theme": "Săn mây Đồi Đa Phú & Đổ đèo Tà Nung ngắm Thác Voi",
+          "morning": {
+            "time": "04:30 - 10:30",
+            "activity": "Phượt xe số lên Đồi Đa Phú săn biển mây đại ngàn lúc 05:00 sáng. Sau đó chạy xe qua Thung Lũng Vàng ngắm sương sớm trên mặt hồ Đankia.",
+            "matched_place_id": "dalat_024a095ead",
+            "meal": "Ăn sáng bún bò bắp hoa thố đá nóng sôi sùng sục làm ấm cơ thể."
+          },
+          "afternoon": {
+            "time": "11:30 - 16:30",
+            "activity": "Chinh phục cung Đèo Tà Nung uốn lượn hùng vĩ. Thưởng thức cà phê chồn tại Mê Linh Coffee Garden. Khám phá Thác Voi gầm vang và chiêm ngưỡng tượng Phật Quan Âm khổng lồ tại Chùa Linh Ẩn.",
+            "matched_place_id": "guide_dl_015"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "itinerary_id": "itin_3",
+    "title": "Hành Trình 3N2Đ: Kỳ Nghỉ Thư Thái Cho Gia Đình (Family: Trẻ Nhỏ & Người Cao Tuổi)",
+    "raw_json": {
+      "benchmark_id": "benchmark_003_family_multigeneration",
+      "title": "Hành Trình 3N2Đ: Kỳ Nghỉ Thư Thái Cho Gia Đình (Family: Trẻ Nhỏ & Người Cao Tuổi)",
+      "target_user_profile": {
+        "travel_style": [
+          "Chill & thư giãn"
+        ],
+        "target_categories": [
+          "Vui chơi",
+          "Kiến trúc",
+          "Thiên nhiên: Farm, hoa",
+          "Ẩm thực"
+        ],
+        "budget_tier": "Standard to High",
+        "taste_preferences": [
+          "Thanh đạm",
+          "Ít dầu mỡ",
+          "Không cay"
+        ],
+        "allergies": [
+          "Ớt sa tế cay nồng",
+          "Nội tạng"
+        ]
+      },
+      "special_constraints": [
+        "Ưu tiên địa hình bằng phẳng, tuyệt đối hạn chế dốc cao hiểm trở",
+        "Thời gian nghỉ trưa tối thiểu 1.5 tiếng để người lớn tuổi và trẻ nhỏ hồi phục sức khỏe",
+        "Di chuyển bằng xe ô tô có tài xế riêng để an toàn và che mưa gió"
+      ],
+      "total_days": 3,
+      "total_nights": 2,
+      "recommended_stay_id": "homestay_dalat_007",
+      "itinerary_breakdown": [
+        {
+          "day": 1,
+          "theme": "Thảnh thơi dạo bước & Nông trại cún thân thiện",
+          "morning": {
+            "time": "09:00 - 11:30",
+            "activity": "Đến Đà Lạt nhận phòng tại Terracotta Resort bên hồ Tuyền Lâm. Dạo bước trong khuôn viên thông xanh bằng phẳng, không khí trong lành.",
+            "matched_place_id": "homestay_dalat_007",
+            "meal": "Ăn trưa cơm niêu thanh đạm với cá kho tộ, canh atiso hầm sườn heo thanh ngọt."
+          },
+          "afternoon": {
+            "time": "14:30 - 17:00",
+            "activity": "Đưa các bé và ông bà đến Nông Trại Cún Puppy Farm. Trẻ em chơi với cún cưng, người lớn tham quan vườn dâu tây công nghệ cao hái quả trên giàn sạch sẽ.",
+            "matched_place_id": "dalat_724aaee09a"
+          },
+          "evening": {
+            "time": "18:00 - 20:30",
+            "activity": "Ăn tối buffet rau tươi Leguda tại Đồi Robin (cực kỳ thanh mát, tốt cho huyết áp người cao tuổi). Đi dạo ngắm Quảng trường Lâm Viên rồi về resort nghỉ sớm.",
+            "matched_place_id": "dalat_cfb959354a"
+          }
+        },
+        {
+          "day": 2,
+          "theme": "Cáp treo ngắm cảnh rừng thông & Cung điện Hoàng gia",
+          "morning": {
+            "time": "08:30 - 11:30",
+            "activity": "Trải nghiệm cáp treo ngắm toàn cảnh rừng thông từ đồi Robin sang Thiền Viện Trúc Lâm. Vãn cảnh chùa thanh tịnh ngập tràn hoa tươi, lối đi lát đá êm ái.",
+            "matched_place_id": "guide_dl_004",
+            "meal": "Ăn trưa cá tầm nướng muối ớt nhẹ và lẩu nấm thanh đạm."
+          },
+          "afternoon": {
+            "time": "14:30 - 17:00",
+            "activity": "Tham quan Dinh III Bảo Đại, nghe thuyết minh về đời sống lịch sử vua Bảo Đại và hoàng hậu Nam Phương. Chụp ảnh kỷ niệm gia đình trong hoa viên Dinh.",
+            "matched_place_id": "dalat_3da95530ec"
+          },
+          "evening": {
+            "time": "18:00 - 21:00",
+            "activity": "Thưởng thức bữa tối ấm cúng tại Nhà hàng Túi Mơ To Garden. Thưởng trà hoa thảo mộc ngắm view thung lũng đêm.",
+            "matched_place_id": "dalat_90954010e6"
+          }
+        },
+        {
+          "day": 3,
+          "theme": "Chiêm bái chùa linh thiêng & Mua quà chính hãng",
+          "morning": {
+            "time": "08:30 - 11:00",
+            "activity": "Tham quan Chùa Linh Phước (Chùa Ve Chai) chiêm ngưỡng tượng Phật Bà Quan Âm kết bằng 650.000 bông hoa bất tử.",
+            "matched_place_id": "dalat_9bfa4e46f7"
+          },
+          "afternoon": {
+            "time": "13:30 - 15:30",
+            "activity": "Ghé showroom Dược Lâm Đồng Ladophar mua cao mềm Atiso và trà thảo mộc bổ gan về làm quà cho người thân. Xe đưa gia đình ra sân bay Liên Khương."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "itinerary_id": "itin_4",
+    "title": "Hành Trình 2N2Đ: Chữa Lành Một Mình (Solo Healing & Specialty Coffee Hopping)",
+    "raw_json": {
+      "benchmark_id": "benchmark_004_solo_healing_coffee",
+      "title": "Hành Trình 2N2Đ: Chữa Lành Một Mình (Solo Healing & Specialty Coffee Hopping)",
+      "target_user_profile": {
+        "travel_style": [
+          "Chill & thư giãn"
+        ],
+        "target_categories": [
+          "Ẩm thực",
+          "Thiên nhiên: Farm, hoa",
+          "Chơi đêm",
+          "Kiến trúc"
+        ],
+        "budget_tier": "Economy to Standard",
+        "taste_preferences": [
+          "Cà phê specialty rang mộc",
+          "Trà thảo mộc",
+          "Bánh ngọt thủ công"
+        ],
+        "allergies": []
+      },
+      "total_days": 2,
+      "total_nights": 2,
+      "recommended_stay_id": "homestay_dalat_003",
+      "itinerary_breakdown": [
+        {
+          "day": 1,
+          "theme": "Lắng nghe thanh âm rừng thông & Cà phê specialty nguyên bản",
+          "morning": {
+            "time": "08:30 - 11:30",
+            "activity": "Thức dậy tại căn nhà kính Đợi Một Người bên hồ nước. Nhâm nhi ly cà phê phin nóng ngắm mặt hồ phẳng lặng. Đọc sách dưới tán thông.",
+            "matched_place_id": "homestay_dalat_003",
+            "meal": "Ăn trưa mì Quảng ếch thố đá thơm nức hương nghệ và củ nén."
+          },
+          "afternoon": {
+            "time": "14:00 - 17:00",
+            "activity": "Ghé Là Việt Coffee xưởng rang Cầu Đất trải nghiệm Pour-over cà phê Arabica thượng hạng và workshop tìm hiểu quy trình chế biến hạt cà phê Tây Nguyên.",
+            "matched_place_id": "guide_dl_015"
+          },
+          "evening": {
+            "time": "18:30 - 22:30",
+            "activity": "Ăn lẩu bò Ba Toa ấm bụng, sau đó ghé The Fox's Den Speakeasy Bar ngồi tại quầy bar lắng nghe những bản Jazz mộc mạc và thưởng thức ly cocktail lá thông.",
+            "nightlife_id": "bar_dl_001"
+          }
+        },
+        {
+          "day": 2,
+          "theme": "Tranh thêu tay XQ Sử Quán & Workshop làm nến thơm ngày mưa",
+          "morning": {
+            "time": "09:00 - 11:30",
+            "activity": "Khám phá XQ Sử Quán - Không gian nghệ thuật tranh thêu tay truyền thống tráng lệ và triết lý phương Đông sâu sắc.",
+            "matched_place_id": "guide_dl_010"
+          },
+          "afternoon": {
+            "time": "14:00 - 17:00",
+            "activity": "Trời đổ cơn mưa chiều se lạnh: Tham gia workshop tự tay làm hũ nến thơm từ sáp đậu nành và tinh dầu thông tự nhiên tại The Candle Lab.",
+            "rain_mitigation_score": 10
+          },
+          "evening": {
+            "time": "18:30 - 21:30",
+            "activity": "Dạo bước một mình quanh Hồ Xuân Hương sương đêm se lạnh, ăn bắp nướng mỡ hành và uống sữa đậu nành nóng hổi trước khi lên xe về lại thành phố."
+          }
+        }
+      ]
+    }
+  }
+]
