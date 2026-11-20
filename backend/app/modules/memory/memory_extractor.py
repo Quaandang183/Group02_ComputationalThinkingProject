@@ -1,4 +1,6 @@
-"""Extract evidence-backed updates for TripWise's long-term user profile."""
+"""
+TRIPWISE - Trích xuất sở thích du lịch dài hạn (memory_extractor.py)
+"""
 
 import re
 from collections.abc import Callable, Sequence
@@ -6,9 +8,11 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints, ValidationError
 
+from app.modules.planning.json_schemas import PlaceId
+
 Text = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=255)]
 UserText = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=2000)]
-PlaceId = Annotated[str, StringConstraints(min_length=1, max_length=64, pattern=r"\S")]
+# Approved labels for extraction; the UserProfile column itself is String(50).
 BudgetLevel = Literal["Tiết kiệm", "Trung bình", "Cao"]
 GenerateJSON = Callable[[str, dict[str, Any], type[BaseModel]], BaseModel | dict[str, Any] | str | None]
 
@@ -35,14 +39,17 @@ Use only the indexed user messages or reasons; never quote the place ID or actio
 Return {"updates": []} when the preference is unclear or transient."""
 
 
+# ==============================================================================
+# 1. DỮ LIỆU ĐẦU VÀO VÀ HỒ SƠ
+# ==============================================================================
 class MemorySchema(BaseModel):
-    """Base schema for strict validation of memory data."""
+    """Cấu hình kiểm tra dữ liệu bộ nhớ."""
 
     model_config = ConfigDict(extra="forbid", strict=True)
 
 
 class PlaceAction(MemorySchema):
-    """An observed action with an optional reason supplied by the user."""
+    """Thao tác với địa điểm, kèm lý do nếu người dùng cung cấp."""
 
     action: Literal["add", "remove"]
     place_id: PlaceId
@@ -50,7 +57,7 @@ class PlaceAction(MemorySchema):
 
 
 class PreferenceEvidence(MemorySchema):
-    """One proposed profile value with a quoted user statement."""
+    """Một sở thích đề xuất kèm trích dẫn lời người dùng."""
 
     field: Literal["travel_styles", "food_preferences", "disliked_tags", "budget_level"]
     value: Text
@@ -59,13 +66,13 @@ class PreferenceEvidence(MemorySchema):
 
 
 class MemoryDraft(MemorySchema):
-    """Structured output requested from the model."""
+    """Định dạng đầu ra yêu cầu từ LLM."""
 
     updates: list[PreferenceEvidence] = Field(max_length=20)
 
 
 class ProfilePatch(MemorySchema):
-    """Validated updates matching the fields of the UserProfile ORM model."""
+    """Dữ liệu cập nhật theo các trường của UserProfile."""
 
     travel_styles: list[Text] = Field(default_factory=list)
     food_preferences: list[Text] = Field(default_factory=list)
@@ -73,14 +80,17 @@ class ProfilePatch(MemorySchema):
     budget_level: BudgetLevel | None = None
 
     def to_db_patch(self) -> dict[str, Any]:
-        """Omit fields without changes so a caller cannot accidentally clear them."""
+        """Bỏ qua trường không thay đổi để tránh xóa dữ liệu hiện có."""
         return {key: value for key, value in self.model_dump().items() if value}
 
 
+# ==============================================================================
+# 2. TRÍCH XUẤT VÀ KIỂM TRA ĐỀ XUẤT
+# ==============================================================================
 def extract_preferences(
     messages: Sequence[str], actions: Sequence[PlaceAction], generate_json: GenerateJSON
 ) -> ProfilePatch:
-    """Ask the LLM for durable preferences and reject unsupported evidence."""
+    """Trích xuất sở thích dài hạn và loại bỏ đề xuất thiếu căn cứ."""
     sources: list[dict[str, Any]] = []
     for message in messages[-20:]:
         if message.strip():
