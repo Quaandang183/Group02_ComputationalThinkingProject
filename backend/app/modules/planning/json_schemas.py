@@ -8,6 +8,8 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints, field_vali
 
 PlaceId = Annotated[str, StringConstraints(min_length=1, max_length=64, pattern=r"\S")]
 ShortText = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=255)]
+PlaceCity = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
+PlaceCategory = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
 
 
 class PlaceSearchRequest(BaseModel):
@@ -16,8 +18,8 @@ class PlaceSearchRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
     query: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=1000)]
-    city: ShortText
-    category: ShortText
+    city: PlaceCity
+    category: PlaceCategory | None = None
     preferences: list[ShortText] = Field(max_length=20)
     limit: int = Field(ge=1, le=20)
 
@@ -29,7 +31,7 @@ class PlaceSuggestion(BaseModel):
 
     id: PlaceId = Field(description="Exact value of Place.id from the backend candidates")
     name: ShortText
-    category: ShortText
+    category: PlaceCategory | None
     reason: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500)]
 
 
