@@ -1,34 +1,74 @@
-"""TripWise tool declarations and dispatch for Maps, Weather, and Places."""
+"""
+TRIPWISE - Khai báo và điều phối công cụ AI (agent_tools.py)
+"""
 
-from collections.abc import Awaitable, Callable
+from collections.abc import Awaitable, Callable, Mapping
 from dataclasses import dataclass
 from datetime import date
 from typing import Annotated, Any, Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, JsonValue, model_validator
 
-from app.modules.planning.json_schemas import PlaceSearchRequest
+from app.modules.planning.json_schemas import PlaceId, PlaceSearchRequest, ShortText
 
 Latitude = Annotated[float, Field(ge=-90, le=90, allow_inf_nan=False)]
 Longitude = Annotated[float, Field(ge=-180, le=180, allow_inf_nan=False)]
 ToolName = Literal["search_places", "get_weather", "get_route"]
 
 
+# ==============================================================================
+# 1. DỮ LIỆU ĐẦU VÀO VÀ KẾT QUẢ CÔNG CỤ
+# ==============================================================================
 class ToolArguments(BaseModel):
-    """Reject undeclared fields and values of the wrong type."""
+    """Từ chối trường ngoài khai báo và giá trị sai kiểu."""
 
     model_config = ConfigDict(extra="forbid", strict=True)
 
 
 class Coordinates(ToolArguments):
-    """A point in latitude/longitude degrees."""
+    """Tọa độ một điểm theo vĩ độ và kinh độ."""
 
-    lat: Latitude
-    lng: Longitude
+    latitude: Latitude
+    longitude: Longitude
+
+
+class PlaceCandidate(BaseModel):
+    """Dữ liệu địa điểm cung cấp cho AI theo tên trường của ORM."""
+
+    model_config = ConfigDict(from_attributes=True, strict=True, extra="forbid")
+
+    id: PlaceId
+    name: ShortText
+    city: str | None = None
+    category: str | None = None
+    address: str | None = None
+    latitude: Latitude | None = None
+    longitude: Longitude | None = None
+    open_time: str | None = None
+    close_time: str | None = None
+    tags: list[str] | None = None
+
+    @classmethod
+    def from_nearby_row(cls, row: Mapping[str, Any]) -> "PlaceCandidate":
+        """Đổi tên trường từ kết quả truy vấn địa điểm gần sang chuẩn ORM."""
+        return cls(
+            id=row["place_id"],
+            name=row["name"],
+            category=row.get("category"),
+            address=row.get("address"),
+            latitude=row.get("lat"),
+            longitude=row.get("lng"),
+        )
+
+
+class PlaceToolOutput(ToolArguments):
+    """Kết quả đã kiểm tra của dịch vụ tìm địa điểm."""
+
+    places: list[PlaceCandidate] = Field(max_length=20)
 
 
 class WeatherArgs(ToolArguments):
-    """Request weather at a point for an inclusive local date range."""
+    """Yêu cầu thời tiết theo tọa độ và khoảng ngày địa phương."""
 
     location: Coordinates
     start_date: date
@@ -36,14 +76,14 @@ class WeatherArgs(ToolArguments):
 
     @model_validator(mode="after")
     def validate_date_range(self) -> "WeatherArgs":
-        """Reject reversed dates and requests longer than 16 days."""
+        """Chỉ nhận khoảng từ một đến 16 ngày theo thứ tự thời gian."""
         if not 0 <= (self.end_date - self.start_date).days < 16:
             raise ValueError("Weather dates must span 1–16 days in chronological order")
         return self
 
 
 class RouteArgs(ToolArguments):
-    """Request a distance and travel time between two points."""
+    """Yêu cầu khoảng cách và thời gian di chuyển giữa hai điểm."""
 
     origin: Coordinates
     destination: Coordinates
@@ -51,8 +91,11 @@ class RouteArgs(ToolArguments):
 
 
 @dataclass(frozen=True)
+# ==============================================================================
+# 2. DANH MỤC CÔNG CỤ CHO LLM
+# ==============================================================================
 class ToolSpec:
-    """A model-facing description and its validated input model."""
+    """Mô tả công cụ và kiểu dữ liệu đầu vào."""
 
     description: str
     arguments: type[BaseModel]
@@ -77,15 +120,18 @@ TOOLS: dict[ToolName, ToolSpec] = {
 
 
 def tool_schemas() -> list[dict[str, Any]]:
-    """Return function declarations for the LLM adapter to register."""
+    """Trả danh sách khai báo công cụ để lớp kết nối LLM đăng ký."""
     return [
         {"name": name, "description": spec.description, "parameters": spec.arguments.model_json_schema()}
         for name, spec in TOOLS.items()
     ]
 
 
+# ==============================================================================
+# 3. CẤU TRÚC LƯỢT GỌI VÀ PHẢN HỒI
+# ==============================================================================
 class ToolCall(ToolArguments):
-    """Normalized model output for one function call."""
+    """Một lượt gọi công cụ do LLM yêu cầu."""
 
     id: Annotated[str, Field(min_length=1, max_length=128)]
     name: ToolName
@@ -93,21 +139,21 @@ class ToolCall(ToolArguments):
 
 
 class ToolResult(ToolArguments):
-    """JSON result paired with its original function call."""
+    """Kết quả JSON kèm thông tin lượt gọi tương ứng."""
 
     call: ToolCall
     data: JsonValue
 
 
 class AgentTurn(ToolArguments):
-    """The model either requests tools or returns a final answer."""
+    """Một lượt của LLM có yêu cầu gọi công cụ hoặc câu trả lời."""
 
     calls: list[ToolCall] = Field(default_factory=list, max_length=3)
     answer: str | None = None
 
     @model_validator(mode="after")
     def validate_turn(self) -> "AgentTurn":
-        """Reject turns with neither an answer nor calls, or with both."""
+        """Kiểm tra lượt gọi chỉ chứa công cụ hoặc câu trả lời."""
         if self.calls and self.answer is not None:
             raise ValueError("Return either tool calls or an answer")
         if not self.calls and (self.answer is None or not self.answer.strip()):
@@ -116,28 +162,35 @@ class AgentTurn(ToolArguments):
 
 
 class ChooseTurn(Protocol):
-    """Adapter that asks a model to choose a tool or answer from prior results."""
+    """Giao diện để LLM chọn công cụ hoặc trả lời từ kết quả trước."""
 
     def __call__(
         self, question: str, schemas: list[dict[str, Any]], results: tuple[ToolResult, ...]
     ) -> Awaitable[AgentTurn]:
-        """Return the next model turn."""
+        """Trả lượt xử lý tiếp theo của LLM."""
         ...
 
 
 @dataclass(frozen=True)
+# ==============================================================================
+# 4. ĐIỀU PHỐI DỊCH VỤ
+# ==============================================================================
 class ToolServices:
-    """The backend supplies async handlers that return JSON-ready data."""
+    """Các hàm dịch vụ bất đồng bộ do Backend cung cấp."""
 
-    search_places: Callable[[PlaceSearchRequest], Awaitable[JsonValue]]
+    search_places: Callable[[PlaceSearchRequest], Awaitable[PlaceToolOutput]]
     get_weather: Callable[[WeatherArgs], Awaitable[JsonValue]]
     get_route: Callable[[RouteArgs], Awaitable[JsonValue]]
 
 
 async def execute_tool(call: ToolCall, services: ToolServices) -> ToolResult:
-    """Validate model arguments before invoking the selected service."""
+    """Kiểm tra tham số trước khi gọi dịch vụ tương ứng."""
     if call.name == "search_places":
-        data = await services.search_places(PlaceSearchRequest.model_validate_json(call.arguments_json))
+        request = PlaceSearchRequest.model_validate_json(call.arguments_json)
+        places = PlaceToolOutput.model_validate(await services.search_places(request))
+        if len(places.places) > request.limit:
+            raise ValueError("Places service exceeded the requested result limit")
+        data = places.model_dump(mode="json")
     elif call.name == "get_weather":
         data = await services.get_weather(WeatherArgs.model_validate_json(call.arguments_json))
     elif call.name == "get_route":
@@ -148,7 +201,7 @@ async def execute_tool(call: ToolCall, services: ToolServices) -> ToolResult:
 
 
 async def run_tool_agent(question: str, choose_turn: ChooseTurn, services: ToolServices) -> str:
-    """Feed validated tool results back to the model, with up to six calls."""
+    """Đưa kết quả công cụ về LLM, giới hạn tối đa sáu lượt gọi công cụ."""
     results: list[ToolResult] = []
     seen_ids: set[str] = set()
     for _ in range(7):
