@@ -1,7 +1,7 @@
 /**
  * // Đường dẫn: frontend/main.js
  * TripWise - Unified Application Entry Point (Isomorphic Node.js Server & Browser Client Runtime)
- * - Server mode (Node.js): Phục vụ static web server và tự động mở màn hình khởi đầu: /src/screens/intro.html
+ * - Server mode (Node.js): Phục vụ static web server và tự động mở màn hình khởi đầu: /src/screens/auth/intro.html
  * - Browser mode (Client): Đăng ký toàn bộ Custom Element Components (<app-header>, <app-bottom-bar>, <loved-modal>),
  *   quản lý logic tương tác dùng chung (thông báo, yêu thích, điều hướng).
  */
@@ -39,9 +39,9 @@ if (typeof window === 'undefined') {
   const server = http.createServer((req, res) => {
     let requestPath = decodeURI(req.url.split('?')[0].split('#')[0]);
 
-    // Điểm bắt đầu mặc định: chuyển thẳng tới intro.html theo yêu cầu chuẩn
+    // Điểm bắt đầu mặc định: chuyển thẳng tới auth/intro.html theo cấu trúc mới chuẩn
     if (requestPath === '/' || requestPath === '' || requestPath === '/index.html' || requestPath === '/intro.html') {
-      requestPath = '/src/screens/intro.html';
+      requestPath = '/src/screens/auth/intro.html';
     }
 
     let filePath = path.join(ROOT_DIR, requestPath);
@@ -51,11 +51,25 @@ if (typeof window === 'undefined') {
       filePath = path.join(ROOT_DIR, 'main.js');
     }
 
-    // Fallback tự động tìm trong src/screens/
+    // Tương thích ngược: Nếu request gọi /src/css/components.css -> phục vụ /src/css/components/index.css
+    if (requestPath === '/src/css/components.css') {
+      filePath = path.join(ROOT_DIR, 'src', 'css', 'components', 'index.css');
+    }
+
+    // Fallback thông minh: tìm trong các thư mục con của src/screens/ (auth, trip, finance, account)
     if (!fs.existsSync(filePath)) {
-      const screensPath = path.join(ROOT_DIR, 'src', 'screens', requestPath);
-      if (fs.existsSync(screensPath) && fs.statSync(screensPath).isFile()) {
-        filePath = screensPath;
+      const baseName = path.basename(requestPath);
+      let cleanName = baseName;
+      if (baseName === 'delete-account.html') cleanName = 'delete_account.html';
+      else if (baseName === 'edit-plan.html') cleanName = 'edit_plan.html';
+      const subdirs = ['auth', 'trip', 'finance', 'account'];
+
+      for (const sub of subdirs) {
+        const candidate = path.join(ROOT_DIR, 'src', 'screens', sub, cleanName);
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+          filePath = candidate;
+          break;
+        }
       }
     }
 
@@ -94,7 +108,7 @@ if (typeof window === 'undefined') {
           <body>
             <h2>404 - Không tìm thấy trang</h2>
             <p>Đường dẫn <code>${requestPath}</code> không tồn tại trên hệ thống.</p>
-            <a href="/src/screens/intro.html">Quay về Trang giới thiệu (Intro)</a>
+            <a href="/src/screens/auth/intro.html">Quay về Trang giới thiệu (Intro)</a>
           </body>
           </html>
         `);
@@ -116,13 +130,13 @@ if (typeof window === 'undefined') {
   });
 
   server.listen(PORT, () => {
-    const url = `http://localhost:${PORT}/src/screens/intro.html`;
+    const url = `http://localhost:${PORT}/src/screens/auth/intro.html`;
     console.log('====================================================');
     console.log('       TRIPWISE LOCAL WEB SERVER ĐANG CHẠY          ');
     console.log('====================================================');
     console.log(`- Địa chỉ máy chủ: ${url}`);
     console.log(`- Thư mục gốc:    ${ROOT_DIR}`);
-    console.log(`- Màn hình khởi động mặc định (Entry point): intro.html`);
+    console.log(`- Màn hình khởi động mặc định (Entry point): auth/intro.html`);
     console.log('----------------------------------------------------');
     console.log('Nhấn Ctrl + C để dừng máy chủ.');
     console.log('====================================================\n');
@@ -154,9 +168,13 @@ if (typeof window === 'undefined') {
   class AppHeader extends HTMLElement {
     connectedCallback() {
       const variant = this.getAttribute('variant') || 'default';
-      const avatarSrc = this.getAttribute('avatar-src') || '../images/avatar.png';
+      const avatarSrc = this.getAttribute('avatar-src') || '../../images/avatars/avatar.png';
       const travelerName = this.getAttribute('traveler-name') || 'Linh Nguyễn';
       const unreadCount = this.getAttribute('unread-count') || (variant === 'profile' ? '02' : '12');
+
+      const path = window.location.pathname.toLowerCase();
+      const inAccount = path.includes('/account/');
+      const profileUrl = inAccount ? 'profile.html' : '../account/profile.html';
 
       const template = document.createElement('template');
 
@@ -177,7 +195,7 @@ if (typeof window === 'undefined') {
         template.innerHTML = `
           <header class="traveler-header">
             <div class="traveler-left">
-              <a href="profile.html" class="avatar-ring" title="Xem hồ sơ cá nhân" aria-label="Xem hồ sơ cá nhân">
+              <a href="${profileUrl}" class="avatar-ring" title="Xem hồ sơ cá nhân" aria-label="Xem hồ sơ cá nhân">
                 <img src="${avatarSrc}" alt="${travelerName}">
               </a>
               <div class="greeting-block">
@@ -194,7 +212,7 @@ if (typeof window === 'undefined') {
                 <span class="notif-badge-pill">${unreadCount}</span>
               </button>
               <button type="button" class="btn-header-round" id="btnOpenHeaderLoved" title="Địa điểm yêu thích" aria-label="Địa điểm yêu thích">
-                <img src="../images/icon-heart.svg" alt="Yêu thích" width="18" height="18">
+                <img src="../../images/icons/icon-heart.svg" alt="Yêu thích" width="18" height="18">
               </button>
             </div>
           </header>
@@ -211,6 +229,11 @@ if (typeof window === 'undefined') {
     }
 
     getDropdownHTML() {
+      const path = window.location.pathname.toLowerCase();
+      const inTrip = path.includes('/trip/');
+      const itineraryUrl = inTrip ? 'itinerary.html' : '../trip/itinerary.html';
+      const mapUrl = inTrip ? 'map.html' : '../trip/map.html';
+
       return `
         <div class="notification-dropdown-panel" id="notificationDropdownPanel" role="dialog" aria-label="Bảng thông báo">
           <div class="notif-panel-header">
@@ -249,8 +272,8 @@ if (typeof window === 'undefined') {
               Dự báo mưa lớn quanh Hồ Xuân Hương lúc 15:00. Đã chuẩn bị phương án chuyển sang Ga Đà Lạt.
             </div>
             <div class="notif-card-actions">
-              <button type="button" class="btn-notif-view" onclick="window.location.href='itinerary.html'">Xem</button>
-              <button type="button" class="btn-notif-cta" onclick="window.location.href='map.html'">
+              <button type="button" class="btn-notif-view" onclick="window.location.href='${itineraryUrl}'">Xem</button>
+              <button type="button" class="btn-notif-cta" onclick="window.location.href='${mapUrl}'">
                 <span>Đổi điểm đến</span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
               </button>
@@ -284,8 +307,8 @@ if (typeof window === 'undefined') {
               Khu vực đèo Prenn lưu lượng đông. Gợi ý đi hướng đèo Mimosa.
             </div>
             <div class="notif-card-actions">
-              <button type="button" class="btn-notif-view" onclick="window.location.href='itinerary.html'">Xem</button>
-              <button type="button" class="btn-notif-cta" onclick="window.location.href='map.html'">
+              <button type="button" class="btn-notif-view" onclick="window.location.href='${itineraryUrl}'">Xem</button>
+              <button type="button" class="btn-notif-cta" onclick="window.location.href='${mapUrl}'">
                 <span>Đổi đường đi</span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
               </button>
@@ -303,7 +326,7 @@ if (typeof window === 'undefined') {
               <div style="font-size: 15px; font-weight: 700; color: #1E3F20;">Tuyệt vời!</div>
               <div style="font-size: 11px; color: #657064;">Đã cập nhật 3/3 lịch trình</div>
             </div>
-            <button type="button" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(30, 63, 32, 0.05); border: 1px solid rgba(30, 63, 32, 0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.location.href='itinerary.html'">
+            <button type="button" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(30, 63, 32, 0.05); border: 1px solid rgba(30, 63, 32, 0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.location.href='${itineraryUrl}'">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m9 16 2 2 4-4"/></svg>
             </button>
           </div>
@@ -361,40 +384,48 @@ if (typeof window === 'undefined') {
    */
   class AppBottomBar extends HTMLElement {
     connectedCallback() {
+      const path = window.location.pathname.toLowerCase();
       let activeTab = this.getAttribute('active');
       if (!activeTab) {
-        const path = window.location.pathname.toLowerCase();
         if (path.includes('itinerary.html') || path.includes('budget.html') || path.includes('spending.html') || path.includes('suggestion.html')) {
           activeTab = 'itinerary';
         } else if (path.includes('map.html')) {
           activeTab = 'map';
-        } else if (path.includes('profile.html')) {
+        } else if (path.includes('profile.html') || path.includes('delete_account.html')) {
           activeTab = 'profile';
         } else {
           activeTab = 'home';
         }
       }
 
+      const inTrip = path.includes('/trip/');
+      const inAccount = path.includes('/account/');
+
+      const homeHref = inTrip ? 'home.html' : '../trip/home.html';
+      const itineraryHref = inTrip ? 'itinerary.html' : '../trip/itinerary.html';
+      const mapHref = inTrip ? 'map.html' : '../trip/map.html';
+      const profileHref = inAccount ? 'profile.html' : '../account/profile.html';
+
       const template = document.createElement('template');
       template.innerHTML = `
         <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
-          <a href="index.html" class="dock-btn-row ${activeTab === 'home' ? 'active' : ''}" data-tab="home" title="Trang chủ" aria-label="Đi tới Trang chủ">
-            <img src="../images/icon-home.svg" alt="Home">
+          <a href="${homeHref}" class="dock-btn-row ${activeTab === 'home' ? 'active' : ''}" data-tab="home" title="Trang chủ" aria-label="Đi tới Trang chủ">
+            <img src="../../images/icons/icon-home.svg" alt="Home">
             <span>Trang chủ</span>
           </a>
 
-          <a href="itinerary.html" class="dock-btn-row ${activeTab === 'itinerary' ? 'active' : ''}" data-tab="itinerary" title="Lịch trình" aria-label="Đi tới Lịch trình">
-            <img src="../images/icon-calendar.svg" alt="Itinerary">
+          <a href="${itineraryHref}" class="dock-btn-row ${activeTab === 'itinerary' ? 'active' : ''}" data-tab="itinerary" title="Lịch trình" aria-label="Đi tới Lịch trình">
+            <img src="../../images/icons/icon-calendar.svg" alt="Itinerary">
             <span>Lịch trình</span>
           </a>
 
-          <a href="map.html" class="dock-btn-row ${activeTab === 'map' ? 'active' : ''}" data-tab="map" title="Bản đồ" aria-label="Đi tới Bản đồ">
-            <img src="../images/icon-map.svg" alt="Map">
+          <a href="${mapHref}" class="dock-btn-row ${activeTab === 'map' ? 'active' : ''}" data-tab="map" title="Bản đồ" aria-label="Đi tới Bản đồ">
+            <img src="../../images/icons/icon-map.svg" alt="Map">
             <span>Bản đồ</span>
           </a>
 
-          <a href="profile.html" class="dock-btn-row ${activeTab === 'profile' ? 'active' : ''}" data-tab="profile" title="Cá nhân" aria-label="Đi tới Cá nhân">
-            <img src="../images/icon-user.svg" alt="Profile">
+          <a href="${profileHref}" class="dock-btn-row ${activeTab === 'profile' ? 'active' : ''}" data-tab="profile" title="Cá nhân" aria-label="Đi tới Cá nhân">
+            <img src="../../images/icons/icon-user.svg" alt="Profile">
             <span>Cá nhân</span>
           </a>
         </nav>
@@ -437,7 +468,7 @@ if (typeof window === 'undefined') {
             <div class="loved-cards-grid" id="lovedCardsGrid">
               <div class="loved-card-item" data-category="food">
                 <div class="loved-photo-wrap">
-                  <img src="../images/dest_dalat.png" alt="Lẩu gà lá é Tao Ngộ">
+                  <img src="../../images/destinations/dest_dalat.png" alt="Lẩu gà lá é Tao Ngộ">
                   <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                   </button>
@@ -450,7 +481,7 @@ if (typeof window === 'undefined') {
 
               <div class="loved-card-item" data-category="food">
                 <div class="loved-photo-wrap">
-                  <img src="../images/place_cafe.png" alt="Tiệm Cà Phê Túi Mơ To">
+                  <img src="../../images/destinations/place_cafe.png" alt="Tiệm Cà Phê Túi Mơ To">
                   <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                   </button>
@@ -467,7 +498,7 @@ if (typeof window === 'undefined') {
 
               <div class="loved-card-item" data-category="nature">
                 <div class="loved-photo-wrap">
-                  <img src="../images/dest_temple.png" alt="Dinh III Bảo Đại">
+                  <img src="../../images/destinations/dest_temple.png" alt="Dinh III Bảo Đại">
                   <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                   </button>
@@ -480,7 +511,7 @@ if (typeof window === 'undefined') {
 
               <div class="loved-card-item" data-category="nature">
                 <div class="loved-photo-wrap">
-                  <img src="../images/dest_mountains.png" alt="Đồi Đa Phú">
+                  <img src="../../images/destinations/dest_mountains.png" alt="Đồi Đa Phú">
                   <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                   </button>

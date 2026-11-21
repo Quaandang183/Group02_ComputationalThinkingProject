@@ -15,14 +15,14 @@ if %errorlevel% equ 0 (
 where python >nul 2>nul
 if %errorlevel% equ 0 (
     echo Khong tim thay Node.js, dang su dung Python...
-    start "" http://localhost:3000/src/screens/intro.html
+    start "" http://localhost:3000/src/screens/auth/intro.html
     python main.py
     goto end
 )
 
 echo [LOI] May cua ban chua cai Node.js hoac Python.
 echo Dang mo truc tiep file intro.html bang trinh duyet...
-start "" "%~dp0src\screens\intro.html"
+start "" "%~dp0src\screens\auth\intro.html"
 
 :end
 pause

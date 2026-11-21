@@ -1,0 +1,594 @@
+{
+  "timestamp": "2026-11-21T14:40:56.371Z",
+  "summary": {
+    "totalScreens": 14,
+    "viewportsTested": [
+      "360x800",
+      "393x852",
+      "412x915"
+    ],
+    "totalChecks": 42,
+    "passedChecks": 42,
+    "failedChecks": 0,
+    "total404s": 0,
+    "totalConsoleErrors": 0,
+    "rootRedirectPass": true,
+    "lovedModalPass": true
+  },
+  "screenResults": [
+    {
+      "id": "auth_intro",
+      "name": "Giới thiệu",
+      "path": "/src/screens/auth/intro.html",
+      "cluster": "auth",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "auth_login",
+      "name": "Đăng nhập",
+      "path": "/src/screens/auth/login.html",
+      "cluster": "auth",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "auth_register",
+      "name": "Đăng ký",
+      "path": "/src/screens/auth/register.html",
+      "cluster": "auth",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_home",
+      "name": "Trang chủ",
+      "path": "/src/screens/trip/home.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_plan",
+      "name": "Lập kế hoạch",
+      "path": "/src/screens/trip/plan.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_proposal",
+      "name": "Đề xuất lịch trình",
+      "path": "/src/screens/trip/proposal.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_itinerary",
+      "name": "Lịch trình chi tiết",
+      "path": "/src/screens/trip/itinerary.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_edit_plan",
+      "name": "Chỉnh sửa kế hoạch",
+      "path": "/src/screens/trip/edit_plan.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_suggestion",
+      "name": "Gợi ý AI",
+      "path": "/src/screens/trip/suggestion.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "trip_map",
+      "name": "Bản đồ",
+      "path": "/src/screens/trip/map.html",
+      "cluster": "trip",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "finance_budget",
+      "name": "Tổng quan ngân sách",
+      "path": "/src/screens/finance/budget.html",
+      "cluster": "finance",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "finance_spending",
+      "name": "Quản lý chi tiêu",
+      "path": "/src/screens/finance/spending.html",
+      "cluster": "finance",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "account_profile",
+      "name": "Hồ sơ cá nhân",
+      "path": "/src/screens/account/profile.html",
+      "cluster": "account",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": true,
+          "hasBottomBar": false
+        }
+      }
+    },
+    {
+      "id": "account_delete",
+      "name": "Xóa tài khoản",
+      "path": "/src/screens/account/delete_account.html",
+      "cluster": "account",
+      "viewports": {
+        "360x800": {
+          "pass": true,
+          "vw": 360,
+          "scrollW": 360,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "393x852": {
+          "pass": true,
+          "vw": 393,
+          "scrollW": 393,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        },
+        "412x915": {
+          "pass": true,
+          "vw": 412,
+          "scrollW": 412,
+          "noOverflow": true,
+          "hasMetaViewport": true,
+          "errors404": [],
+          "consoleErrors": [],
+          "hasHeader": false,
+          "hasBottomBar": false
+        }
+      }
+    }
+  ]
+}
