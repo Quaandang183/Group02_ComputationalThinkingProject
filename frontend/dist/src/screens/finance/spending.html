@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TripWise · Thống kê chi tiêu & Chia tiền</title>
+  <link rel="icon" type="image/png" href="../../../assets/logo-circle-CvHArTU0.png">
+  <script src="../../../main.js" defer></script>
+  <link rel="stylesheet" crossorigin href="../../../assets/button-B-EuB5IW.css">
+  <link rel="stylesheet" crossorigin href="../../../assets/loved-modal-B-SV_S8d.css">
+  <link rel="stylesheet" crossorigin href="../../../assets/budget-Cyz_DT07.css">
+</head>
+
+<body class="phone-screen-body">
+  <div class="app-container">
+
+    <div class="spending-page-container">
+      <!-- Background Botanical Art -->
+      <img src="../../../assets/botanical_bg-CE5FKeHN.png" alt="Botanical Art" class="bg-botanical-art">
+
+      <!-- Scrollable Main Content -->
+      <main class="spending-scroll-content">
+
+        <!-- Header Row: Back button to budget.html -->
+        <header class="spending-top-nav-row">
+          <a href="budget.html" class="btn-spending-back" title="Quay lại trang Chi phí" aria-label="Quay lại">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5"></path>
+              <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+          </a>
+        </header>
+
+        <!-- Tiêu đề trang (Đồng nhất kiểu thiết kế và màu #1E3F20) -->
+        <h1 class="spending-page-title">Thống kê chi tiêu</h1>
+
+        <!-- Card 1: Thêm khoản chi (Chuẩn Figma) -->
+        <section class="spending-add-card" aria-label="Thêm khoản chi">
+          <h2 class="spending-card-title">Thêm khoản chi</h2>
+
+          <form id="formAddExpense" onsubmit="event.preventDefault(); handleAddExpense();">
+            <div class="spending-field-group">
+              <label for="inputExpenseName" class="spending-field-label">Tên khoản chi</label>
+              <input type="text" id="inputExpenseName" class="spending-input-field" placeholder="Nhập tên khoản chi" required autocomplete="off">
+            </div>
+
+            <div class="spending-field-group">
+              <label for="inputExpenseAmount" class="spending-field-label">Số tiền</label>
+              <div class="spending-amount-wrap">
+                <input type="text" id="inputExpenseAmount" class="spending-amount-input" placeholder="Nhập số tiền" required inputmode="numeric" autocomplete="off">
+                <span class="spending-amount-unit">VND</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-spending-submit" id="btnSubmitExpense">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Ghi nhận khoản chi</span>
+            </button>
+
+            <div class="spending-payer-note">Người thanh toán: Linh Nguyễn (Bạn)</div>
+          </form>
+        </section>
+
+        <!-- Card 2: Khoản chi đã ghi nhận (Hiển thị khi có khoản chi) -->
+        <section class="spending-recorded-card" id="recordedExpensesCard" style="display: none;" aria-label="Khoản chi đã ghi nhận">
+          <h2 class="spending-card-title">Khoản chi đã ghi nhận</h2>
+          <div class="spending-recorded-list" id="recordedExpensesList">
+            <!-- Danh sách render bằng JavaScript -->
+          </div>
+        </section>
+
+        <!-- Section 3: Chia tiền (Figma Chuẩn 100%) -->
+        <section class="spending-split-section" aria-label="Chia tiền">
+          <div class="spending-split-head">
+            <h2 class="spending-split-title">Chia tiền</h2>
+            <span class="spending-split-pill">2 người</span>
+          </div>
+
+          <div class="spending-split-card">
+            <div class="spending-split-top">
+              <span>Tổng chi thực tế</span>
+              <span id="labelExpenseCount">0 khoản chi</span>
+            </div>
+
+            <div class="spending-total-val" id="labelTotalActual">0 VND</div>
+
+            <!-- Người 1: Linh Nguyễn (Bạn) -->
+            <div class="spending-person-row">
+              <div>
+                <div class="spending-person-name">Linh Nguyễn (Bạn)</div>
+                <div class="spending-person-paid" id="labelPaidLinh">Đã trả: 0đ</div>
+              </div>
+              <div class="spending-share-col">
+                <span class="spending-share-sub">Phần chia</span>
+                <span class="spending-share-val" id="labelShareLinh">0đ</span>
+              </div>
+            </div>
+
+            <div class="spending-row-divider"></div>
+
+            <!-- Người 2: Người đi cùng -->
+            <div class="spending-person-row">
+              <div>
+                <div class="spending-person-name">Người đi cùng</div>
+                <div class="spending-person-paid" id="labelPaidCompanion">Đã trả: 0đ</div>
+              </div>
+              <div class="spending-share-col">
+                <span class="spending-share-sub">Phần chia</span>
+                <span class="spending-share-val" id="labelShareCompanion">0đ</span>
+              </div>
+            </div>
+
+            <!-- Khung thông báo thanh toán / chia tiền -->
+            <div class="spending-notice-box" id="spendingNoticeBox">
+              <div class="spending-notice-title" id="noticeTitle">Chưa có khoản cần thanh toán</div>
+              <div class="spending-notice-desc" id="noticeDesc">Thêm khoản chi đầu tiên để bắt đầu chia tiền.</div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Bottom Navigation Bar (STRICT: Đồng bộ chuẩn 4-Tabs với các trang khác) -->
+      <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
+        <a href="../trip/home.html" class="dock-btn-row">
+          <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20stroke='%231E3F20'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3cpath%20d='M3%209.5L12%202.5L21%209.5V20.5C21%2021.0523%2020.5523%2021.5%2020%2021.5H4C3.44772%2021.5%203%2021.0523%203%2020.5V9.5Z'/%3e%3cpolyline%20points='9%2021.5%209%2012.5%2015%2012.5%2015%2021.5'/%3e%3c/svg%3e" alt="Home">
+          <span>Trang chủ</span>
+        </a>
+        <a href="../trip/itinerary.html" class="dock-btn-row active">
+          <img src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M3.33337%205.8335H11.6667M15%205.8335H16.6667M3.33337%2014.1668H5.00004M8.33337%2014.1668H16.6667'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M15.0001%205.83341C15.0001%206.75389%2014.2539%207.50008%2013.3334%207.50008C12.4129%207.50008%2011.6667%206.75389%2011.6667%205.83341C11.6667%204.91294%2012.4129%204.16675%2013.3334%204.16675C14.2539%204.16675%2015.0001%204.91294%2015.0001%205.83341Z'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M8.33333%2014.1667C8.33333%2015.0871%207.58714%2015.8333%206.66667%2015.8333C5.74619%2015.8333%205%2015.0871%205%2014.1667C5%2013.2462%205.74619%2012.5%206.66667%2012.5C7.58714%2012.5%208.33333%2013.2462%208.33333%2014.1667Z'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Itinerary">
+          <span>Lịch trình</span>
+        </a>
+        <a href="../trip/map.html" class="dock-btn-row">
+          <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.25%2011C19.25%2015.5563%2015.5563%2019.25%2011%2019.25C6.44365%2019.25%202.75%2015.5563%202.75%2011C2.75%206.44365%206.44365%202.75%2011%202.75C15.5563%202.75%2019.25%206.44365%2019.25%2011Z'%20stroke-width='1.65'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M14.2083%207.79175L12.375%2012.3751L7.79163%2014.2084L9.62496%209.62508L14.2083%207.79175Z'%20stroke-width='1.65'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Map">
+          <span>Bản đồ</span>
+        </a>
+        <a href="../account/profile.html" class="dock-btn-row">
+          <img src="data:image/svg+xml,%3csvg%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M9.00001%209.75C11.0709%209.75%2012.7496%208.07107%2012.7496%206C12.7496%203.92893%2011.0709%202.25%209.00001%202.25C6.92915%202.25%205.25039%203.92893%205.25039%206C5.25039%208.07107%206.92915%209.75%209.00001%209.75ZM9.00001%209.75C10.5911%209.75%2012.1171%2010.3821%2013.2422%2011.5074C14.3673%2012.6326%2014.9994%2014.1587%2014.9994%2015.75M9.00001%209.75C7.40887%209.75%205.8829%2010.3821%204.75779%2011.5074C3.63269%2012.6326%203.00061%2014.1587%203.00061%2015.75'%20stroke-width='1.7'%20stroke-linecap='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Profile">
+          <span>Cá nhân</span>
+        </a>
+      </nav>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Quản lý danh sách chi tiêu và chia tiền
+    let expenses = [];
+
+    // Tự động format định dạng số khi nhập
+    const inputAmount = document.getElementById('inputExpenseAmount');
+    if (inputAmount) {
+      inputAmount.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val) {
+          e.target.value = parseInt(val, 10).toLocaleString('vi-VN');
+        } else {
+          e.target.value = '';
+        }
+      });
+    }
+
+    // Thêm khoản chi mới
+    function handleAddExpense() {
+      const nameInput = document.getElementById('inputExpenseName');
+      const amountInput = document.getElementById('inputExpenseAmount');
+      const name = nameInput.value.trim();
+      const rawAmount = parseInt(amountInput.value.replace(/\D/g, ''), 10);
+
+      if (!name || isNaN(rawAmount) || rawAmount <= 0) {
+        alert('Vui lòng nhập tên khoản chi và số tiền hợp lệ.');
+        return;
+      }
+
+      expenses.push({
+        id: Date.now(),
+        name: name,
+        amount: rawAmount,
+        payer: 'Linh Nguyễn'
+      });
+
+      nameInput.value = '';
+      amountInput.value = '';
+      nameInput.focus();
+
+      updateExpensesUI();
+    }
+
+    // Xóa khoản chi
+    function deleteExpense(id) {
+      expenses = expenses.filter(item => item.id !== id);
+      updateExpensesUI();
+    }
+
+    // Cập nhật giao diện tính toán
+    function updateExpensesUI() {
+      const recordedCard = document.getElementById('recordedExpensesCard');
+      const recordedList = document.getElementById('recordedExpensesList');
+      const labelCount = document.getElementById('labelExpenseCount');
+      const labelTotal = document.getElementById('labelTotalActual');
+      const labelPaidLinh = document.getElementById('labelPaidLinh');
+      const labelShareLinh = document.getElementById('labelShareLinh');
+      const labelPaidCompanion = document.getElementById('labelPaidCompanion');
+      const labelShareCompanion = document.getElementById('labelShareCompanion');
+      const noticeTitle = document.getElementById('noticeTitle');
+      const noticeDesc = document.getElementById('noticeDesc');
+
+      const count = expenses.length;
+      const total = expenses.reduce((sum, item) => sum + item.amount, 0);
+      const splitAmount = Math.round(total / 2);
+
+      // Render danh sách khoản chi đã ghi nhận
+      if (count > 0) {
+        recordedCard.style.display = 'block';
+        recordedList.innerHTML = expenses.map(item => `
+          <div class="spending-recorded-item">
+            <div class="spending-rec-left">
+              <span class="spending-rec-name">${escapeHtml(item.name)}</span>
+              <span class="spending-rec-payer">${item.payer} đã trả</span>
+            </div>
+            <div class="spending-rec-right">
+              <span class="spending-rec-val">${item.amount.toLocaleString('vi-VN')} VND</span>
+              <button type="button" class="btn-rec-delete" title="Xóa khoản chi" onclick="deleteExpense(${item.id})" aria-label="Xóa">✕</button>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        recordedCard.style.display = 'none';
+        recordedList.innerHTML = '';
+      }
+
+      // Cập nhật thống kê chia tiền
+      labelCount.textContent = count > 0 ? `${count} khoản chi` : '0 khoản chi';
+
+      if (total === 0) {
+        labelTotal.textContent = '0 VND';
+        labelPaidLinh.textContent = 'Đã trả: 0đ';
+        labelShareLinh.textContent = '0đ';
+        labelPaidCompanion.textContent = 'Đã trả: 0đ';
+        labelShareCompanion.textContent = '0đ';
+
+        noticeTitle.textContent = 'Chưa có khoản cần thanh toán';
+        noticeDesc.textContent = 'Thêm khoản chi đầu tiên để bắt đầu chia tiền.';
+      } else {
+        labelTotal.textContent = `${total.toLocaleString('vi-VN')} VND`;
+        labelPaidLinh.textContent = `Đã trả: ${total.toLocaleString('vi-VN')} VND`;
+        labelShareLinh.textContent = `${splitAmount.toLocaleString('vi-VN')} VND`;
+        labelPaidCompanion.textContent = 'Đã trả: 0đ';
+        labelShareCompanion.textContent = `${splitAmount.toLocaleString('vi-VN')} VND`;
+
+        noticeTitle.textContent = 'Người đi cùng cần trả cho bạn';
+        noticeDesc.textContent = `${splitAmount.toLocaleString('vi-VN')} VND • Linh Nguyễn đã thanh toán`;
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    // Khởi tạo trạng thái ban đầu
+    updateExpensesUI();
+  </script>
+</body>
+
+</html>
