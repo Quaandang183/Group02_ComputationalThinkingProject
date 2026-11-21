@@ -1,0 +1,452 @@
+/* ==========================================================================
+   TIER 2: SHARED COMPONENT - HEADER & NOTIFICATIONS (src/css/components/header.css)
+   Traveler Header, Notification Dropdown Panel & Notification Badges
+   ========================================================================== */
+
+/* Traveler Header (Node 1376:2933) */
+.traveler-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 16px 12px 16px;
+}
+
+.traveler-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-ring {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1.5px solid var(--c-border-light);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.greeting-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-msg {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--c-text-muted);
+  line-height: 14px;
+}
+
+.traveler-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E3F20 !important;
+  line-height: 22px;
+}
+
+.traveler-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-header-round {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--c-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--c-forest-deep);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.btn-header-round:hover {
+  background: var(--c-bg-tint);
+}
+
+.btn-header-round img,
+.btn-header-round svg {
+  width: 18px;
+  height: 18px;
+}
+
+.notif-badge-pill {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: var(--c-emerald);
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ffffff;
+}
+
+
+
+
+/* Notification Item in Panel (Node 1376:3429) */
+.notif-item-card {
+  background: var(--c-bg-cream);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--c-border-light);
+}
+
+.notif-item-card.unread {
+  background: #ffffff;
+  border-left: 3px solid var(--c-emerald);
+}
+
+.notif-item-time {
+  font-size: 10px;
+  color: var(--c-text-muted);
+}
+
+.notif-item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-forest-dark);
+}
+
+.notif-item-desc {
+  font-size: 11px;
+  color: #3d4a3e;
+  line-height: 15px;
+}
+
+
+
+
+/* ==========================================================================
+   DROPDOWN NOTIFICATION PANEL (Figma Node 1376:3429 & 1376:3431)
+   ========================================================================== */
+.btn-header-round.active {
+  background: #8FC7A6 !important;
+  border-color: #6da786 !important;
+  color: #04651F !important;
+  box-shadow: 0 4px 12px rgba(143, 199, 166, 0.4) !important;
+}
+
+.btn-header-round.active svg {
+  stroke: #04651F !important;
+}
+
+.btn-header-round.active .notif-badge-pill {
+  background: #ffffff !important;
+  color: #1F3D2E !important;
+  border: 1px solid #FBE3E7 !important;
+}
+
+.notification-dropdown-panel {
+  position: absolute;
+  top: calc(96px + var(--safe-top));
+  right: 16px;
+  left: auto;
+  width: 320px;
+  height: 320px;
+  max-width: calc(100% - 32px);
+  max-height: 320px;
+  background: rgba(249, 246, 240, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  box-shadow: 0 18px 48px rgba(52, 64, 34, 0.16);
+  z-index: 150;
+  padding: 14px 12px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.notification-dropdown-panel.open,
+.notification-dropdown-panel.active {
+  display: flex !important;
+  animation: notifDropdownSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes notifDropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.notif-panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.notif-panel-date {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1E3F20;
+  letter-spacing: -0.02em;
+}
+
+.notif-divider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.notif-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #1E3F20;
+  text-transform: uppercase;
+}
+
+.notif-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(30, 63, 32, 0.1);
+}
+
+.notif-divider-count {
+  font-size: 10px;
+  font-weight: 600;
+  color: #9F7B20;
+}
+
+.notif-card-box {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(52, 64, 34, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notif-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notif-sculptural-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(36, 67, 40, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.notif-sculptural-icon.rain {
+  background: linear-gradient(145deg, #F1F6E8 0%, #CBDDBA 60%, #A3B890 100%);
+}
+
+.notif-sculptural-icon.car {
+  background: linear-gradient(145deg, #FFFAE8 0%, #EAD69C 60%, #CCAE53 100%);
+}
+
+.notif-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notif-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1E3F20;
+  line-height: 1.3;
+}
+
+.notif-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notif-smart-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #E8EEE3;
+  font-size: 10px;
+  font-weight: 600;
+  color: #1E3F20;
+}
+
+.notif-time-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #8E928F;
+}
+
+.notif-unread-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0B8457;
+}
+
+.notif-card-desc {
+  font-size: 13px;
+  line-height: 19px;
+  color: #657064;
+}
+
+.notif-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btn-notif-view {
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 63, 32, 0.15);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1E3F20;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-notif-view:hover {
+  background: rgba(30, 63, 32, 0.05);
+}
+
+.btn-notif-cta {
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 999px;
+  background: #0B8457;
+  color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-notif-cta:hover {
+  background: #086b45;
+}
+
+.notif-progress-banner {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 6px 18px rgba(52, 64, 34, 0.04);
+}
+
+.notif-progress-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid #0B8457;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1E3F20;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.notif-progress-ring::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: 14px;
+  width: 6px;
+  height: 6px;
+  background: #D4AF37;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+
+
+
+/* Traveler Header (khi có header trên trang Lịch trình & Trang chủ) */
+.traveler-header {
+  position: relative !important;
+  z-index: 50 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: calc(48px + var(--safe-top)) 16px 6px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+
+
+/* Profile Top Bar (Used in profile.html for notification bell placement) */
+.profile-top-bar {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  padding: calc(48px + var(--safe-top)) 16px 12px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Notification Cards Pure White Theme */
+.notif-card-box,
+.notif-item-card {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}

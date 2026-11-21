@@ -1,0 +1,109 @@
+/* ==========================================================================
+   TIER 2: SHARED COMPONENT - BOTTOM NAVIGATION BAR (src/css/components/bottom-bar.css)
+   Bottom Navigation Bar (STRICT: Giữ nguyên vị trí, chữ & icon 1 hàng ngang)
+   ========================================================================== */
+
+/* ==========================================================================
+   Bottom Navigation Bar (STRICT REQUIREMENT):
+   1. Giữ nguyên vị trí dưới cùng giao diện, không di chuyển theo người dùng
+   2. Chữ và Icon chỉ hiện thành 1 HÀNG NGANG
+   ========================================================================== */
+
+.bottom-nav-static-container {
+  width: calc(100% - 24px);
+  max-width: calc(100% - 24px);
+  margin: auto 12px calc(6px + var(--safe-bottom)) 12px;
+  /* STRICT REQUIREMENT: cách mép dưới 6px + Android safe-area-inset-bottom */
+  position: relative;
+  z-index: 50;
+  min-height: 60px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: var(--shadow-dock);
+  border: 1px solid var(--c-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px)) 8px;
+  gap: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Single Horizontal Row Item (Icon & Label side-by-side in 1 row) */
+.dock-btn-row {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 6px;
+  border-radius: 100px;
+  display: inline-flex;
+  flex-direction: row;
+  /* STRICT: 1 HÀNG NGANG */
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--c-forest-deep);
+  font-size: 11px;
+  font-weight: 500;
+  background: transparent;
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .bottom-nav-static-container {
+    width: calc(100% - 16px);
+    max-width: calc(100% - 16px);
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px)) 6px;
+    gap: 2px;
+  }
+
+  .dock-btn-row {
+    padding: 0 4px;
+    gap: 3px;
+    font-size: 10.5px;
+  }
+
+  .dock-btn-row img,
+  .dock-btn-row svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.dock-btn-row:hover {
+  background: var(--c-bg-tint);
+}
+
+.dock-btn-row img,
+.dock-btn-row svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.dock-btn-row.active {
+  background: var(--c-emerald);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.dock-btn-row.active img,
+.dock-btn-row.active svg {
+  filter: brightness(0) invert(1);
+}
+
+
+
+
+.dock-btn-row:hover {
+  filter: brightness(1.08) !important;
+}
+
+.dock-btn-row:active {
+  transform: scale(0.97) !important;
+  filter: brightness(0.95) !important;
+}

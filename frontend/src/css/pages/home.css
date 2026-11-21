@@ -1,0 +1,737 @@
+/* ==========================================================================
+   TIER 3 - PAGE CLUSTER: HOME (src/css/pages/home.css)
+   Screen: home.html
+   ========================================================================== */
+
+/* Home Content */
+.home-scroll-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 20px 16px;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Search Form */
+.search-form-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 6px;
+}
+
+.search-pill-input {
+  flex: 1;
+  height: 48px;
+  border-radius: 999px;
+  background: var(--glass-white-88);
+  backdrop-filter: var(--glass-blur-18);
+  -webkit-backdrop-filter: var(--glass-blur-18);
+  border: 0.8px solid var(--c-border-subtle);
+  box-shadow: var(--shadow-search);
+  display: flex;
+  align-items: center;
+  padding: 0 17px;
+  gap: 10px;
+}
+
+.search-pill-input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--c-forest-deep);
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+}
+
+.search-pill-input input::placeholder {
+  color: var(--c-text-muted);
+}
+
+.btn-search-filter {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background: var(--glass-white-92);
+  backdrop-filter: var(--glass-blur-18);
+  -webkit-backdrop-filter: var(--glass-blur-18);
+  border: 0.8px solid var(--c-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-search-filter:hover {
+  background: #ffffff;
+}
+
+/* Quick Access */
+.quick-access-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.btn-quick-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid var(--c-border-light);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #40533f;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.btn-quick-pill:hover {
+  background: var(--c-bg-tint);
+}
+
+.btn-quick-pill.active {
+  background: var(--c-forest-deep);
+  color: #ffffff;
+  border-color: var(--c-forest-deep);
+}
+
+/* Hero Feature Card (Khớp 100% Hình 2) */
+.hero-feature-card {
+  width: 100%;
+  border-radius: 24px;
+  background: var(--c-forest-deep);
+  position: relative;
+  overflow: hidden;
+  padding: 20px 20px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 306px;
+  box-shadow: 0 10px 30px rgba(18, 38, 24, 0.12);
+}
+
+.hero-feature-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  opacity: 0.82;
+  /* Giữ ảnh núi non sáng rõ như Hình 2 */
+  z-index: 1;
+}
+
+.hero-feature-overlay {
+  position: absolute;
+  inset: 0;
+  /* Lớp phủ chuyển sắc mờ nhẹ ở trên và đậm dần về đáy để chữ nổi bật chuẩn Hình 2 */
+  background: linear-gradient(180deg, rgba(20, 36, 24, 0.22) 0%, rgba(18, 38, 22, 0.45) 45%, rgba(11, 28, 17, 0.94) 85%, #0b1f13 100%);
+  z-index: 2;
+}
+
+.hero-feature-inner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.badge-tag-assistant {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: rgba(250, 246, 238, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 999px;
+  font-family: var(--font-main);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #1e3f20;
+  letter-spacing: 0.6px;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.star-badge-icon {
+  flex-shrink: 0;
+}
+
+.hero-feature-title {
+  font-family: var(--font-serif);
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  margin: 4px 0 0 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.hero-feature-desc {
+  font-family: var(--font-main);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 17px;
+  max-width: 95%;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hero-action-container {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Nút Lập kế hoạch chuyến đi (Oval Pill chuẩn Hình 2) */
+.btn-hero-action {
+  width: 100%;
+  height: 54px;
+  border-radius: 999px;
+  /* Bo tròn hoàn toàn dạng Oval Pill */
+  background: var(--c-emerald);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-main);
+  font-size: 14.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(11, 132, 87, 0.4);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 20px;
+  text-decoration: none !important;
+}
+
+
+.btn-hero-action,
+.btn-hero-action:hover,
+.btn-hero-action:focus,
+.btn-hero-action:active,
+.btn-hero-action * {
+  text-decoration: none !important;
+}
+
+
+.btn-hero-action:hover {
+  background: var(--c-emerald-hover);
+  box-shadow: 0 6px 22px rgba(11, 132, 87, 0.55);
+  transform: translateY(-1px);
+}
+
+.btn-hero-action:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(11, 132, 87, 0.3);
+}
+
+.btn-star-icon {
+  flex-shrink: 0;
+}
+
+
+.btn-arrow-upright {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Upcoming Trip Card (Khớp 100% Hình 2) */
+.upcoming-trip-card {
+  height: 76px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid var(--c-border-light);
+  box-shadow: 0 4px 18px rgba(30, 63, 32, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.upcoming-trip-card:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(30, 63, 32, 0.08);
+}
+
+/* Ô ngày 24 TH10 nền xanh ngọc đậm chữ trắng chuẩn Hình 2 */
+.upcoming-date-box {
+  width: 48px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--c-emerald);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(11, 132, 87, 0.25);
+}
+
+.upcoming-day-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  /* Chữ trắng */
+  line-height: 1;
+}
+
+.upcoming-month-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  /* Chữ trắng mờ */
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.upcoming-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.upcoming-label {
+  font-size: 10px;
+  font-weight: 400;
+  color: #728172;
+}
+
+.upcoming-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e3f20;
+}
+
+.upcoming-stats-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.upcoming-weather-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #485c49;
+}
+
+/* Badge màu xanh lá đậm chuẩn Hình 2 */
+.upcoming-duration-badge {
+  background: var(--c-emerald);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Popular Destinations */
+.popular-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-forest-deep);
+}
+
+.btn-see-more {
+  font-size: 10px;
+  font-weight: 600;
+  color: #586a55;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.destinations-scroll-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.destinations-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.dest-scroll-card {
+  width: 220px;
+  height: 200px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid var(--c-border-light);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.dest-scroll-card img.dest-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.dest-scroll-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(16, 36, 25, 0.88) 100%);
+  z-index: 2;
+}
+
+.dest-scroll-body {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dest-scroll-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.dest-scroll-sub {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--c-cyan-accent);
+}
+
+.btn-dest-explore {
+  margin-top: 6px;
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-dest-explore.primary {
+  background: var(--c-emerald);
+  color: #ffffff;
+}
+
+.btn-dest-explore.secondary {
+  background: var(--c-bg-tint);
+  color: var(--c-forest-deep);
+}
+
+
+/* ==========================================================================
+   HOME SCREEN ENHANCEMENTS (INDEX.HTML - Node 1376:4180 Exact Spec)
+   ========================================================================== */
+
+.home-app-container {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.home-app-container::-webkit-scrollbar {
+  display: none;
+}
+
+.search-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Section Truy cập nhanh dạng 2 khối vuông bo góc (Figma Node 1376:4202) */
+.quick-access-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 4px 0;
+}
+
+.quick-action-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.quick-unit-iconbox {
+  width: 49px;
+  height: 49px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--c-border-light);
+  box-shadow: 0 6px 16px rgba(30, 63, 32, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-action-unit:hover .quick-unit-iconbox {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 63, 32, 0.1);
+}
+
+.quick-action-unit:active .quick-unit-iconbox {
+  transform: scale(0.94);
+}
+
+.quick-action-unit.active .quick-unit-iconbox {
+  background: #ffffff;
+  border-color: var(--c-emerald);
+}
+
+.quick-unit-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #40533f;
+  text-align: center;
+}
+
+.quick-action-unit.active .quick-unit-label {
+  font-weight: 700;
+  color: var(--c-forest-deep);
+}
+
+/* Nút CTA Lập kế hoạch trên Hero Card */
+.btn-sparkle-icon {
+  font-size: 14px;
+}
+
+.btn-arrow-upright {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Thẻ chuyến đi sắp tới */
+.upcoming-stats-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.upcoming-weather-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2e4d34;
+}
+
+.upcoming-duration-text {
+  font-size: 10px;
+  font-weight: 500;
+  color: #637562;
+}
+
+/* Thẻ bài viết Điểm đến phổ biến (Article Cards - Figma 1376:4283) */
+.destination-article-card {
+  width: 280px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid var(--c-border-light);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.destination-article-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.dest-thumb-frame {
+  width: 100%;
+  height: 126px;
+  overflow: hidden;
+  background: #d8decb;
+}
+
+.dest-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.destination-article-card:hover .dest-thumb-img {
+  transform: scale(1.05);
+}
+
+.dest-article-body {
+  padding: 12px 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dest-card-h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-forest-dark);
+  margin: 0;
+}
+
+.dest-card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dest-card-desc {
+  font-size: 11px;
+  color: #556653;
+  margin: 0;
+  font-weight: 400;
+}
+
+.btn-dest-explore-round {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--c-bg-tint);
+  color: var(--c-forest-dark);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-dest-explore-round:hover {
+  background: var(--c-emerald);
+  color: #ffffff;
+}
+
+.btn-dest-explore-round .arrow-glyph {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+
+/* Interactive States - Home Screen */
+.btn-hero-action,
+.btn-search-filter,
+.quick-action-unit,
+.btn-see-more,
+.btn-dest-explore-round {
+  cursor: pointer !important;
+  transition: opacity 0.2s ease, transform 0.15s ease, filter 0.2s ease, background-color 0.2s ease !important;
+}
+
+.btn-hero-action:hover,
+.quick-action-unit:hover,
+.btn-dest-explore-round:hover {
+  filter: brightness(1.08) !important;
+}
+
+.btn-hero-action:active,
+.quick-action-unit:active,
+.btn-dest-explore-round:active {
+  transform: scale(0.97) !important;
+  filter: brightness(0.95) !important;
+}
+
+/* Brighter & Cleaner Theme: Home Cards & Emerald Accents */
+.search-pill-input,
+.quick-unit-iconbox,
+.upcoming-trip-card,
+.destination-article-card,
+.dest-scroll-card {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+.search-pill-input {
+  background: #FFFFFF !important;
+}
+
+.upcoming-trip-card:hover,
+.destination-article-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.hero-feature-card {
+  background: #1E6B47 !important;
+  box-shadow: 0 8px 24px rgba(30, 107, 71, 0.16) !important;
+}
+
+.hero-feature-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 78, 52, 0.14) 0%,
+    rgba(22, 74, 49, 0.36) 45%,
+    rgba(22, 82, 54, 0.84) 85%,
+    #1A6241 100%
+  ) !important;
+}
+
+.dest-scroll-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(22, 78, 52, 0.78) 100%) !important;
+}
+
+.btn-quick-pill.active {
+  background: #1E6B47 !important;
+}

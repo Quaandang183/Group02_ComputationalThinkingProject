@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TripWise · Đăng nhập</title>
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/components/index.css">
+  <link rel="stylesheet" href="../../css/components/button.css">
+  <link rel="stylesheet" href="../../css/pages/auth.css">
+  <link rel="icon" type="image/png" href="../../images/avatars/logo-circle.png">
+  <script src="../../../main.js" defer></script>
+</head>
+<body class="phone-screen-body">
+  <div class="app-container auth-form-container">
+    
+    <!-- Background văn hóa làm mờ 20% khớp yêu cầu (Figma Node 1376:4304 - 1376:4306) -->
+    <div class="auth-bg-layer">
+      <img src="../../images/backgrounds/cultural_pattern.png" alt="Cultural Background" class="auth-bg-img">
+      <div class="auth-cream-overlay"></div>
+      <div class="auth-gradient-overlay"></div>
+    </div>
+
+    <!-- Nút Back quay lại màn hình Intro (Node 1376:4307) -->
+    <header class="auth-nav-header">
+      <a href="intro.html" class="btn-auth-back" title="Quay lại màn hình giới thiệu" aria-label="Quay lại giới thiệu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3f20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Content Form Container (Node 1376:4310) -->
+    <main class="auth-main-content">
+      
+      <!-- Tiêu đề: Đăng nhập ở dưới nút mũi tên -->
+      <h1 class="auth-page-title">Đăng nhập</h1>
+
+      <!-- Form Đăng nhập (Bỏ logic điền email và mật khẩu - Click đăng nhập trực tiếp chuyển trang) -->
+      <form class="auth-fields-form" id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); handleDirectLogin(); return false;">
+        
+        <!-- Trường 1: Email hoặc Tên đăng nhập -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="login-identity">Email hoặc Tên đăng nhập</label>
+          <div class="auth-input-box">
+            <input type="text" id="login-identity" class="auth-input" placeholder="Nhập email hoặc tên đăng nhập" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Trường 2: Mật khẩu & Quên mật khẩu -->
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="login-pwd">Mật khẩu</label>
+          <div class="auth-input-box">
+            <input type="password" id="login-pwd" class="auth-input" placeholder="Nhập mật khẩu" autocomplete="off">
+            <button type="button" class="btn-pwd-eye" id="btnToggleLoginPwd" aria-label="Hiện hoặc ẩn mật khẩu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#758071" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div class="auth-forgot-row">
+            <a href="javascript:void(0)" class="auth-forgot-link" onclick="alert('Vui lòng kiểm tra email để đặt lại mật khẩu của bạn.'); return false;">Quên mật khẩu?</a>
+          </div>
+        </div>
+
+        <!-- Nút Đăng nhập chính: Bấm trực tiếp chuyển sang home.html không cần validate -->
+        <button type="button" class="btn-auth-submit" id="btnSubmitLogin" onclick="handleDirectLogin();" aria-label="Xác nhận đăng nhập">
+          <span>Đăng nhập</span>
+        </button>
+
+      </form>
+
+    </main>
+
+    <!-- Footer chuyển sang Đăng ký (Node 1376:4328) -->
+    <footer class="auth-footer-prompt">
+      <span>Chưa có tài khoản?</span>
+      <a href="register.html" class="link-bold-green">Đăng ký ngay</a>
+    </footer>
+
+  </div>
+
+  <script>
+    // Eye toggle for password
+    const toggleBtn = document.getElementById('btnToggleLoginPwd');
+    const pwdInput = document.getElementById('login-pwd');
+    if (toggleBtn && pwdInput) {
+      toggleBtn.addEventListener('click', () => {
+        pwdInput.type = pwdInput.type === 'password' ? 'text' : 'password';
+      });
+    }
+
+    // Direct Login without validation logic
+    function handleDirectLogin() {
+      sessionStorage.setItem('isLoggedIn', 'true');
+      window.location.href = '../trip/home.html';
+    }
+  </script>
+</body>
+</html>

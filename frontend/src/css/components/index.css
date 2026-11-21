@@ -1,0 +1,9 @@
+/* ==========================================================================
+   TIER 2: SHARED COMPONENTS INDEX (src/css/components/index.css)
+   Imports all modular component stylesheets
+   ========================================================================== */
+@import url('./header.css');
+@import url('./bottom-bar.css');
+@import url('./modal.css');
+@import url('./loved-modal.css');
+@import url('./button.css');
