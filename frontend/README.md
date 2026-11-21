@@ -1,237 +1,155 @@
-# TripWise — Quy chuẩn cấu trúc Frontend (v1.0)
+# TripWise Frontend
 
-**Phạm vi:** Dự án `Group02_ComputationalThinkingProject`, phần `frontend/`.
-**Stack thống nhất:** HTML + CSS + JavaScript (ES Modules) + Vite + Capacitor (Android).
-**Mục tiêu:** Tái sử dụng giao diện từ nhánh `ui`/thư mục `UI/`, dễ tích hợp API FastAPI, hạn chế thay đổi thư mục giữa các thành viên và đóng gói APK ổn định.
+Giao diện di động (Mobile-first `393px`) cho ứng dụng lập kế hoạch du lịch **TripWise**, xây dựng bằng **HTML5 / CSS3 (kiến trúc 3 tầng) / JavaScript thuần**, đóng gói bằng **Vite Multi-Page App (MPA)** và **Capacitor Android**.
 
+---
 
-## 1. Cây thư mục chuẩn
+## 1. Công nghệ & Cấu trúc thư mục
+
+- **Frontend Core:** HTML5, CSS3 (3-Tier CSS Architecture), Vanilla JavaScript
+- **Bundler:** Vite 8 (Multi-Page App, `base: './'`)
+- **Mobile Native Wrapper:** Capacitor 8 Android (`appId: com.tripwise.app`, `webDir: dist`)
 
 ```text
-Group02_ComputationalThinkingProject/
-├── frontend/
-│   ├── index.html                    # Entry point duy nhất khi mở ứng dụng
-│   ├── pages/                        # Multi-page HTML (chỉ UI/markup)
-│   │   ├── auth/
-│   │   │   ├── login.html
-│   │   │   ├── register.html
-│   │   │   └── delete-account.html
-│   │   ├── onboarding/
-│   │   │   └── intro.html
-│   │   ├── trips/
-│   │   │   ├── plan.html
-│   │   │   ├── proposal.html
-│   │   │   ├── suggestion.html
-│   │   │   ├── edit-plan.html
-│   │   │   └── itinerary.html
-│   │   ├── explore/
-│   │   │   └── map.html
-│   │   ├── finance/
-│   │   │   ├── budget.html
-│   │   │   └── spending.html
-│   │   └── account/
-│   │       └── profile.html
-│   ├── src/
-│   │   ├── styles/
-│   │   │   ├── tokens.css           # Màu, font, spacing của Figma
-│   │   │   ├── global.css           # Reset, layout toàn ứng dụng
-│   │   │   ├── components/          # button.css, navbar.css, card.css...
-│   │   │   └── pages/               # CSS chỉ dùng cho một nhóm màn hình
-│   │   └── js/
-│   │       ├── core/                # api-client.js, config.js, auth-storage.js...
-│   │       ├── services/            # auth.service.js, trips.service.js...
-│   │       ├── features/            # Logic theo nghiệp vụ: auth/, trips/, map/...
-│   │       ├── components/          # Logic cho component dùng lại
-│   │       └── native/              # geolocation.js, share.js, platform.js...
-│   ├── public/
-│   │   └── assets/
-│   │       └── images/              # Ảnh giữ nguyên tên, không cần import JS
-│   ├── android/                     # Native Android project, commit vào Git
-│   ├── dist/                        # Vite build tự động — KHÔNG chỉnh tay
-│   ├── tests/                       # Kiểm thử UI và các luồng chức năng
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── vite.config.js
-│   ├── capacitor.config.ts
-│   ├── .env.example
-│   ├── .gitignore
-│   └── README.md
-├── backend/                         # FastAPI + TravelAgent, không sửa cấu trúc
-├── docs/
-└── README.md
+frontend/
+├── index.html                           # Entry point tự động chuyển hướng sang src/screens/auth/intro.html
+├── vite.config.js                       # Cấu hình Vite Multi-Page (14 screens) & copy static runtime assets
+├── capacitor.config.ts                  # Cấu hình Capacitor Android (TypeScript chuẩn Capacitor 8)
+├── capacitor.config.json                # Cấu hình Capacitor tương thích ngược
+├── package.json                         # Scripts chạy Web Dev, Build, Preview & Android Sync
+├── .env.example                         # Mẫu biến môi trường (API URL, Mock Mode)
+├── .gitignore                           # Quy tắc loại trừ node_modules, dist, .vite, .env & file build tạm
+├── README.md                            # Tài liệu hướng dẫn chính (file này)
+├── HowToRunFrontend.md                  # Tài liệu chạy nhanh local dự phòng
+├── run.bat                              # Script 1-click khởi động server local dự phòng trên Windows
+├── main.js                              # Client Web Components runtime & Node.js HTTP server dự phòng
+├── main.py                              # Python 3 HTTP server dự phòng (khi không dùng Vite/Node)
+├── docs/                                # Tài liệu kỹ thuật bàn giao
+│   └── frontend-ui-inventory.md         # Kiểm kê chi tiết 14 màn hình, design tokens & ma trận responsive
+├── src/
+│   ├── css/                             # Kiến trúc CSS 3 tầng (Modular CSS)
+│   │   ├── base.css                     # Tầng 1: Biến :root, Safe-Area, reset, font, khung mobile 393px
+│   │   ├── components/                  # Tầng 2: bottom-bar.css, button.css, header.css, index.css, loved-modal.css, modal.css
+│   │   └── pages/                       # Tầng 3: auth.css, budget.css, edit.css, home.css, itinerary.css, map.css, plan.css, profile.css
+│   ├── js/                              # Kiến trúc JavaScript phân lớp (Layered JS)
+│   │   ├── core/                        # Lõi ứng dụng: router.js, storage.js
+│   │   ├── services/                    # Giao tiếp API & Mock Fallback: api.service.js, auth.service.js, trip.service.js
+│   │   ├── features/                    # Logic nghiệp vụ theo miền: auth.js, budget.js, trip.js
+│   │   ├── components/                  # Logic cho component dùng lại: Header.js, BottomBar.js, LovedModal.js
+│   │   └── native/                      # Tích hợp Capacitor & thiết bị: capacitor-bridge.js, safe-area.js
+│   ├── screens/                         # 14 màn hình HTML chia theo 4 cụm nghiệp vụ
+│   │   ├── auth/                        # intro.html, login.html, register.html
+│   │   ├── trip/                        # home.html, plan.html, proposal.html, itinerary.html, edit_plan.html, suggestion.html, map.html
+│   │   ├── finance/                     # budget.html, spending.html
+│   │   └── account/                     # profile.html, delete_account.html
+│   └── images/                          # Kho tài nguyên hình ảnh tập trung duy nhất (60 tệp, không trùng lặp)
+│       ├── avatars/                     # Ảnh đại diện người dùng & logo thương hiệu TripWise (9 tệp)
+│       ├── backgrounds/                 # Ảnh nền hoa văn văn hóa, botanical & nền bản đồ (8 tệp)
+│       ├── destinations/                # Ảnh các địa điểm du lịch, quán ăn & danh lam thắng cảnh (13 tệp)
+│       └── icons/                       # Hệ thống biểu tượng giao diện SVG sắc nét (30 tệp)
+├── node_modules/                        # Thư viện phụ thuộc (Vite, Capacitor, TypeScript) cài bởi npm (KHÔNG commit)
+├── android/                             # Native Android project (Capacitor)
+├── dist/                                # Thư mục build production của Vite (KHÔNG chỉnh tay, không commit)
+└── tests/                               # Bộ script kiểm toán tự động & báo cáo Smoke Test (smoke-test-week1.md)
 ```
 
-**Thư mục mở rộng theo chức năng nhưng không đổi gốc:**
-- `pages/notice/notice.html` khi xây màn hình Notice.
-- `pages/explore/culture.html` khi xây Culture.
-- `pages/trips/history.html` khi xây lịch sử chuyến đi.
-- `src/js/services/notifications.service.js`, `src/js/features/notice/notice.js` khi tích hợp Notice.
+---
 
-## 2. Di chuyển từ UI/ hiện tại
+## 2. Yêu cầu môi trường
 
-| Nguồn trong `UI/` | Đích trong `frontend/` |
-|---|---|
-| `index.html` | `index.html` |
-| `intro.html` | `pages/onboarding/intro.html` |
-| `login.html`, `register.html`, `delete-account.html` | `pages/auth/` |
-| `plan.html`, `proposal.html`, `suggestion.html`, `edit-plan.html`, `itinerary.html` | `pages/trips/` |
-| `map.html` | `pages/explore/map.html` |
-| `budget.html`, `spending.html` | `pages/finance/` |
-| `profile.html` | `pages/account/profile.html` |
-| `css/` | Chia `src/styles/` thành `global.css`, `tokens.css`, `components/`, `pages/` |
-| `main.js` | Tách dần thành `src/js/core/`, `src/js/features/`, `src/js/services/` |
-| `assets/images/` | `public/assets/images/` |
-| `README.md` | Gộp hướng dẫn còn đúng vào `frontend/README.md` |
-| `main.py`, `run.bat` | Chỉ giữ trong nhánh cũ/backup khi cần, KHÔNG đặt vào source runtime của ứng dụng Capacitor |
+- **Chạy Web Dev & Build:**
+  - [Node.js LTS](https://nodejs.org/) (v18+ khuyến nghị) đi kèm `npm`.
+- **Build & chạy ứng dụng Android (APK):**
+  - [Android Studio](https://developer.android.com/studio) (đi kèm Android SDK & Emulator).
+  - **JDK 17+** và thiết lập biến môi trường `ANDROID_HOME` (trỏ về thư mục Android SDK, ví dụ `C:\Users\<USER>\AppData\Local\Android\Sdk`).
 
-**Chú ý:** Chỉ di chuyển sau khi lưu bản gốc và tạo branch mới. Khi đổi vị trí HTML/CSS/JS phải sửa tất cả `href`, `src`, `fetch`, đường dẫn ảnh và điều hướng. Không được coi việc copy thư mục là hoàn tất migration. **Đặc biệt**, nếu HTML đang dùng `onclick="functionName()"` và `main.js` khai báo hàm global, không chuyển thẳng script sang `type="module"` khi chưa đổi event handlers sang `addEventListener`, vì các hàm module không tự động trở thành biến global. Chuyển từng màn hình, kiểm thử rồi mới tách `main.js` theo nghiệp vụ.
+---
 
-## 3. Phân tách trách nhiệm
+## 3. Cài đặt & Chạy Web Dev (Windows CMD / PowerShell)
 
-| Vùng code | Quy định |
-|---|---|
-| `pages/` | HTML hiển thị và khai báo tham chiếu CSS/JS; không viết nghiệp vụ hoặc gọi API trực tiếp trong HTML |
-| `src/styles/` | Token, bố cục và style; không copy lại màu Figma vào nhiều file |
-| `src/js/core/` | API client HTTP chung, cấu hình không bí mật, lưu phiên, xử lý lỗi dùng chung |
-| `src/js/services/` | Mỗi nhóm API của FastAPI nằm trong `*.service.js`; không dùng `fetch` rải rác trong màn hình |
-| `src/js/features/` | Xử lý event/hiển thị dữ liệu của từng màn hình; gọi services, không chứa URL API hardcode |
-| `src/js/native/` | Tập trung gọi plugin Capacitor (GPS, chia sẻ...), xử lý quyền truy cập và fallback khi mở trên browser |
-| `public/assets/images/` | Ảnh/logo/icon dùng chung, đặt tên `kebab-case` rõ nghĩa |
-| `android/` | Cấu hình native Android, permissions, Gradle; chỉ thay đổi khi task cần native |
-| `dist/` | Build output — không sửa, không commit |
+```powershell
+# 1. Di chuyển vào thư mục frontend
+cd C:\Users\USER2\frontend
 
-Quy tắc đặt tên: file và folder `kebab-case` (trừ file do tool sinh ra); JS `camelCase` cho hàm/biến; CSS dùng class có phạm vi rõ (`.trip-card`, `.notice-item`); URL API tập trung trong services; luôn dùng ES Modules (`type="module"`).
+# 2. Cài đặt dependencies
+npm install
 
-## 4. Quy ước đường dẫn HTML và tài sản
-
-Trong `frontend/pages/auth/login.html`:
-
-```html
-<link rel="stylesheet" href="/src/styles/global.css" />
-<script type="module" src="/src/js/features/auth/login.js"></script>
-<a href="/pages/trips/plan.html">Tạo chuyến đi</a>
-<img src="/assets/images/logo-tripwise.png" alt="TripWise" />
-```
-
-- Thư mục `public/assets/images/` ánh xạ thành URL `/assets/images/...` trong Vite.
-- Các trang thuộc `pages/` phải được Vite nhận diện là **nhiều HTML entry**, không chỉ `index.html`.
-- Không nối chuỗi đường dẫn tương đối từ những thư mục HTML có độ sâu khác nhau.
-
-### Ví dụ cấu hình `vite.config.js`
-
-```js
-import { existsSync, readdirSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { defineConfig } from 'vite';
-
-function collectHtml(dir) {
-  if (!existsSync(dir)) return [];
-  return readdirSync(dir, { withFileTypes: true }).flatMap((item) => {
-    const file = join(dir, item.name);
-    if (item.isDirectory()) return collectHtml(file);
-    return item.isFile() && file.endsWith('.html') ? [resolve(file)] : [];
-  });
-}
-
-export default defineConfig({
-  input: [resolve('index.html'), ...collectHtml('pages')],
-  build: { outDir: 'dist' },
-});
-```
-
-### Cấu hình Capacitor
-
-```ts
-// capacitor.config.ts
-import type { CapacitorConfig } from '@capacitor/cli';
-const config: CapacitorConfig = {
-  appId: 'com.example.tripwise', // Đổi sang ID duy nhất đã chốt
-  appName: 'TripWise',
-  webDir: 'dist',
-};
-export default config;
-```
-
-**Quan trọng:** Nếu dùng Vite thì `webDir` phải là `dist`, KHÔNG phải `www`; `dist/` sinh tự động từ `npm run build`.
-
-## 5. Cài đặt và chạy (tại thư mục `frontend/`)
-
-Yêu cầu Node.js phiên bản tương thích với Vite đã chọn, Android Studio và Android SDK để chạy APK.
-
-```bash
-npm init -y
-npm install @capacitor/core @capacitor/android
-npm install -D @capacitor/cli vite
-```
-
-Tạo `scripts` trong `package.json`:
-
-```json
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "android:sync": "npm run build && cap sync android",
-  "android:open": "cap open android"
-}
-```
-
-Sau khi đã cấu hình `index.html`, `vite.config.js` và `capacitor.config.ts`:
-
-```bash
+# 3. Khởi chạy Vite Dev Server (hỗ trợ truy cập qua LAN với --host)
 npm run dev
-npm run build
-npx cap add android      # Chỉ thực hiện lần đầu
-npx cap sync android
+```
+
+> **Lưu ý PowerShell:** Nếu Windows chặn chạy `npm.ps1` do Execution Policy, dùng `npm.cmd run dev` hoặc chạy trên **Command Prompt (CMD)**.
+
+- Địa chỉ mặc định: `http://localhost:5173/` (tự động chuyển hướng sang `http://localhost:5173/src/screens/auth/intro.html`).
+- Build production ra `dist/`:
+  ```powershell
+  npm run build
+  ```
+- Xem trước bản build production (`dist/`):
+  ```powershell
+  npm run preview
+  ```
+  *(Mặc định chạy tại `http://localhost:4173/`)*
+
+### Đường dẫn truy cập nhanh các màn hình chính (Vite Dev `5173`)
+
+| Nhóm | Màn hình | Đường dẫn |
+| :--- | :--- | :--- |
+| **Auth** | Giới thiệu (Mặc định) | `http://localhost:5173/src/screens/auth/intro.html` |
+| **Auth** | Đăng nhập / Đăng ký | `http://localhost:5173/src/screens/auth/login.html` · `register.html` |
+| **Trip** | Trang chủ | `http://localhost:5173/src/screens/trip/home.html` |
+| **Trip** | Lập kế hoạch / Đề xuất | `http://localhost:5173/src/screens/trip/plan.html` · `proposal.html` |
+| **Trip** | Lịch trình / Tinh chỉnh / Phương án | `http://localhost:5173/src/screens/trip/itinerary.html` · `edit_plan.html` · `suggestion.html` |
+| **Trip** | Bản đồ lộ trình | `http://localhost:5173/src/screens/trip/map.html` |
+| **Finance** | Ngân sách / Thống kê chi tiêu | `http://localhost:5173/src/screens/finance/budget.html` · `spending.html` |
+| **Account** | Hồ sơ cá nhân / Xóa tài khoản | `http://localhost:5173/src/screens/account/profile.html` · `delete_account.html` |
+
+---
+
+## 4. Đồng bộ & Build Android (Capacitor)
+
+Toàn bộ lệnh khớp trực tiếp với `scripts` trong `package.json`:
+
+```powershell
+# Build Vite (dist/) và đồng bộ toàn bộ web assets sang android/
+npm run android:build
+# (Tương đương: npm run build && npx cap sync android)
+
+# Chỉ đồng bộ lại khi dist/ đã có sẵn
+npm run cap:sync
+
+# Mở dự án android/ bằng Android Studio để chạy trên Emulator hoặc thiết bị thật
 npx cap open android
 ```
 
-Các lần cập nhật Web sau đó: `npm run build && npx cap sync android` trước khi kiểm thử bản Android mới. Không chỉnh file HTML đã copy trong `android/app/src/main/assets/public/`.
+### Build file APK Debug bằng Gradle (khi máy đã cài JDK 17+ & Android SDK)
 
-## 6. Git & thay đổi cấu trúc
-
-1. Chọn một người chịu trách nhiệm `frontend/` và review PR chạm vào cấu trúc.
-2. Tạo branch từ `main` đã cập nhật; di chuyển `UI/` từ nhánh `ui` sang `frontend/` trong một PR riêng, không trộn feature mới.
-3. PR migration phải có kiểm tra: `npm run build` PASS, mọi trang còn tồn tại trong `dist/`, chạy được trong Android, link/ảnh/CSS không lỗi.
-4. Không tự ý thêm folder cấp cao mới dưới `frontend/`, không đổi tên các folder cố định hoặc chuyển stack công nghệ. Ngoại lệ phải qua PR và cập nhật tài liệu này.
-5. `frontend/` sở hữu giao diện và gọi API; `backend/` sở hữu API và AI TravelAgent; phải chốt API contract ở `docs/`.
-6. Khi merge xong, `UI/` không còn là nguồn code hoạt động; có thể giữ nhánh cũ làm backup, tránh duy trì hai phiên bản song song.
-7. Mỗi PR cần ghi rõ ảnh chụp màn hình trước/sau trên Android, task liên quan, API/mock, cách kiểm thử.
-
-`.gitignore` của frontend ít nhất cần:
-
-```gitignore
-node_modules/
-dist/
-.env
-.env.*.local
-android/.gradle/
-android/app/build/
-android/build/
-android/local.properties
-*.keystore
-*.jks
-.DS_Store
+```powershell
+cd android
+.\gradlew.bat assembleDebug
 ```
 
-Commit `package-lock.json`, `vite.config.js`, `capacitor.config.ts`, source và project `android/` (trừ file sinh ra hoặc bí mật). Không đưa khóa LLM, khóa API server hoặc mật khẩu DB vào Frontend: giá trị `VITE_*` trong bundle đều có thể bị xem bởi người dùng ứng dụng.
+File APK đầu ra sau khi build thành công:
+`android\app\build\outputs\apk\debug\app-debug.apk`
 
-## 7. Tiêu chí đóng băng kiến trúc (Definition of Done)
+> **Lưu ý khi gọi API nội bộ (HTTP) ở các tuần sau:** `AndroidManifest.xml` đã có quyền `android.permission.INTERNET`. Nếu cần gọi local dev API qua HTTP (không phải HTTPS), bổ sung `android:usesCleartextTraffic="true"` vào thẻ `<application>` (chỉ dùng cho môi trường dev) hoặc cấu hình `network_security_config.xml`.
 
-- [ ] Có một thư mục `frontend/` duy nhất được dùng để build Mobile App.
-- [ ] Tất cả các HTML đang dùng đã được chuyển khỏi `UI/` vào `frontend/index.html` hoặc `frontend/pages/...`.
-- [ ] Asset, CSS, JS đều dùng đường dẫn chuẩn; không còn link hỏng.
-- [ ] `npm run dev` chạy được trên máy phát triển.
-- [ ] `npm run build` tạo đủ các HTML trong `dist/`.
-- [ ] `npx cap sync android` hoàn tất.
-- [ ] APK cài được lên một máy Android; các trang chính hiển thị đúng Figma.
-- [ ] API URL, dịch vụ API và native plugins được đặt ở đúng thư mục.
-- [ ] `README.md` có lệnh chạy, phiên bản Node, cấu hình `.env.example`, cách build Android.
-- [ ] PR migration được review và merge; cả nhóm thống nhất không chỉnh cấu trúc tùy ý.
+---
 
-## 8. Nguồn kỹ thuật
+## 5. Biến môi trường & Script chạy dự phòng
 
-- https://capacitorjs.com/docs/getting-started
-- https://capacitorjs.com/docs/android
-- https://vite.dev/guide/build
-- https://vite.dev/guide/assets
+- **`.env.example` (chuẩn bị cho tích hợp Backend):** Khi kết nối API ở các tuần tiếp theo, sao chép `.env.example` thành `.env` (chứa biến tiền tố `VITE_`, ví dụ `VITE_API_BASE_URL`). **Tuyệt đối không commit file `.env` thật** lên Git.
+- **File chạy nhanh dự phòng (Legacy Local Server):** Dự án giữ lại `run.bat`, `main.js` (Node.js server cổng `3000`), `main.py` (Python 3 server dự phòng) và `HowToRunFrontend.md` để thành viên có thể xem nhanh UI cục bộ mà không cần cài `node_modules`.
+
+---
+
+## 6. Xử lý nhanh 4 lỗi thường gặp
+
+1. **Cổng `5173` / `4173` / `3000` đang bị chiếm (`EADDRINUSE`):**
+   - Tắt terminal cũ đang chạy server (`Ctrl + C`), hoặc đổi cổng trực tiếp: `npx vite --port 5174`.
+2. **Thêm màn hình HTML mới nhưng khi build `dist/` không thấy file (lỗi 404):**
+   - Mọi màn hình mới trong `src/screens/**` bắt buộc phải được khai báo thêm trong `build.rollupOptions.input` của file `vite.config.js`, sau đó chạy lại `npm run build`.
+3. **Lỗi 404 hình ảnh / CSS khi mở app trên Android:**
+   - Do chưa đồng bộ `dist/` mới nhất sang `android/app/src/main/assets/public/`. Chạy lại `npm run android:build` (`npm run build && npx cap sync android`).
+4. **Giao diện trên Android vẫn hiện bản cũ (lỗi cache WebView):**
+   - Trong Android Studio chọn **Build → Clean Project**, gỡ app cũ trên Emulator/máy thật (hoặc xóa dữ liệu ứng dụng), chạy lại `npm run android:build` rồi nhấn **Run** lại.
