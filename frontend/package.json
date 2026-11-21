@@ -1,0 +1,22 @@
+{
+  "name": "tripwise-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TripWise Mobile-First Frontend (Vite MPA + Capacitor Android)",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "npx cap sync android",
+    "android:build": "npm run build && npx cap sync android"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/core": "^8.6.2"
+  }
+}

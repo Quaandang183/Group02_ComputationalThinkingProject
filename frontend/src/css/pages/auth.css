@@ -1,0 +1,675 @@
+/* ==========================================================================
+   TIER 3 - PAGE CLUSTER: AUTH (src/css/pages/auth.css)
+   Screens: intro.html, login.html, register.html
+   ========================================================================== */
+
+/* ==========================================================================
+   AUTH SCREENS ENHANCEMENTS (Intro, Login, Register)
+   ========================================================================== */
+
+/* ==========================================================================
+   AUTH SCREENS SYSTEM: Intro, Login, Register (Figma Page 3 Exact Spec)
+   ========================================================================== */
+
+
+/* Khung chung cho các trang xác thực (393px x 852px) */
+.intro-container,
+.auth-form-container {
+  width: 100%;
+  max-width: 393px;
+  height: 852px;
+  max-height: 852px;
+  border-radius: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 600px) {
+
+  .intro-container,
+  .auth-form-container {
+    width: 100%;
+    max-width: 430px;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* --- TRANG GIỚI THIỆU (INTRO.HTML) --- */
+.intro-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.intro-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.intro-dark-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, rgba(13, 26, 17, 0.45) 55%, rgba(9, 21, 14, 0.95) 85%, #06110a 100%);
+}
+
+.intro-header-brand {
+  position: relative;
+  z-index: 10;
+  padding: 40px 24px 0 24px;
+}
+
+.intro-logo-badge {
+  width: 78px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+}
+
+.intro-footer-section {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px 20px 24px;
+  gap: 16px;
+}
+
+.intro-main-headline {
+  font-family: var(--font-main);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 34px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.intro-auth-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-social-pill {
+  width: 100%;
+  height: 48px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-social-pill:active {
+  transform: scale(0.97);
+}
+
+.btn-social-pill.google {
+  background: #ffffff;
+  color: #1e3f20;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.btn-social-pill.google:hover {
+  background: #f5f5f5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.btn-social-pill.apple {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btn-social-pill.apple:hover {
+  background: #1c1c1c;
+}
+
+.btn-social-pill.phone {
+  background: rgba(14, 25, 18, 0.9);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.btn-social-pill.phone:hover {
+  background: rgba(22, 38, 28, 0.95);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.intro-switch-auth-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.88);
+  margin-top: 4px;
+}
+
+.link-bold-white {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* .ios-home-bar {
+  width: 134px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  align-self: center;
+  margin-top: 6px;
+} */
+
+
+.auth-main-content {
+  position: relative;
+  z-index: 10;
+  padding: 16px 24px 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-scroll-container {
+  overflow-y: auto;
+}
+
+.register-form-content {
+  padding-bottom: calc(28px + var(--safe-bottom));
+}
+
+.auth-page-title {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-forest-dark);
+  margin: 12px 0 20px 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-fields-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Gap trên giữa các dòng chữ và ô điền là 12px */
+}
+
+.auth-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Khoảng cách từ dòng chữ đến ô điền */
+}
+
+.auth-field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-forest-dark);
+}
+
+.auth-input-box {
+  height: 52px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(26, 54, 40, 0.12);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.auth-input-box:focus-within {
+  border-color: var(--c-emerald);
+  box-shadow: 0 0 0 3px rgba(11, 132, 87, 0.15);
+}
+
+.auth-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--c-forest-dark);
+}
+
+.auth-input::placeholder {
+  color: #8b9987;
+}
+
+.btn-pwd-eye {
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  margin-right: -10px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #758071;
+  flex-shrink: 0;
+}
+
+.btn-pwd-eye:hover {
+  color: var(--c-forest-deep);
+}
+
+.auth-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.auth-forgot-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  text-decoration: none;
+}
+
+.auth-forgot-link:hover {
+  color: var(--c-emerald);
+  text-decoration: underline;
+}
+
+.btn-auth-submit {
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--c-emerald);
+  color: #ffffff;
+  border: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  box-shadow: 0 4px 14px rgba(11, 132, 87, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-auth-submit:hover {
+  background: var(--c-emerald-hover);
+  box-shadow: 0 6px 18px rgba(11, 132, 87, 0.45);
+}
+
+.btn-auth-submit:active {
+  transform: scale(0.98);
+}
+
+.auth-footer-prompt {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  padding: 20px 24px calc(24px + var(--safe-bottom)) 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--c-forest-dark);
+}
+
+.link-bold-green {
+  color: var(--c-emerald);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-bold-green:hover {
+  text-decoration: underline;
+}
+
+/* Checkbox điều khoản */
+.auth-terms-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--c-forest-dark);
+  cursor: pointer;
+  margin-top: 12px;
+  /* Gap trên 12px theo đúng yêu cầu */
+  margin-bottom: 12px;
+  /* Gap dưới 12px theo đúng yêu cầu */
+}
+
+.auth-terms-checkbox-row input {
+  margin-top: 2px;
+  accent-color: var(--c-emerald);
+}
+
+/* Divider "Hoặc" */
+.auth-or-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--c-border-light);
+}
+
+.divider-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+/* Social Row 2 nút vuông bo tròn */
+.auth-social-row {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-social-half {
+  flex: 1;
+  height: 48px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--c-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-forest-dark);
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.btn-social-half:hover {
+  background: var(--c-bg-tint);
+}
+
+.btn-social-half.apple {
+  background: #111a14;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-social-half.apple:hover {
+  background: #1e2c22;
+}
+
+.btn-social-half.phone {
+  background: #ffffff;
+  color: #1E3F20;
+  border: 1px solid var(--c-border-light);
+  cursor: pointer;
+}
+
+.btn-social-half.phone:hover {
+  background: #F4F8F2;
+  border-color: #0B8457;
+  color: #0B8457;
+  transform: translateY(-1px);
+}
+
+.btn-social-half.phone:active {
+  transform: scale(0.97);
+}
+
+.btn-social-half.google:hover {
+  background: #F8FAFC;
+  border-color: #0B8457;
+  transform: translateY(-1px);
+}
+
+.btn-social-half.google:active {
+  transform: scale(0.97);
+}
+
+
+/* ==========================================================================
+   INTRO SCREEN (FIGMA NODE 1376:4329) - MẪU ẢNH 2
+   ========================================================================== */
+.intro-container-v2 {
+  position: relative;
+  width: 100%;
+  max-width: 393px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #0F1C14;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .intro-container-v2 {
+    max-width: 430px;
+  }
+}
+
+.intro-brand-header {
+  position: absolute;
+  top: calc(40px + var(--safe-top));
+  left: 20px;
+  z-index: 10;
+}
+
+.intro-brand-logo-img {
+  width: 82px;
+  height: auto;
+  display: block;
+}
+
+.intro-bg-full {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+}
+
+.intro-dark-gradient-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380px;
+  background: linear-gradient(180deg, rgba(15, 28, 20, 0) 0%, rgba(15, 28, 20, 0.72) 28%, rgba(15, 28, 20, 0.88) 65%, rgba(15, 28, 20, 0.96) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.intro-bottom-content {
+  position: relative;
+  z-index: 5;
+  margin-top: auto;
+  padding: 0 24px calc(28px + var(--safe-bottom)) 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.intro-auth-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-intro-social {
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-main), 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn-intro-social.google {
+  background: #FFFFFF;
+  color: #1E3F20;
+  border: 1px solid #DFE3D7;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.btn-intro-social.google:hover {
+  background: #F8FAFC;
+  transform: translateY(-1px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn-intro-social.google:active {
+  transform: translateY(0);
+}
+
+.btn-intro-social.apple {
+  background: #000000;
+  color: #FFFFFF;
+  border: 1px solid #000000;
+}
+
+.btn-intro-social.apple:hover {
+  background: #1A1A1A;
+  transform: translateY(-1px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-intro-social.apple:active {
+  transform: translateY(0);
+}
+
+/* Nút Đăng nhập bằng số điện thoại ở Intro (Kính mờ tương phản cao) */
+.btn-intro-social.phone {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-intro-social.phone:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.65) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-intro-social.phone:active {
+  transform: translateY(0) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-intro-social.phone svg {
+  stroke: #FFFFFF !important;
+}
+
+.intro-login-prompt-row {
+  margin-top: 2px;
+  font-family: var(--font-main), 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.88);
+  text-align: center;
+}
+
+.intro-login-prompt-row a {
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.intro-login-prompt-row a:hover {
+  opacity: 0.85;
+}
+
+.intro-headline-serif-box {
+  margin-top: 8px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.intro-headline-serif-text {
+  font-family: 'Luxurious Roman', 'Playfair Display', Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+  margin: 0;
+  text-align: center;
+}
+
+/* .intro-home-bar-indicator {
+  width: 140px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  margin-top: 14px;
+  opacity: 0.9;
+} */
+
+
+/* Interactive States - Auth Cluster */
+.btn-auth-submit,
+.btn-intro-social,
+.btn-pwd-eye {
+  cursor: pointer !important;
+  transition: opacity 0.2s ease, transform 0.15s ease, filter 0.2s ease, background-color 0.2s ease !important;
+}
