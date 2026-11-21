@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TripWise · Đề xuất phương án</title>
+  <link rel="icon" type="image/png" href="../../../assets/logo-circle-CvHArTU0.png">
+  <script src="../../../main.js" defer></script>
+  <link rel="stylesheet" crossorigin href="../../../assets/button-B-EuB5IW.css">
+  <link rel="stylesheet" crossorigin href="../../../assets/loved-modal-B-SV_S8d.css">
+  <link rel="stylesheet" crossorigin href="../../../assets/edit-DEEUJRvW.css">
+</head>
+
+<body class="phone-screen-body">
+  <div class="app-container">
+
+    <div class="suggestion-page-container">
+      <!-- Background Cultural Pattern (Figma Node 1376:2871 - 10% Opacity) -->
+      <img src="../../../assets/cultural_pattern-BjBGI-8Y.png" alt="Cultural Pattern" class="suggestion-bg-pattern"
+        onerror="this.src='../../images/backgrounds/botanical_bg.png'">
+
+      <div class="suggestion-content-wrap">
+
+        <!-- Destination Header (Figma Node 1376:2872) -->
+        <header class="suggestion-header">
+          <!-- Top Row: Back Button & Breadcrumb -->
+          <div class="suggestion-nav-row">
+            <a href="itinerary.html" class="suggestion-btn-back" title="Quay lại lịch trình" aria-label="Quay lại">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="suggestion-main-title">Đề xuất</h1>
+        </header>
+
+        <!-- Main Alternatives Content (Figma Node 1376:2880) -->
+        <main class="suggestion-body" role="radiogroup" aria-label="Danh sách phương án đề xuất">
+
+          <!-- Weather Context Card (Figma Node 1376:2881) -->
+          <section class="suggestion-weather-card" aria-label="Thông tin cảnh báo thời tiết">
+            <div class="suggestion-weather-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="16" y1="13" x2="16" y2="21"></line>
+                <line x1="8" y1="13" x2="8" y2="21"></line>
+                <line x1="12" y1="15" x2="12" y2="23"></line>
+                <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+              </svg>
+            </div>
+            <div class="suggestion-weather-text">
+              <p class="suggestion-weather-title">Hôm nay 14:30 - Thời tiết: Mưa dông nhẹ.</p>
+              <p class="suggestion-weather-sub">Gợi ý điểm trong nhà thay thế Hồ Xuân Hương:</p>
+            </div>
+          </section>
+
+          <!-- Alternative Option A (Figma Node 1376:2887 - Selected by default) -->
+          <article class="suggestion-option-card selected" id="optionCardA" role="radio" aria-checked="true"
+            tabindex="0" onclick="selectOption('A')">
+            <div class="suggestion-card-photo-box">
+              <img src="../../../assets/place_ga_dalat-CCXBebgh.png" alt="Ga Đà Lạt & Tuyến tàu cổ Trại Mát"
+                class="suggestion-card-img" onerror="this.src='../../images/destinations/dest_dalat.png'">
+
+              <!-- Badge: ĐƯỢC ĐỀ XUẤT (Figma Node 1376:2890) -->
+              <div class="suggestion-badge-pill recommended">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFFFFF">
+                  <path
+                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                </svg>
+                <span>ĐƯỢC ĐỀ XUẤT</span>
+              </div>
+
+              <!-- Selection State Radio (Figma Node 1376:2894) -->
+              <div class="suggestion-radio-circle" aria-hidden="true">
+                <div class="suggestion-radio-dot" id="radioDotA"></div>
+              </div>
+            </div>
+
+            <!-- Option Information (Figma Node 1376:2896) -->
+            <div class="suggestion-info-box">
+              <h2 class="suggestion-card-name">Ga Đà Lạt &amp; Tuyến tàu cổ Trại Mát</h2>
+
+              <div class="suggestion-card-meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D3B26" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="suggestion-meta-time">14:30 - 16:00</span>
+                <span class="suggestion-meta-shelter">• Có mái che</span>
+              </div>
+
+              <div class="suggestion-tag-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z">
+                  </path>
+                  <circle cx="12" cy="13" r="3"></circle>
+                </svg>
+                <span>Chụp ảnh &amp; phong cảnh lịch sử</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Alternative Option B (Figma Node 1376:2907) -->
+          <article class="suggestion-option-card" id="optionCardB" role="radio" aria-checked="false" tabindex="0"
+            onclick="selectOption('B')">
+            <div class="suggestion-card-photo-box">
+              <img src="../../../assets/place_bao_tang-B9_w2BEj.png" alt="Bảo tàng Lâm Đồng & Cung Nam Phương Hoàng Hậu"
+                class="suggestion-card-img" onerror="this.src='../../images/destinations/dest_temple.png'">
+
+              <!-- Badge: B • KHÁM PHÁ VĂN HÓA (Figma Node 1376:2910) -->
+              <div class="suggestion-badge-pill culture">
+                <span>B • KHÁM PHÁ VĂN HÓA</span>
+              </div>
+
+              <!-- Selection State Radio (Figma Node 1376:2912) -->
+              <div class="suggestion-radio-circle" aria-hidden="true">
+                <div class="suggestion-radio-dot" id="radioDotB"></div>
+              </div>
+            </div>
+
+            <!-- Option Information (Figma Node 1376:2913) -->
+            <div class="suggestion-info-box">
+              <h2 class="suggestion-card-name">Bảo tàng Lâm Đồng &amp; Cung Nam Phương Hoàng Hậu</h2>
+
+              <div class="suggestion-card-meta-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D3B26" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 16 14"></polyline>
+                </svg>
+                <span class="suggestion-meta-time">14:30 - 16:30</span>
+                <span class="suggestion-meta-shelter">• Trong nhà</span>
+              </div>
+
+              <div class="suggestion-tag-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="3" y1="22" x2="21" y2="22"></line>
+                  <line x1="6" y1="18" x2="6" y2="11"></line>
+                  <line x1="10" y1="18" x2="10" y2="11"></line>
+                  <line x1="14" y1="18" x2="14" y2="11"></line>
+                  <line x1="18" y1="18" x2="18" y2="11"></line>
+                  <polygon points="12 2 20 7 4 7"></polygon>
+                </svg>
+                <span>Văn hóa lịch sử</span>
+              </div>
+            </div>
+          </article>
+
+        </main>
+
+        <!-- Apply Alternative Action Area (Figma Node 1376:2924) -->
+        <footer class="suggestion-apply-footer">
+          <div class="suggestion-status-row">
+            <span class="suggestion-status-label" id="statusLabel">Đang chọn phương án A</span>
+            <span class="suggestion-status-time" id="statusTime">14:30 - 16:00</span>
+          </div>
+
+          <button type="button" class="suggestion-btn-apply" id="btnApplyAlternative" onclick="applyChosenAlternative()"
+            aria-label="Áp dụng phương án này">
+            <span>Áp dụng phương án này</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+        </footer>
+
+      </div>
+
+      <!-- Floating Bottom Navigation Bar (Figma Node 1376:2931 / 1376:3576) -->
+      <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
+        <a href="home.html" class="dock-btn-row">
+          <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20stroke='%231E3F20'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3cpath%20d='M3%209.5L12%202.5L21%209.5V20.5C21%2021.0523%2020.5523%2021.5%2020%2021.5H4C3.44772%2021.5%203%2021.0523%203%2020.5V9.5Z'/%3e%3cpolyline%20points='9%2021.5%209%2012.5%2015%2012.5%2015%2021.5'/%3e%3c/svg%3e" alt="Home">
+          <span>Trang chủ</span>
+        </a>
+        <a href="itinerary.html" class="dock-btn-row active">
+          <img src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M3.33337%205.8335H11.6667M15%205.8335H16.6667M3.33337%2014.1668H5.00004M8.33337%2014.1668H16.6667'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M15.0001%205.83341C15.0001%206.75389%2014.2539%207.50008%2013.3334%207.50008C12.4129%207.50008%2011.6667%206.75389%2011.6667%205.83341C11.6667%204.91294%2012.4129%204.16675%2013.3334%204.16675C14.2539%204.16675%2015.0001%204.91294%2015.0001%205.83341Z'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M8.33333%2014.1667C8.33333%2015.0871%207.58714%2015.8333%206.66667%2015.8333C5.74619%2015.8333%205%2015.0871%205%2014.1667C5%2013.2462%205.74619%2012.5%206.66667%2012.5C7.58714%2012.5%208.33333%2013.2462%208.33333%2014.1667Z'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Itinerary">
+          <span>Lịch trình</span>
+        </a>
+        <a href="map.html" class="dock-btn-row">
+          <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.25%2011C19.25%2015.5563%2015.5563%2019.25%2011%2019.25C6.44365%2019.25%202.75%2015.5563%202.75%2011C2.75%206.44365%206.44365%202.75%2011%202.75C15.5563%202.75%2019.25%206.44365%2019.25%2011Z'%20stroke-width='1.65'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M14.2083%207.79175L12.375%2012.3751L7.79163%2014.2084L9.62496%209.62508L14.2083%207.79175Z'%20stroke-width='1.65'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Map">
+          <span>Bản đồ</span>
+        </a>
+        <a href="../account/profile.html" class="dock-btn-row">
+          <img src="data:image/svg+xml,%3csvg%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M9.00001%209.75C11.0709%209.75%2012.7496%208.07107%2012.7496%206C12.7496%203.92893%2011.0709%202.25%209.00001%202.25C6.92915%202.25%205.25039%203.92893%205.25039%206C5.25039%208.07107%206.92915%209.75%209.00001%209.75ZM9.00001%209.75C10.5911%209.75%2012.1171%2010.3821%2013.2422%2011.5074C14.3673%2012.6326%2014.9994%2014.1587%2014.9994%2015.75M9.00001%209.75C7.40887%209.75%205.8829%2010.3821%204.75779%2011.5074C3.63269%2012.6326%203.00061%2014.1587%203.00061%2015.75'%20stroke-width='1.7'%20stroke-linecap='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Profile">
+          <span>Cá nhân</span>
+        </a>
+      </nav>
+
+    </div>
+
+  </div>
+
+  <script>
+    let currentOption = 'A';
+
+    const OPTION_DATA = {
+      'A': {
+        label: 'Đang chọn phương án A',
+        time: '14:30 - 16:00',
+        title: 'Ga Đà Lạt & Tuyến tàu cổ Trại Mát',
+        timeRange: '14:30 - 16:00',
+        shelter: 'Có mái che',
+        image: '../../images/destinations/place_ga_dalat.png'
+      },
+      'B': {
+        label: 'Đang chọn phương án B',
+        time: '14:30 - 16:30',
+        title: 'Bảo tàng Lâm Đồng & Cung Nam Phương Hoàng Hậu',
+        timeRange: '14:30 - 16:30',
+        shelter: 'Trong nhà',
+        image: '../../images/destinations/place_bao_tang.png'
+      }
+    };
+
+    function selectOption(opt) {
+      currentOption = opt;
+      const cardA = document.getElementById('optionCardA');
+      const cardB = document.getElementById('optionCardB');
+      const statusLabel = document.getElementById('statusLabel');
+      const statusTime = document.getElementById('statusTime');
+
+      if (opt === 'A') {
+        cardA.classList.add('selected');
+        cardA.setAttribute('aria-checked', 'true');
+        cardB.classList.remove('selected');
+        cardB.setAttribute('aria-checked', 'false');
+        statusLabel.textContent = OPTION_DATA['A'].label;
+        statusTime.textContent = OPTION_DATA['A'].time;
+      } else {
+        cardB.classList.add('selected');
+        cardB.setAttribute('aria-checked', 'true');
+        cardA.classList.remove('selected');
+        cardA.setAttribute('aria-checked', 'false');
+        statusLabel.textContent = OPTION_DATA['B'].label;
+        statusTime.textContent = OPTION_DATA['B'].time;
+      }
+    }
+
+    // Keyboard navigation (Enter / Space)
+    document.getElementById('optionCardA').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectOption('A');
+      }
+    });
+
+    document.getElementById('optionCardB').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectOption('B');
+      }
+    });
+
+    function applyChosenAlternative() {
+      const chosen = OPTION_DATA[currentOption];
+      localStorage.setItem('tripwise_selected_alternative', currentOption);
+      localStorage.setItem('tripwise_alt_name', chosen.title);
+      localStorage.setItem('tripwise_alt_time', chosen.timeRange);
+      localStorage.setItem('tripwise_alt_shelter', chosen.shelter);
+      localStorage.setItem('tripwise_alt_img', chosen.image);
+
+      // Chuyển về itinerary kèm tham số applied=1
+      window.location.href = 'itinerary.html?applied=1';
+    }
+
+    // Load any existing saved option
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('tripwise_selected_alternative');
+      if (saved && (saved === 'A' || saved === 'B')) {
+        selectOption(saved);
+      }
+    });
+  </script>
+</body>
+
+</html>

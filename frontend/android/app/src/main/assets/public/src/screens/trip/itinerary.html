@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TripWise · Lịch trình</title>
+  <link rel="icon" type="image/png" href="../../../assets/logo-circle-CvHArTU0.png">
+  <script src="../../../main.js" defer></script>
+  <link rel="stylesheet" crossorigin href="../../../assets/tripItinerary-CQb7oJ1i.css">
+  <link rel="stylesheet" crossorigin href="../../../assets/button-B-EuB5IW.css">
+  <link rel="stylesheet" crossorigin href="../../../assets/loved-modal-B-SV_S8d.css">
+</head>
+<body class="phone-screen-body">
+  <div class="app-container">
+    
+    <div class="subpage-container">
+      <!-- Background Botanical Art -->
+      <img src="../../../assets/botanical_bg-CE5FKeHN.png" alt="Botanical Art" class="bg-botanical-art" style="opacity: 0.3;">
+
+      <!-- Traveler Header (Chuẩn chức năng như Trang chủ) -->
+      <header class="traveler-header">
+        <div class="traveler-left">
+          <a href="../account/profile.html" class="avatar-ring" title="Xem hồ sơ cá nhân" aria-label="Xem hồ sơ cá nhân">
+            <img src="../../../assets/avatar-BnjrL7Wx.png" alt="Linh Nguyễn">
+          </a>
+          <div class="greeting-block">
+            <span class="welcome-msg">Xin chào,</span>
+            <span class="traveler-name">Linh Nguyễn</span>
+          </div>
+        </div>
+        <div class="traveler-actions">
+          <!-- Nút chuông thông báo -->
+          <button type="button" class="btn-header-round" id="btnOpenNotification" title="Xem thông báo" aria-label="Xem thông báo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3f20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notif-badge-pill">12</span>
+          </button>
+
+          <!-- Nút Yêu thích luôn hiển thị trên header -->
+          <button type="button" class="btn-header-round" id="btnOpenHeaderLoved" title="Địa điểm yêu thích" aria-label="Địa điểm yêu thích">
+            <img src="data:image/svg+xml,%3csvg%20width='19'%20height='19'%20viewBox='0%200%2019%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.58252%207.52099C1.58254%206.64001%201.8498%205.77977%202.34902%205.05387C2.84823%204.32796%203.55591%203.77056%204.37859%203.45527C5.20127%203.13997%206.10024%203.08163%206.95678%203.28794C7.81331%203.49425%208.58711%203.95551%209.17598%204.61079C9.21745%204.65514%209.2676%204.69049%209.3233%204.71466C9.379%204.73883%209.43907%204.7513%209.49979%204.7513C9.56052%204.7513%209.62059%204.73883%209.67629%204.71466C9.73199%204.69049%209.78214%204.65514%209.82361%204.61079C10.4106%203.95125%2011.1846%203.48612%2012.0425%203.2773C12.9005%203.06848%2013.8016%203.12589%2014.6261%203.44187C15.4506%203.75786%2016.1593%204.31744%2016.6579%205.04614C17.1565%205.77483%2017.4213%206.63808%2017.4171%207.52099C17.4171%209.33392%2016.2295%2010.6877%2015.0419%2011.8752L10.6937%2016.0814C10.5462%2016.2508%2010.3643%2016.3869%2010.1601%2016.4806C9.95596%2016.5743%209.73418%2016.6235%209.50952%2016.625C9.28487%2016.6264%209.06248%2016.58%208.85714%2016.4889C8.6518%2016.3977%208.4682%2016.2639%208.31854%2016.0964L3.9577%2011.8752C2.77011%2010.6877%201.58252%209.34184%201.58252%207.52099Z'%20stroke-width='1.7'%20stroke-linecap='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Yêu thích" width="18" height="18">
+          </button>
+        </div>
+      </header>
+
+      <!-- Bảng Dropdown Thông Báo ngay bên dưới nút chuông -->
+      <div class="notification-dropdown-panel" id="notificationDropdownPanel" role="dialog" aria-label="Bảng thông báo">
+        <div class="notif-panel-header">
+          <div class="notif-panel-date">Hôm nay, 24/10</div>
+          <div class="notif-divider-row">
+            <span class="notif-divider-label">CHƯA ĐỌC</span>
+            <span class="notif-divider-line"></span>
+            <span class="notif-divider-count">02</span>
+          </div>
+        </div>
+
+        <!-- Card 1: Thời tiết tại Đà Lạt -->
+        <div class="notif-card-box">
+          <div class="notif-card-heading">
+            <div class="notif-sculptural-icon rain">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D4D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                <path d="M16 14v6"></path>
+                <path d="M8 14v6"></path>
+                <path d="M12 16v6"></path>
+              </svg>
+            </div>
+            <div class="notif-card-info">
+              <div class="notif-card-title">Thời tiết tại Đà Lạt</div>
+              <div class="notif-card-meta">
+                <span class="notif-smart-pill">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="#0B8457"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  Gợi ý thông minh
+                </span>
+                <span class="notif-time-status">
+                  09:41 <span class="notif-unread-dot"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="notif-card-desc">
+            Dự báo mưa lớn quanh Hồ Xuân Hương lúc 15:00. Đã chuẩn bị phương án chuyển sang Ga Đà Lạt.
+          </div>
+          <div class="notif-card-actions">
+            <button type="button" class="btn-notif-view" onclick="window.location.reload()">Xem</button>
+            <button type="button" class="btn-notif-cta" onclick="window.location.href='suggestion.html'">
+              <span>Đổi điểm đến</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Tối ưu lộ trình -->
+        <div class="notif-card-box">
+          <div class="notif-card-heading">
+            <div class="notif-sculptural-icon car">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A5614" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+                <circle cx="7" cy="17" r="2"></circle>
+                <path d="M9 17h6"></path>
+                <circle cx="17" cy="17" r="2"></circle>
+              </svg>
+            </div>
+            <div class="notif-card-info">
+              <div class="notif-card-title">Tối ưu lộ trình</div>
+              <div class="notif-card-meta">
+                <span class="notif-smart-pill">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="#0B8457"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  Gợi ý thông minh
+                </span>
+                <span class="notif-time-status">
+                  08:55 <span class="notif-unread-dot"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="notif-card-desc">
+            Khu vực đèo Prenn lưu lượng đông. Gợi ý đi hướng đèo Mimosa.
+          </div>
+          <div class="notif-card-actions">
+            <button type="button" class="btn-notif-view" onclick="window.location.reload()">Xem</button>
+            <button type="button" class="btn-notif-cta" onclick="window.location.href='map.html'">
+              <span>Đổi đường đi</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Divider: Hôm qua, 23/10 -->
+        <div class="notif-divider-row" style="margin-top: 4px;">
+          <span class="notif-divider-label" style="color: #75816F;">Hôm qua, 23/10</span>
+          <span class="notif-divider-line"></span>
+        </div>
+
+        <!-- Journey Progress 100% -->
+        <div class="notif-progress-banner">
+          <div class="notif-progress-ring">100%</div>
+          <div style="flex: 1;">
+            <div style="font-size: 15px; font-weight: 700; color: #1E3F20;">Tuyệt vời!</div>
+            <div style="font-size: 11px; color: #657064;">Đã cập nhật 3/3 lịch trình</div>
+          </div>
+          <button type="button" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(30, 63, 32, 0.05); border: 1px solid rgba(30, 63, 32, 0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.location.reload()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m9 16 2 2 4-4"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Itinerary Content -->
+      <div class="subpage-scroll-content">
+        <!-- Group Header: Tiêu đề, Tên chuyến đi, Tab chuyển đổi với khoảng cách gap 12px -->
+        <div class="trip-header-section">
+          <!-- Page Title & Actions -->
+          <div class="page-heading-row">
+            <h1 class="page-main-title">Lịch trình</h1>
+            <div class="page-heading-actions">
+              <!-- Nút chia sẻ -->
+              <button type="button" class="btn-heading-action" id="btnShareItinerary" title="Chia sẻ lịch trình" aria-label="Chia sẻ lịch trình">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+              </button>
+              <!-- Nút chỉnh sửa -->
+              <button type="button" class="btn-heading-action" id="btnEditItinerary" title="Chỉnh sửa lịch trình" aria-label="Chỉnh sửa lịch trình" onclick="window.location.href='edit_plan.html?tab=manual';">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tên chuyến đi (ở giữa tiêu đề và tab toggle) -->
+          <div class="trip-title-subbar">
+            <span class="trip-name-txt">Trốn phố về rừng Đà Lạt</span>
+          </div>
+
+          <!-- Toggle Tabs: Lịch trình | Chi phí -->
+          <div class="pill-tab-toggle">
+            <a href="itinerary.html" class="pill-tab-btn active">Lịch trình</a>
+            <a href="../finance/budget.html" class="pill-tab-btn">Chi phí</a>
+          </div>
+        </div>
+
+        <!-- Month Selector -->
+        <div class="month-selector-bar">
+          <span class="current-month-txt">Tháng 10, 2026</span>
+          <div class="month-nav-btns">
+            <button type="button" class="btn-month-arrow" aria-label="Tháng trước">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="btn-month-arrow" aria-label="Tháng sau">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Week Dates Track (4 date items: 23, 24, 25, 26 - Kích thước lớn 74px, cách đều nhau) -->
+        <div class="week-dates-track">
+          <button type="button" class="date-pill-item" onclick="selectDate(this)">
+            <span class="num">23</span>
+            <span class="dow">Thứ Sáu</span>
+            <span class="indicator-dot"></span>
+          </button>
+          <button type="button" class="date-pill-item active" onclick="selectDate(this)">
+            <span class="num">24</span>
+            <span class="dow">Thứ Bảy</span>
+            <span class="indicator-dot"></span>
+          </button>
+          <button type="button" class="date-pill-item" onclick="selectDate(this)">
+            <span class="num">25</span>
+            <span class="dow">Chủ Nhật</span>
+            <span class="indicator-dot"></span>
+          </button>
+          <button type="button" class="date-pill-item" onclick="selectDate(this)">
+            <span class="num">26</span>
+            <span class="dow">Thứ Hai</span>
+            <span class="indicator-dot"></span>
+          </button>
+        </div>
+
+        <!-- Day Overview & Weather -->
+        <div class="day-weather-bar">
+          <span class="day-heading-txt">Thứ Bảy - 24 Tháng 10, 2026</span>
+          <div class="weather-badge-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E3F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path>
+            </svg>
+            <span>24°</span>
+          </div>
+        </div>
+
+        <!-- Vertical Timeline Track -->
+        <div class="timeline-track-container">
+          <!-- Continuous Itinerary Axis Line -->
+          <div class="timeline-axis-line" aria-hidden="true"></div>
+
+          <!-- Stop 1 (Current Active Stop) -->
+          <div class="timeline-stop-row">
+            <div class="timeline-marker-col">
+              <div class="stop-marker-active">
+                <div class="stop-marker-active-inner"></div>
+              </div>
+            </div>
+            <article class="timeline-card-main card-active">
+              <div class="timeline-card-time-row time-active">
+                <span>08:30 - 10:30</span>
+              </div>
+              <div class="timeline-card-dest-row">
+                <h2 class="timeline-card-title-lg">Dinh III Bảo Đại</h2>
+                <img src="../../../assets/dest_temple-DnCBvxgW.png" alt="Dinh III Bảo Đại" class="timeline-card-photo">
+              </div>
+              <div class="timeline-card-bottom-info">
+                <div class="timeline-info-chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1B3B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+                    <path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path>
+                  </svg>
+                  <span>40.000đ / người</span>
+                </div>
+                <a href="map.html" class="timeline-directions-link">
+                  <span>Chỉ đường</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Stop 2 (Upcoming Stop) -->
+          <div class="timeline-stop-row">
+            <div class="timeline-marker-col">
+              <div class="stop-marker-circle"></div>
+            </div>
+            <article class="timeline-card-main">
+              <div class="timeline-card-time-row">
+                <span>11:30 - 13:00</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#777C72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"></path>
+                  <path d="M15 11v11"></path>
+                  <path d="M6 2v20"></path>
+                  <path d="M3 2v4a3 3 0 0 0 6 0V2"></path>
+                </svg>
+              </div>
+              <h3 class="timeline-card-title-md">Lẩu gà lá é Tao Ngộ</h3>
+            </article>
+          </div>
+
+          <!-- Stop 3 (Upcoming Stop with weather notice) -->
+          <div class="timeline-stop-row" id="timelineStop3Row">
+            <div class="timeline-marker-col">
+              <div class="stop-marker-circle" id="stop3MarkerCircle"></div>
+            </div>
+            <article class="timeline-card-main" id="stop3Card">
+              <div class="timeline-card-time-row" id="stop3TimeRow">
+                <span id="stop3TimeText">14:30 - 16:30</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#777C72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="stop3WeatherIcon">
+                  <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                  <path d="M16 14v6"></path><path d="M8 14v6"></path><path d="M12 16v6"></path>
+                </svg>
+              </div>
+              <h3 class="timeline-card-title-md" id="stop3Title">Dạo quanh Hồ Xuân Hương</h3>
+              <div class="timeline-card-alert-txt" id="stop3AlertTxt">
+                Có mưa sau 15:00 · Có 2 phương án thay thế
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Smart Re-planning Suggestions Box -->
+        <section class="ai-replanning-box" id="aiReplanningBox">
+          <div class="ai-replanning-title" id="aiReplanningTitle">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#0B8457">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            </svg>
+            <span id="aiReplanningTitleText">Đề xuất chỉnh sửa</span>
+          </div>
+          <p class="ai-replanning-desc" id="aiReplanningDesc">
+            Dự báo mưa sau 15:00. Bạn có thể đổi sang điểm trong nhà như Ga Đà Lạt hoặc Bảo tàng Lâm Đồng.
+          </p>
+          <div class="ai-replanning-actions">
+            <a href="suggestion.html" class="btn-ai-pill-green" id="btnAiPillGreen">
+              <span>Xem phương án</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+            <button type="button" class="btn-ai-pill-white" onclick="window.location.href='edit_plan.html?tab=manual';" title="Tùy chỉnh lịch trình thủ công">
+              <span>Chỉnh sửa thủ công</span>
+            </button>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Bottom Navigation Bar (Icon ngôi nhà cho Trang chủ) -->
+      <nav class="bottom-nav-static-container" aria-label="Điều hướng chính">
+        <a href="home.html" class="dock-btn-row" title="Trang chủ">
+          <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20stroke='%231E3F20'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3e%3cpath%20d='M3%209.5L12%202.5L21%209.5V20.5C21%2021.0523%2020.5523%2021.5%2020%2021.5H4C3.44772%2021.5%203%2021.0523%203%2020.5V9.5Z'/%3e%3cpolyline%20points='9%2021.5%209%2012.5%2015%2012.5%2015%2021.5'/%3e%3c/svg%3e" alt="Trang chủ" width="20" height="20">
+          <span>Trang chủ</span>
+        </a>
+
+        <a href="itinerary.html" class="dock-btn-row active" title="Lịch trình">
+          <img src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M3.33337%205.8335H11.6667M15%205.8335H16.6667M3.33337%2014.1668H5.00004M8.33337%2014.1668H16.6667'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M15.0001%205.83341C15.0001%206.75389%2014.2539%207.50008%2013.3334%207.50008C12.4129%207.50008%2011.6667%206.75389%2011.6667%205.83341C11.6667%204.91294%2012.4129%204.16675%2013.3334%204.16675C14.2539%204.16675%2015.0001%204.91294%2015.0001%205.83341Z'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M8.33333%2014.1667C8.33333%2015.0871%207.58714%2015.8333%206.66667%2015.8333C5.74619%2015.8333%205%2015.0871%205%2014.1667C5%2013.2462%205.74619%2012.5%206.66667%2012.5C7.58714%2012.5%208.33333%2013.2462%208.33333%2014.1667Z'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Lịch trình" width="20" height="20">
+          <span>Lịch trình</span>
+        </a>
+
+        <a href="map.html" class="dock-btn-row" title="Bản đồ">
+          <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.25%2011C19.25%2015.5563%2015.5563%2019.25%2011%2019.25C6.44365%2019.25%202.75%2015.5563%202.75%2011C2.75%206.44365%206.44365%202.75%2011%202.75C15.5563%202.75%2019.25%206.44365%2019.25%2011Z'%20stroke-width='1.65'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3cpath%20d='M14.2083%207.79175L12.375%2012.3751L7.79163%2014.2084L9.62496%209.62508L14.2083%207.79175Z'%20stroke-width='1.65'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Bản đồ" width="20" height="20">
+          <span>Bản đồ</span>
+        </a>
+
+        <a href="../account/profile.html" class="dock-btn-row" title="Cá nhân">
+          <img src="data:image/svg+xml,%3csvg%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M9.00001%209.75C11.0709%209.75%2012.7496%208.07107%2012.7496%206C12.7496%203.92893%2011.0709%202.25%209.00001%202.25C6.92915%202.25%205.25039%203.92893%205.25039%206C5.25039%208.07107%206.92915%209.75%209.00001%209.75ZM9.00001%209.75C10.5911%209.75%2012.1171%2010.3821%2013.2422%2011.5074C14.3673%2012.6326%2014.9994%2014.1587%2014.9994%2015.75M9.00001%209.75C7.40887%209.75%205.8829%2010.3821%204.75779%2011.5074C3.63269%2012.6326%203.00061%2014.1587%203.00061%2015.75'%20stroke-width='1.7'%20stroke-linecap='round'%20stroke='%231E3F20'/%3e%3c/svg%3e" alt="Cá nhân" width="20" height="20">
+          <span>Cá nhân</span>
+        </a>
+      </nav>
+
+    </div>
+
+    <!-- MODAL 1: SAVED FAVORITE PLACES (#modalLovedPlaces) - Đồng bộ giao diện & dữ liệu với các trang khác -->
+    <div class="modal-backdrop-layer" id="modalLovedPlaces" role="dialog" aria-modal="true" aria-label="Địa điểm yêu thích">
+      <div class="loved-places-dialog">
+        <div class="loved-dialog-header">
+          <button type="button" class="btn-modal-close" id="btnCloseLovedPlaces" aria-label="Đóng popup"
+            style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #DFE4D8; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #1E3F20;">✕</button>
+          <div class="loved-header-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#D6455D">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+            </svg>
+            <span>Yêu thích</span>
+            <span class="loved-header-count">12</span>
+          </div>
+        </div>
+
+        <!-- Filter tabs: Tất cả | Ẩm thực | Thiên nhiên -->
+        <div class="loved-filters-row">
+          <button type="button" class="btn-loved-filter active" data-filter="all">Tất cả</button>
+          <button type="button" class="btn-loved-filter" data-filter="food">Ẩm thực</button>
+          <button type="button" class="btn-loved-filter" data-filter="nature">Thiên nhiên</button>
+        </div>
+
+        <!-- Grid 4 saved places from Figma Node 1376:3515 -->
+        <div class="loved-cards-grid" id="lovedCardsGrid">
+          <!-- Card 1 -->
+          <div class="loved-card-item" data-category="food">
+            <div class="loved-photo-wrap">
+              <img src="../../../assets/dest_dalat-qpK6Cu9w.png" alt="Lẩu gà lá é Tao Ngộ">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+              </button>
+            </div>
+            <div class="loved-card-body">
+              <div class="loved-card-title">Lẩu gà lá é Tao Ngộ</div>
+              <div class="loved-card-sub">Ăn uống • ~150.000đ/người</div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="loved-card-item" data-category="food">
+            <div class="loved-photo-wrap">
+              <img src="../../../assets/place_cafe-BumrxwO2.png" alt="Tiệm Cà Phê Túi Mơ To">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+              </button>
+            </div>
+            <div class="loved-card-body">
+              <div class="loved-card-title">Tiệm Cà Phê Túi Mơ To</div>
+              <div class="loved-card-sub">Cà phê • Chờ bàn ~25p</div>
+              <div class="loved-alert-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <span>Sóng yếu (tiền mặt)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="loved-card-item" data-category="nature">
+            <div class="loved-photo-wrap">
+              <img src="../../../assets/dest_temple-DnCBvxgW.png" alt="Dinh III Bảo Đại">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+              </button>
+            </div>
+            <div class="loved-card-body">
+              <div class="loved-card-title">Dinh III Bảo Đại</div>
+              <div class="loved-card-sub">Tham quan • 40.000đ</div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="loved-card-item" data-category="food">
+            <div class="loved-photo-wrap">
+              <img src="../../../assets/dest_hoian-djZpT-I-.png" alt="Bánh Căn Lệ">
+              <button type="button" class="btn-loved-heart-badge" title="Bỏ yêu thích">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#E63946">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                </svg>
+              </button>
+            </div>
+            <div class="loved-card-body">
+              <div class="loved-card-title">Bánh Căn Lệ</div>
+              <div class="loved-card-sub">Ăn uống • ~40.000đ/người</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POP-UP MODAL 2: CHIA SẺ CHUYẾN ĐI (#modalShareTrip) -->
+    <div class="share-modal-backdrop" id="modalShareTrip" role="dialog" aria-modal="true" aria-label="Chia sẻ chuyến đi">
+      <div class="share-dialog-box">
+        <button type="button" class="share-btn-back" id="btnCloseShareModal" aria-label="Đóng chia sẻ">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+
+        <h3 class="share-title">Chia sẻ chuyến đi</h3>
+        <p class="share-subtitle">Trốn phố về rừng Đà Lạt</p>
+
+        <form class="share-input-wrap" onsubmit="event.preventDefault(); handleInviteFriend();">
+          <span class="share-input-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          <input type="text" id="inputShareInvite" class="share-input-field" placeholder="Nhập email hoặc tên bạn bè" required autocomplete="off">
+          <button type="submit" class="btn-share-invite">Mời</button>
+        </form>
+
+        <section class="share-members-card" aria-label="Thành viên chuyến đi">
+          <h4 class="share-members-title">Thành viên chuyến đi</h4>
+          <div class="share-members-list" id="shareMembersList">
+            <div class="share-member-item">
+              <div class="share-avatar-circle leader">L</div>
+              <div class="share-member-info">
+                <span class="share-member-name">Linh Nguyễn</span>
+                <span class="share-member-status">Người tạo lộ trình</span>
+              </div>
+              <span class="share-badge-leader">Trưởng nhóm</span>
+            </div>
+
+            <div class="share-member-divider"></div>
+
+            <div class="share-member-item">
+              <div class="share-avatar-circle member">H</div>
+              <div class="share-member-info">
+                <span class="share-member-name">Hải Yến</span>
+                <span class="share-member-status">Đã tham gia</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. CHỌN NGÀY TRÊN DATE TRACK
+    // ==========================================
+    function selectDate(btn) {
+      document.querySelectorAll('.date-pill-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ==========================================
+    // 2. NOTIFICATION DROPDOWN PANEL TOGGLE
+    // ==========================================
+    const btnOpenNotif = document.getElementById('btnOpenNotification');
+    const notifPanel = document.getElementById('notificationDropdownPanel');
+
+    if (btnOpenNotif && notifPanel) {
+      btnOpenNotif.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = notifPanel.classList.toggle('open');
+        btnOpenNotif.classList.toggle('active', isOpen);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!notifPanel.contains(e.target) && !btnOpenNotif.contains(e.target)) {
+          notifPanel.classList.remove('open');
+          btnOpenNotif.classList.remove('active');
+        }
+      });
+    }
+
+    // ==========================================
+    // 3. SAVED FAVORITE PLACES (#modalLovedPlaces)
+    // ==========================================
+    const btnOpenHeaderLoved = document.getElementById('btnOpenHeaderLoved');
+    const modalLoved = document.getElementById('modalLovedPlaces');
+    const btnCloseLoved = document.getElementById('btnCloseLovedPlaces');
+
+    function openLovedModal() {
+      if (modalLoved) modalLoved.classList.add('active');
+    }
+    function closeLovedModal() {
+      if (modalLoved) modalLoved.classList.remove('active');
+    }
+
+    if (btnOpenHeaderLoved) {
+      btnOpenHeaderLoved.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLovedModal();
+      });
+    }
+    if (btnCloseLoved) {
+      btnCloseLoved.addEventListener('click', closeLovedModal);
+    }
+    if (modalLoved) {
+      modalLoved.addEventListener('click', (e) => {
+        if (e.target === modalLoved) closeLovedModal();
+      });
+    }
+
+    // Loved filter tabs
+    document.querySelectorAll('.btn-loved-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-loved-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        document.querySelectorAll('#lovedCardsGrid .loved-card-item').forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ==========================================
+    // 4. CHIA SẺ CHUYẾN ĐI (#modalShareTrip)
+    // ==========================================
+    const btnShare = document.getElementById('btnShareItinerary');
+    const modalShare = document.getElementById('modalShareTrip');
+    const btnCloseShare = document.getElementById('btnCloseShareModal');
+
+    function openShareModal() {
+      if (modalShare) modalShare.classList.add('active');
+    }
+
+    function closeShareModal() {
+      if (modalShare) modalShare.classList.remove('active');
+    }
+
+    if (btnShare) btnShare.addEventListener('click', openShareModal);
+    if (btnCloseShare) btnCloseShare.addEventListener('click', closeShareModal);
+    if (modalShare) {
+      modalShare.addEventListener('click', (e) => {
+        if (e.target === modalShare) closeShareModal();
+      });
+    }
+
+    function handleInviteFriend() {
+      const input = document.getElementById('inputShareInvite');
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+
+      const list = document.getElementById('shareMembersList');
+      const initial = val.charAt(0).toUpperCase();
+
+      const newMemberHtml = `
+        <div class="share-member-divider"></div>
+        <div class="share-member-item">
+          <div class="share-avatar-circle member" style="background: #E8F4EC; color: #0B8457;">${initial}</div>
+          <div class="share-member-info">
+            <span class="share-member-name">${escapeHtml(val)}</span>
+            <span class="share-member-status" style="color: #0B8457;">Đã gửi lời mời</span>
+          </div>
+        </div>
+      `;
+
+      list.insertAdjacentHTML('beforeend', newMemberHtml);
+      input.value = '';
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
+    }
+  </script>
+</body>
+</html>
