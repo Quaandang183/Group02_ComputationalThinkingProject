@@ -42,7 +42,11 @@ frontend/
 │   │   ├── trip/                        # home.html, plan.html, proposal.html, itinerary.html, edit_plan.html, suggestion.html, map.html
 │   │   ├── finance/                     # budget.html, spending.html
 │   │   └── account/                     # profile.html, delete_account.html
-│   └── images/                          # Kho tài nguyên hình ảnh tập trung duy nhất (avatars/, backgrounds/, destinations/, icons/)
+│   └── images/                          # Kho tài nguyên hình ảnh tập trung duy nhất (60 tệp, không trùng lặp)
+│       ├── avatars/                     # Ảnh đại diện người dùng & logo thương hiệu TripWise (9 tệp)
+│       ├── backgrounds/                 # Ảnh nền hoa văn văn hóa, botanical & nền bản đồ (8 tệp)
+│       ├── destinations/                # Ảnh các địa điểm du lịch, quán ăn & danh lam thắng cảnh (13 tệp)
+│       └── icons/                       # Hệ thống biểu tượng giao diện SVG sắc nét (30 tệp)
 ├── node_modules/                        # Thư viện phụ thuộc (Vite, Capacitor, TypeScript) cài bởi npm (KHÔNG commit)
 ├── android/                             # Native Android project (Capacitor)
 ├── dist/                                # Thư mục build production của Vite (KHÔNG chỉnh tay, không commit)
