@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Vite production & cache build output
+dist/
+.vite/
+
+# Environment configuration files
+.env
+.env.local
+.env.*.local
+
+# Logs & OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+__pycache__/
+
+# Editor & IDE directories
+.vscode/
+.idea/
+
+# Android / Gradle temporary build artifacts (chỉ ignore file tạm, giữ nguyên mã nguồn android/)
+android/.gradle/
+android/build/
+android/app/build/
+android/captures/
+android/local.properties
+android/*.iml
+android/.idea/
+android/app/src/main/assets/public/
+android/capacitor-cordova-android-plugins/

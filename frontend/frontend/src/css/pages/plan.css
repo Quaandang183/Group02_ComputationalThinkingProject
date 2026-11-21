@@ -1,0 +1,1392 @@
+/* ==========================================================================
+   TIER 3 - PAGE CLUSTER: PLAN & PROPOSAL (src/css/pages/plan.css)
+   Screens: plan.html, proposal.html
+   ========================================================================== */
+
+/* ==========================================================================
+   MODAL: TRIPWISE · LÊN KẾ HOẠCH TRỐN PHỐ (Figma Node 1376:2657 & Image 3)
+   ========================================================================== */
+
+.plan-modal-backdrop {
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+}
+
+.plan-dialog-box {
+  width: 320px !important;
+  height: 320px !important;
+  max-width: 320px !important;
+  max-height: 320px !important;
+  margin: auto !important;
+  overflow-y: auto !important;
+  border-radius: 24px;
+  background-color: #faf7ee;
+  background-image: url('../../images/backgrounds/botanical_bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  padding: 12px 14px 16px 14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.plan-dialog-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.btn-plan-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-plan-close:hover {
+  background: #ffffff;
+  transform: rotate(90deg);
+}
+
+.btn-plan-close:active {
+  transform: scale(0.92) rotate(90deg);
+}
+
+.plan-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.plan-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1E3F20;
+}
+
+.plan-input-container {
+  height: 52px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(45, 77, 50, 0.15);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.plan-input-container:focus-within {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: var(--c-emerald);
+  box-shadow: 0 0 0 3px rgba(11, 132, 87, 0.15);
+}
+
+.plan-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #48604d;
+}
+
+.plan-input-field {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-forest-dark);
+}
+
+.plan-input-field::placeholder {
+  color: #8b9987;
+  font-weight: 400;
+}
+
+/* 2 Columns: Người lớn & Trẻ em */
+.plan-dual-row {
+  display: flex;
+  gap: 12px;
+}
+
+.plan-dual-row .plan-field-group {
+  flex: 1;
+}
+
+.plan-select-box {
+  position: relative;
+  cursor: pointer;
+}
+
+.plan-select-field {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-forest-dark);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.plan-chevron {
+  font-size: 12px;
+  color: #728172;
+  pointer-events: none;
+}
+
+
+/* Nút Submit Lập kế hoạch chuyến đi (Mờ khi thiếu thông tin, đậm khi đủ) */
+.btn-plan-submit-action {
+  height: 56px;
+  border-radius: 16px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.25s ease;
+  /* Trạng thái mặc định / chưa đủ thông tin: mờ nhạt */
+  background: #a3c5a8;
+  color: #ffffff;
+  opacity: 0.65;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.btn-plan-submit-action.active {
+  background: var(--c-emerald);
+  color: #ffffff;
+  opacity: 1;
+  pointer-events: auto;
+  box-shadow: 0 6px 20px rgba(11, 132, 87, 0.35);
+}
+
+.btn-plan-submit-action.active:hover {
+  background: var(--c-emerald-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(11, 132, 87, 0.45);
+}
+
+.btn-plan-submit-action.active:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(11, 132, 87, 0.3);
+}
+
+/* Provinces Dropdown A-Z */
+.provinces-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--c-border-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+}
+
+.provinces-dropdown.open {
+  display: flex;
+}
+
+.provinces-dropdown-header {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  background: var(--c-bg-tint);
+  border-bottom: 1px solid var(--c-border-light);
+}
+
+.provinces-dropdown-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.province-item {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-forest-dark);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.province-item:hover {
+  background: #eef5ea;
+  color: var(--c-emerald);
+  font-weight: 600;
+}
+
+/* Calendar Popover */
+.calendar-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--c-border-light);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+  z-index: 100;
+  padding: 14px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calendar-popover.open {
+  display: flex;
+}
+
+.calendar-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cal-month-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-forest-dark);
+}
+
+.btn-cal-prev,
+.btn-cal-next {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid var(--c-border-light);
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--c-forest-dark);
+  transition: all 0.15s ease;
+}
+
+.btn-cal-prev:hover,
+.btn-cal-next:hover {
+  background: #E8EEE3;
+  border-color: #0B8457;
+  color: #0B8457;
+}
+
+.btn-cal-prev:active,
+.btn-cal-next:active {
+  transform: scale(0.92);
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #5F7A6B;
+}
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.cal-day-cell,
+.cal-day {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-forest-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cal-day-cell:hover:not(.empty),
+.cal-day:hover:not(.empty) {
+  background: #eef5ea;
+  color: #0B8457;
+}
+
+.cal-day-cell:active:not(.empty),
+.cal-day:active:not(.empty) {
+  transform: scale(0.92);
+}
+
+.cal-day-cell.selected-range,
+.cal-day.in-range {
+  background: #E8F3EC !important;
+  color: #0B8457 !important;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.cal-day-cell.selected-edge,
+.cal-day.range-start,
+.cal-day.range-end {
+  background: #0B8457 !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.cal-day.empty,
+.cal-day-cell.empty {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0;
+}
+
+.calendar-actions-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--c-border-light);
+  padding-top: 8px;
+}
+
+.btn-cal-apply {
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: var(--c-emerald);
+  color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   DESTINATION SUGGESTION FRAME WITH 34 PROVINCES & REAL-TIME SEARCH (Node 1376:4355)
+   ========================================================================== */
+#planningModal,
+.modal-backdrop-layer.plan-modal-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(18, 30, 20, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 120 !important;
+  padding: 16px !important;
+}
+
+#planningModal.active,
+.modal-backdrop-layer.plan-modal-backdrop.active {
+  display: flex !important;
+}
+
+.plan-dialog-box {
+  width: 320px !important;
+  height: 320px !important;
+  max-width: 320px !important;
+  max-height: 320px !important;
+  margin: auto !important;
+  overflow-y: auto !important;
+  border-radius: 24px;
+  background: #FAF8F2;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+}
+
+.depart-suggestion-frame {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #D6E4DD;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(31, 61, 46, 0.16);
+  z-index: 150;
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 260px;
+}
+
+.depart-suggestion-frame.open {
+  display: flex;
+}
+
+.depart-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #D6E4DD;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.depart-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+  font-size: 12px;
+  color: #1F3D2E;
+}
+
+.depart-search-input::placeholder {
+  color: #5F7A6B;
+}
+
+.depart-provinces-list {
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  scroll-behavior: smooth;
+}
+
+.depart-province-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  height: 38px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1F3D2E;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.depart-province-item:hover,
+.depart-province-item.selected {
+  background: #E8EEE3;
+  color: #0B8457;
+  font-weight: 600;
+}
+
+.depart-province-item:active {
+  transform: scale(0.98);
+}
+
+.depart-province-item svg {
+  width: 15px;
+  height: 15px;
+  stroke: #5F7A6B;
+  flex-shrink: 0;
+  transition: stroke 0.15s ease;
+}
+
+.depart-province-item:hover svg,
+.depart-province-item.selected svg {
+  stroke: #0B8457;
+}
+
+.depart-province-item:hover svg {
+  stroke: #0B8457;
+}
+
+.depart-no-results {
+  padding: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: #75816F;
+}
+
+
+/* ==========================================================================
+   DEDICATED FULL PAGE: TRIPWISE LÊN KẾ HOẠCH (plan.html - Image 2)
+   ========================================================================== */
+
+.plan-page-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 16px 28px 16px;
+  /* Cố định mép trên 48px theo yêu cầu */
+  background-color: #FAF8F2;
+  box-sizing: border-box;
+}
+
+.plan-page-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.btn-plan-back-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 77, 50, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1E3F20;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-plan-back-circle:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: scale(1.05);
+}
+
+.btn-plan-back-circle:active {
+  transform: scale(0.95);
+}
+
+.btn-plan-close-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 77, 50, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1E3F20;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.btn-plan-close-circle:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: scale(1.05);
+}
+
+.btn-plan-close-circle:active {
+  transform: scale(0.95);
+}
+
+.plan-tags-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+
+.btn-plan-full-submit {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  background: #0B8457;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  box-shadow: 0 6px 18px rgba(11, 132, 87, 0.28);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-plan-full-submit:not(:disabled):not(.disabled):hover {
+  background: #086b46;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(11, 132, 87, 0.4);
+}
+
+.btn-plan-full-submit:not(:disabled):not(.disabled):active {
+  background: #065437;
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(11, 132, 87, 0.3);
+}
+
+.btn-plan-full-submit:disabled,
+.btn-plan-full-submit.disabled {
+  opacity: 0.38 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.plan-currency-suffix {
+  font-size: 14px;
+  font-weight: 700;
+  color: #5F7A6B;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.plan-input-field[type=number]::-webkit-inner-spin-button,
+.plan-input-field[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.plan-input-field[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+/* ==========================================================================
+   PROPOSED ITINERARY SCREEN (proposal.html - Image 2: Đề xuất lịch trình)
+   ========================================================================== */
+
+.proposal-page-container {
+  width: 100%;
+  min-height: 852px;
+  background-color: #FAF8F2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.proposal-scroll-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 16px 24px 16px;
+  /* 48px from top edge */
+  box-sizing: border-box;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.proposal-scroll-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Header Row: Back button & 95% Match pill */
+.proposal-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.btn-proposal-back {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #DFE4D8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1E3F20;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-proposal-back:hover {
+  background: #F0F4EE;
+  transform: scale(1.05);
+}
+
+.btn-proposal-back:active {
+  transform: scale(0.95);
+}
+
+.proposal-match-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #E0F2E7;
+  color: #0B8457;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(11, 132, 87, 0.12);
+}
+
+/* Page Title */
+.proposal-page-title {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 800;
+  color: #14301C;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+/* Dark Green Highlight Ticket Card (Khớp 100% Ảnh 4) */
+.proposal-summary-card {
+  position: relative;
+  background: #1e3f20;
+  border-radius: 24px;
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  box-shadow: 0 10px 28px rgba(20, 48, 28, 0.25);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* Hai vết khuyết vé bán nguyệt 2 bên mép (Semi-circular ticket notches) */
+.proposal-summary-card::before,
+.proposal-summary-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FAF8F2;
+  z-index: 2;
+}
+
+.proposal-summary-card::before {
+  left: -8px;
+}
+
+.proposal-summary-card::after {
+  right: -8px;
+}
+
+.prop-summary-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.prop-summary-icon {
+  color: #E5C158;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.prop-summary-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.prop-summary-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.prop-summary-line-icon {
+  font-size: 13px;
+  line-height: 1;
+  margin-bottom: 1px;
+}
+
+.prop-emoji {
+  font-size: 12px;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.prop-summary-line1 {
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prop-summary-line2 {
+  font-family: var(--font-main);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.prop-summary-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Day Tabs Row */
+.proposal-day-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.proposal-day-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.prop-day-tab {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #DCE5D8;
+  color: #38503C;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prop-day-tab:hover {
+  background: #F4F8F2;
+  border-color: #0B8457;
+  transform: translateY(-1px);
+}
+
+.prop-day-tab:active {
+  transform: translateY(0);
+}
+
+.prop-day-tab.active {
+  background: #0B8457;
+  border-color: #0B8457;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(11, 132, 87, 0.28);
+}
+
+/* Section Header (Lịch trình trong ngày & 24°C) */
+.proposal-subhead-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.proposal-subhead-title {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A3628;
+}
+
+.proposal-weather-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #EBF4ED;
+  color: #1A3628;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Timeline Stacking */
+.proposal-timeline-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 22px;
+}
+
+.proposal-timeline-wrap::before {
+  content: "";
+  position: absolute;
+  top: 42px;
+  bottom: 50px;
+  left: 9px;
+  width: 2px;
+  background: #C4D5C7;
+  z-index: 1;
+}
+
+.prop-timeline-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Căn giữa hoàn hảo hình tròn bên ngoài ngang và giữa với ô */
+  gap: 12px;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.prop-timeline-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #0B8457;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  align-self: center;
+  /* Đảm bảo hình tròn luôn đặt bên ngoài ngang và giữa ô */
+  margin: 0;
+  box-shadow: 0 0 0 2px rgba(11, 132, 87, 0.15);
+}
+
+.prop-timeline-card {
+  flex: 1 1 0%;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  /* Chiều rộng mở rộng tùy ý theo nội dung, chiều ngang bằng các ô khác */
+  min-height: 84px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #DFE7DC;
+  padding: 12px 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  margin-bottom: 0;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prop-timeline-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.prop-card-thumb {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.prop-card-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.prop-card-time {
+  font-size: 11px;
+  font-weight: 600;
+  color: #728574;
+}
+
+.prop-card-name {
+  font-family: var(--font-main);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #14301C;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prop-card-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.prop-card-tag {
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #F1F5EE;
+  color: #38523C;
+  border: 1px solid #E1E9DD;
+  white-space: nowrap;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.prop-card-tag.warning {
+  background: #FFF8E7;
+  color: #9E6B08;
+  border-color: #F8DF9E;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+/* Transit Step between stops */
+.prop-transit-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 0 8px 32px;
+  z-index: 2;
+}
+
+.prop-transit-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #F4F7EE;
+  border: 1px solid #E1E8DC;
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 600;
+  color: #4C644E;
+}
+
+/* Budget Estimation Card */
+.proposal-budget-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #DEE6DC;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prop-budget-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.prop-budget-left-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prop-budget-title {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: #647565;
+}
+
+.prop-budget-val {
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 800;
+  color: #14301C;
+}
+
+.prop-budget-right-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.prop-budget-target-label {
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 500;
+  color: #728574;
+}
+
+.prop-budget-target-val {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  color: #455C47;
+}
+
+.prop-budget-subtitle {
+  font-family: var(--font-main);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #7A8E7C;
+  margin-top: -4px;
+}
+
+.prop-budget-remain-pill {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #EAF5ED;
+  color: #0B8457;
+  font-family: var(--font-main);
+  font-size: 11.5px;
+  font-weight: 700;
+  border: 1px solid #D2EBD9;
+}
+
+/* Multi-colored Progress Bar */
+.prop-multi-bar {
+  display: flex;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #E8ECE6;
+}
+
+.prop-seg-stay {
+  background: #2D4D32;
+}
+
+.prop-seg-food {
+  background: #DDA83B;
+}
+
+.prop-seg-tour {
+  background: #6799AD;
+}
+
+.prop-seg-trans {
+  background: #CD7958;
+}
+
+.prop-seg-other {
+  background: #B2A294;
+}
+
+/* Category Legend Breakdown */
+.prop-legend-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.prop-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F7FAF5;
+  border: 1px solid #E8EFE5;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 600;
+  color: #2F4733;
+}
+
+.prop-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Fixed Bottom Action Bar */
+.proposal-bottom-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 16px calc(20px + var(--safe-bottom)) 16px;
+  background: linear-gradient(180deg, rgba(250, 248, 242, 0.7) 0%, rgba(250, 248, 242, 0.96) 35%, #FAF8F2 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  gap: 10px;
+  box-sizing: border-box;
+  z-index: 50;
+  border-top: 1px solid rgba(220, 230, 220, 0.5);
+}
+
+.btn-proposal-adjust {
+  flex: 1;
+  height: 48px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px solid #CCD8CB;
+  color: #1E3F20;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 10px;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn-proposal-adjust span {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.btn-proposal-adjust svg {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+}
+
+.btn-proposal-adjust:hover {
+  background: #F3F8F1;
+  border-color: #0B8457;
+  color: #0B8457;
+  transform: translateY(-1px);
+}
+
+.btn-proposal-adjust:active {
+  transform: scale(0.98);
+}
+
+.btn-proposal-apply {
+  flex: 1;
+  height: 48px;
+  border-radius: 999px;
+  background: #0B8457;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 10px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(11, 132, 87, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-proposal-apply span {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.btn-proposal-apply svg {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+}
+
+.btn-proposal-apply:hover {
+  background: #09754D;
+  box-shadow: 0 6px 18px rgba(11, 132, 87, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-proposal-apply:active {
+  transform: scale(0.98);
+}
+
+
+
+/* Brighter & Cleaner Theme: Plan & Proposal Cards */
+.depart-search-bar,
+.plan-input-container,
+.prop-timeline-card,
+.proposal-budget-card {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+.prop-timeline-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.proposal-summary-card {
+  background: linear-gradient(135deg, #1E6B47 0%, #29845B 100%) !important;
+  box-shadow: 0 8px 24px rgba(30, 107, 71, 0.22) !important;
+}
